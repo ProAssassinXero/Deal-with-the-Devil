@@ -10,9 +10,15 @@ public class PlayerMovemet : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] private Vector2 vector2;
-    [SerializeField] private Vector2 LastVect2;
-    [SerializeField] private float CurrentSpeed;
-    public int SpeedMax;
+    [SerializeField] private float CurrentSpeedX;
+    [SerializeField] private float CurrentSpeedY;
+    [SerializeField] private Vector2 Velo = new Vector2(0,0);
+    public int SpeedMax = 5;
+    public int SpeedStart = 1;
+    public int ChangeSpeed = 1;
+
+    [SerializeField] private float LastX = 0;
+    [SerializeField] private float LastY = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,17 +30,43 @@ public class PlayerMovemet : MonoBehaviour
     void Update()
     {
         vector2 = MovementKeys.action.ReadValue<Vector2>();
-        CurrentSpeed = PlayerRigidBody.linearVelocity.magnitude;
-    }
-    
-    void Acc()
-    {
+        float XSpeed = vector2.x;
+        float YSpeed = vector2.y;
+        if (XSpeed == -LastX || (XSpeed == 0 && LastX != 0))
+        {
 
+            CurrentSpeedX = SpeedStart;
+        }
+        if (YSpeed == -LastY || (YSpeed == 0 && LastY !=0))
+        {
+            CurrentSpeedY = SpeedStart;
+        }
+        LastY = YSpeed;
+        LastX = XSpeed;
     }
 
     private void FixedUpdate()
     {
+        Velo = new Vector2(vector2.x * CurrentSpeedX, vector2.y * CurrentSpeedY);
+        PlayerRigidBody.AddForce(Velo);
+        Debug.Log(CurrentSpeedX);
+        Debug.Log(SpeedMax);
+        if (CurrentSpeedX < SpeedMax)
+        {
+            CurrentSpeedX += ChangeSpeed * Time.deltaTime;
+            if (CurrentSpeedX > SpeedMax)
+            {
+                CurrentSpeedX = SpeedMax;
+            }
+        }
+        if (CurrentSpeedY < SpeedMax)
+        {
+            CurrentSpeedY += ChangeSpeed * Time.deltaTime;
+            if (CurrentSpeedY > SpeedMax)
+            {
+                CurrentSpeedY = SpeedMax;
+            }
+        }
         
-        PlayerRigidBody.linearVelocity = vector2;
     }
 }

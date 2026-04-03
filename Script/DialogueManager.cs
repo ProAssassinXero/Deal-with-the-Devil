@@ -17,6 +17,7 @@ public class DialogueManager : MonoBehaviour
     }
     public void StartDialogue(string[] newline)
     {
+        dialogueBox.SetActive(true);
         lines = newline;
         index = 0;
         Advance();

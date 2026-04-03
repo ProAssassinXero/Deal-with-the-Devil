@@ -20,12 +20,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float LastX = 0;
     [SerializeField] private float LastY = 0;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -49,8 +43,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Velo = new Vector2(vector2.x * CurrentSpeedX, vector2.y * CurrentSpeedY);
         PlayerRigidBody.AddForce(Velo);
-        Debug.Log(CurrentSpeedX);
-        Debug.Log(SpeedMax);
         if (CurrentSpeedX < SpeedMax)
         {
             CurrentSpeedX += ChangeSpeed * Time.deltaTime;
@@ -67,6 +59,46 @@ public class PlayerMovement : MonoBehaviour
                 CurrentSpeedY = SpeedMax;
             }
         }
-        
+
+//Asset intergation for the animation
+        //Down
+        if (vector2.y < 0)
+        {
+            PlayerObject.GetComponent<Animator>().SetBool("IsWalkingDown", true);
+        }
+        else
+        {
+            PlayerObject.GetComponent<Animator>().SetBool("IsWalkingDown", false);
+        }
+
+        //Up
+        if (vector2.y > 0)
+        {
+            PlayerObject.GetComponent<Animator>().SetBool("IsWalkingUp", true);
+        }
+        else
+        {
+            PlayerObject.GetComponent<Animator>().SetBool("IsWalkingUp", false);
+        }
+
+        //Right
+        if (vector2.x > 0)
+        {
+            PlayerObject.GetComponent<Animator>().SetBool("IsWalkingRight", true);
+        }
+        else
+        {
+            PlayerObject.GetComponent<Animator>().SetBool("IsWalkingRight", false);
+        }
+
+        //Left
+        if (vector2.x < 0)
+        {
+            PlayerObject.GetComponent<Animator>().SetBool("IsWalkingLeft", true);
+        }
+        else
+        {
+            PlayerObject.GetComponent<Animator>().SetBool("IsWalkingLeft", false);
+        }
     }
 }

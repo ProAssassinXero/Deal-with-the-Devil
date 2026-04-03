@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class LuciferDialogueScript : MonoBehaviour
 {
-
     private string[] luciferDialogue = new string[]
     {
         "Lucifer: Welcome to my domain, mortal.",

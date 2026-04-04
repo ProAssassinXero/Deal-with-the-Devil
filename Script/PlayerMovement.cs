@@ -7,28 +7,52 @@ public class PlayerMovement : MonoBehaviour
     public GameObject PlayerObject;
     public Rigidbody2D PlayerRigidBody;
     public InputActionReference MovementKeys;
+    public FaceMouse combat;
 
     [Header("Movement")]
     [SerializeField] private Vector2 vector2;
     [SerializeField] private float CurrentSpeedX;
     [SerializeField] private float CurrentSpeedY;
-    [SerializeField] private Vector2 Velo = new Vector2(0,0);
+    private Animator playerAnim;
+    [SerializeField] private Vector2 Velo = new Vector2(0, 0);
     public int SpeedMax = 5;
-    public int SpeedStart = 1;
+    public int SpeedStart = 2;
     public int ChangeSpeed = 1;
 
-    [SerializeField] private float LastX = 0;
-    [SerializeField] private float LastY = 0;
+    //[SerializeField] private float LastX = 0;
+    //[SerializeField] private float LastY = 0;
+
+    private void Start()
+    {
+        CurrentSpeedX = SpeedStart;
+        CurrentSpeedY = SpeedStart;
+        playerAnim = PlayerObject.GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
     {
         vector2 = MovementKeys.action.ReadValue<Vector2>();
+
+        // Dominant axis
+        if (vector2.x != 0f && vector2.y != 0f)
+        {
+            if (Mathf.Abs(vector2.x) > Mathf.Abs(vector2.y))
+            {
+                vector2.y = 0f;
+            }
+            else
+            {
+                vector2.x = 0f;
+            }
+        }
+
+        // Probably will use this for combat, i don't like it in the bar. It's too jammy, out of place, and doesn't feel good. But it works, so maybe we'll use it in the future.
+        /*
         float XSpeed = vector2.x;
         float YSpeed = vector2.y;
         if (XSpeed == -LastX || (XSpeed == 0 && LastX != 0))
         {
-
             CurrentSpeedX = SpeedStart;
         }
         if (YSpeed == -LastY || (YSpeed == 0 && LastY !=0))
@@ -37,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
         }
         LastY = YSpeed;
         LastX = XSpeed;
+        */
     }
 
     private void FixedUpdate()
@@ -60,45 +85,61 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-//Asset intergation for the animation
-        //Down
-        if (vector2.y < 0)
+        // Asset integration for the animation
+        // Down
+        if (vector2.y < 0 && combat.IsSlashing == false)
         {
-            PlayerObject.GetComponent<Animator>().SetBool("IsWalkingDown", true);
+            playerAnim.SetBool("IsWalkingDown", true);
         }
         else
         {
-            PlayerObject.GetComponent<Animator>().SetBool("IsWalkingDown", false);
+            playerAnim.SetBool("IsWalkingDown", false);
         }
 
-        //Up
-        if (vector2.y > 0)
+        // Up
+        if (vector2.y > 0 && combat.IsSlashing == false)
         {
-            PlayerObject.GetComponent<Animator>().SetBool("IsWalkingUp", true);
+            playerAnim.SetBool("IsWalkingUp", true);
         }
         else
         {
-            PlayerObject.GetComponent<Animator>().SetBool("IsWalkingUp", false);
+            playerAnim.SetBool("IsWalkingUp", false);
         }
 
-        //Right
-        if (vector2.x > 0)
+        // Right
+        if (vector2.x > 0 && combat.IsSlashing == false)
         {
-            PlayerObject.GetComponent<Animator>().SetBool("IsWalkingRight", true);
+            playerAnim.SetBool("IsWalkingRight", true);
         }
         else
         {
-            PlayerObject.GetComponent<Animator>().SetBool("IsWalkingRight", false);
+            playerAnim.SetBool("IsWalkingRight", false);
         }
 
-        //Left
-        if (vector2.x < 0)
+        // Left
+        if (vector2.x < 0 && combat.IsSlashing == false)
         {
-            PlayerObject.GetComponent<Animator>().SetBool("IsWalkingLeft", true);
+            playerAnim.SetBool("IsWalkingLeft", true);
         }
         else
         {
-            PlayerObject.GetComponent<Animator>().SetBool("IsWalkingLeft", false);
+            playerAnim.SetBool("IsWalkingLeft", false);
         }
+
+        //combat reference for the animation
+        if (combat.IsSlashing)
+        {
+            CurrentSpeedX = 4;
+            CurrentSpeedY = 4;
+            playerAnim.SetBool("IsWalkingDown", false);
+            playerAnim.SetBool("IsWalkingUp", false);
+            playerAnim.SetBool("IsWalkingRight", false);
+            playerAnim.SetBool("IsWalkingLeft", false);
+        }
+    }
+
+    public void StopSlash()
+    { 
+        combat.StopSlash();
     }
 }

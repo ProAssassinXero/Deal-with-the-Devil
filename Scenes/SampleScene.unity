@@ -166,6 +166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60f505d59ee5f66438c70f522e2a823c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FaceMouse
+  IsSlashing: 0
+  PlayerObject: {fileID: 976843495}
 --- !u!58 &50047939
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -767,6 +769,7 @@ MonoBehaviour:
   PlayerObject: {fileID: 976843495}
   PlayerRigidBody: {fileID: 976843502}
   MovementKeys: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  combat: {fileID: 50047938}
   vector2: {x: 0, y: 0}
   CurrentSpeedX: 0
   CurrentSpeedY: 0
@@ -774,8 +777,6 @@ MonoBehaviour:
   SpeedMax: 25
   SpeedStart: 10
   ChangeSpeed: 40
-  LastX: 0
-  LastY: 0
 --- !u!50 &976843502
 Rigidbody2D:
   serializedVersion: 5
@@ -789,7 +790,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 6
+  m_LinearDamping: 5.5
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -802,7 +803,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!95 &976843503
 Animator:
   serializedVersion: 7

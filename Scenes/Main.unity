@@ -727,7 +727,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -4094925144594536868, guid: 3dfea9f8fb2a7d647b2885ea451a29ef, type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -840,7 +840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimator
   movement: {fileID: 976843501}
   playerFakeBody: {fileID: 50047936}
-  isComatPhase: 0
+  isComatPhase: 1
   IsSlashing: 0
 --- !u!1 &1667402944
 GameObject:

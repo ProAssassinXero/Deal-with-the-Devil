@@ -11,9 +11,9 @@ public class PlayerMovement : MonoBehaviour
     public FaceMouse combat;
 
     [Header("Movement")]
-    [SerializeField] private Vector2 vector2;
-    [SerializeField] private float CurrentSpeedX;
-    [SerializeField] private float CurrentSpeedY;
+    [SerializeField] public Vector2 vector2;
+    [SerializeField] public float CurrentSpeedX;
+    [SerializeField] public float CurrentSpeedY;
     private Animator playerAnim;
     [SerializeField] private Vector2 Velo = new Vector2(0, 0);
     public int SpeedMax = 5;
@@ -85,106 +85,5 @@ public class PlayerMovement : MonoBehaviour
                 CurrentSpeedY = SpeedMax;
             }
         }
-
-        // Asset integration for the animation
-        // Down
-        if (vector2.y < 0 && combat.IsSlashing == false)
-        {
-            playerAnim.SetBool("IsWalkingDown", true);
-        }
-        else
-        {
-            playerAnim.SetBool("IsWalkingDown", false);
-        }
-
-        // Up
-        if (vector2.y > 0 && combat.IsSlashing == false)
-        {
-            playerAnim.SetBool("IsWalkingUp", true);
-        }
-        else
-        {
-            playerAnim.SetBool("IsWalkingUp", false);
-        }
-
-        // Right
-        if (vector2.x > 0 && combat.IsSlashing == false)
-        {
-            playerAnim.SetBool("IsWalkingRight", true);
-        }
-        else
-        {
-            playerAnim.SetBool("IsWalkingRight", false);
-        }
-
-        // Left
-        if (vector2.x < 0 && combat.IsSlashing == false)
-        {
-            playerAnim.SetBool("IsWalkingLeft", true);
-        }
-        else
-        {
-            playerAnim.SetBool("IsWalkingLeft", false);
-        }
-
-        //combat reference for the animation
-        if (combat.IsSlashing)
-        {
-            CurrentSpeedX = 4;
-            CurrentSpeedY = 4;
-            playerAnim.SetBool("IsWalkingDown", false);
-            playerAnim.SetBool("IsWalkingUp", false);
-            playerAnim.SetBool("IsWalkingRight", false);
-            playerAnim.SetBool("IsWalkingLeft", false);
-        }
-
-
-
-        //Idle Animations---------------------------------------------------------------------------------------------------------------------------------
-        //Down Idle
-        if (combat.gameObject.transform.rotation.eulerAngles.z < 225 && combat.gameObject.transform.rotation.eulerAngles.z > 135 && vector2.y == 0 && vector2.x == 0 && combat.IsSlashing == false)
-        {
-            playerAnim.SetBool("IsIdleDown", true);
-        }
-        else
-        {
-            playerAnim.SetBool("IsIdleDown", false);
-        }
-        //Up Idle
-        if ((playerFakeBody.gameObject.transform.rotation.eulerAngles.z > 315 || playerFakeBody.gameObject.transform.rotation.eulerAngles.z < 45) && vector2.y == 0 && vector2.x == 0 && combat.IsSlashing == false)
-        {
-            playerAnim.SetBool("IsIdleUp", true);
-        }
-        else
-        {
-            playerAnim.SetBool("IsIdleUp", false);
-        }
-
-
-        //Right Idle
-        if (combat.gameObject.transform.rotation.eulerAngles.z < 315 && combat.gameObject.transform.rotation.eulerAngles.z > 225 && vector2.y == 0 && vector2.x == 0 && combat.IsSlashing == false)
-        {
-            playerAnim.SetBool("IsIdleRight", true);
-        }
-        else
-        {
-            playerAnim.SetBool("IsIdleRight", false);
-        }
-        //Left Idle
-        if (combat.gameObject.transform.rotation.eulerAngles.z > 45 && combat.gameObject.transform.rotation.eulerAngles.z < 135 && vector2.y == 0 && vector2.x == 0 && combat.IsSlashing == false)
-        {
-            playerAnim.SetBool("IsIdleLeft", true);
-        }
-        else
-        {
-            playerAnim.SetBool("IsIdleLeft", false);
-        }
-
-
-    }
-
-    public void StopSlash()
-    {
-        combat.StopSlash();
     }
 }

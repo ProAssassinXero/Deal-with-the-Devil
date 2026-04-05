@@ -120,7 +120,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 210
+        width: 420
         height: 330
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -140,9 +140,9 @@ TextureImporter:
       name: The Client RightWalk-Sheet_1
       rect:
         serializedVersion: 2
-        x: 210
+        x: 420
         y: 0
-        width: 210
+        width: 420
         height: 330
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -162,9 +162,9 @@ TextureImporter:
       name: The Client RightWalk-Sheet_2
       rect:
         serializedVersion: 2
-        x: 420
+        x: 840
         y: 0
-        width: 210
+        width: 420
         height: 330
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -184,9 +184,9 @@ TextureImporter:
       name: The Client RightWalk-Sheet_3
       rect:
         serializedVersion: 2
-        x: 630
+        x: 1260
         y: 0
-        width: 210
+        width: 420
         height: 330
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -206,9 +206,9 @@ TextureImporter:
       name: The Client RightWalk-Sheet_4
       rect:
         serializedVersion: 2
-        x: 840
+        x: 1680
         y: 0
-        width: 210
+        width: 420
         height: 330
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -228,9 +228,9 @@ TextureImporter:
       name: The Client RightWalk-Sheet_5
       rect:
         serializedVersion: 2
-        x: 1050
+        x: 2100
         y: 0
-        width: 210
+        width: 420
         height: 330
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -260,7 +260,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":1.0},"gridSpriteSize":{"x":210.0,"y":330.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":1.0},"gridSpriteSize":{"x":420.0,"y":330.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       The Client RightWalk-Sheet_0: -6783456903722490827
       The Client RightWalk-Sheet_1: 6133229439470695376

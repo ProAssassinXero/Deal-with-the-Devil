@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("SetUp")]
+    public GameObject playerFakeBody;
     public GameObject PlayerObject;
     public Rigidbody2D PlayerRigidBody;
     public InputActionReference MovementKeys;
@@ -136,10 +137,54 @@ public class PlayerMovement : MonoBehaviour
             playerAnim.SetBool("IsWalkingRight", false);
             playerAnim.SetBool("IsWalkingLeft", false);
         }
+
+
+
+        //Idle Animations---------------------------------------------------------------------------------------------------------------------------------
+        //Down Idle
+        if (combat.gameObject.transform.rotation.eulerAngles.z < 225 && combat.gameObject.transform.rotation.eulerAngles.z > 135 && vector2.y == 0 && vector2.x == 0 && combat.IsSlashing == false)
+        {
+            playerAnim.SetBool("IsIdleDown", true);
+        }
+        else
+        {
+            playerAnim.SetBool("IsIdleDown", false);
+        }
+        //Up Idle
+        if ((playerFakeBody.gameObject.transform.rotation.eulerAngles.z > 315 || playerFakeBody.gameObject.transform.rotation.eulerAngles.z < 45) && vector2.y == 0 && vector2.x == 0 && combat.IsSlashing == false)
+        {
+            playerAnim.SetBool("IsIdleUp", true);
+        }
+        else
+        {
+            playerAnim.SetBool("IsIdleUp", false);
+        }
+
+
+        //Right Idle
+        if (combat.gameObject.transform.rotation.eulerAngles.z < 315 && combat.gameObject.transform.rotation.eulerAngles.z > 225 && vector2.y == 0 && vector2.x == 0 && combat.IsSlashing == false)
+        {
+            playerAnim.SetBool("IsIdleRight", true);
+        }
+        else
+        {
+            playerAnim.SetBool("IsIdleRight", false);
+        }
+        //Left Idle
+        if (combat.gameObject.transform.rotation.eulerAngles.z > 45 && combat.gameObject.transform.rotation.eulerAngles.z < 135 && vector2.y == 0 && vector2.x == 0 && combat.IsSlashing == false)
+        {
+            playerAnim.SetBool("IsIdleLeft", true);
+        }
+        else
+        {
+            playerAnim.SetBool("IsIdleLeft", false);
+        }
+
+
     }
 
     public void StopSlash()
-    { 
+    {
         combat.StopSlash();
     }
 }

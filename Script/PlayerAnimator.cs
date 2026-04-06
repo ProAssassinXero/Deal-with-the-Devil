@@ -7,7 +7,7 @@ public class PlayerAnimator : MonoBehaviour
     public GameObject playerFakeBody;
     public bool isComatPhase = false;
     public bool IsSlashing = false;
-    private Animator playerAnim;
+    public Animator playerAnim;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -80,7 +80,7 @@ public class PlayerAnimator : MonoBehaviour
 
         //Idle Animations---------------------------------------------------------------------------------------------------------------------------------
         //Down Idle
-        if (playerFakeBody.gameObject.transform.rotation.eulerAngles.z < 225 && playerFakeBody.gameObject.transform.rotation.eulerAngles.z > 135 && movement.vector2.y == 0 && movement.vector2.x == 0 && IsSlashing == false)
+        if (playerFakeBody.transform.rotation.eulerAngles.z < 225 && playerFakeBody.transform.rotation.eulerAngles.z > 135 && movement.vector2.y == 0 && movement.vector2.x == 0 && IsSlashing == false)
         {
             playerAnim.SetBool("IsIdleDown", true);
         }
@@ -89,7 +89,7 @@ public class PlayerAnimator : MonoBehaviour
             playerAnim.SetBool("IsIdleDown", false);
         }
         //Up Idle
-        if ((playerFakeBody.gameObject.transform.rotation.eulerAngles.z > 315 || playerFakeBody.gameObject.transform.rotation.eulerAngles.z < 45) && movement.vector2.y == 0 && movement.vector2.x == 0 && IsSlashing == false)
+        if ((playerFakeBody.transform.rotation.eulerAngles.z > 315 || playerFakeBody.transform.rotation.eulerAngles.z < 45) && movement.vector2.y == 0 && movement.vector2.x == 0 && IsSlashing == false)
         {
             playerAnim.SetBool("IsIdleUp", true);
         }
@@ -100,7 +100,7 @@ public class PlayerAnimator : MonoBehaviour
 
 
         //Right Idle
-        if (playerFakeBody.gameObject.transform.rotation.eulerAngles.z < 315 && playerFakeBody.gameObject.transform.rotation.eulerAngles.z > 225 && movement.vector2.y == 0 && movement.vector2.x == 0 && IsSlashing == false)
+        if (playerFakeBody.transform.rotation.eulerAngles.z < 315 && playerFakeBody.transform.rotation.eulerAngles.z > 225 && movement.vector2.y == 0 && movement.vector2.x == 0 && IsSlashing == false)
         {
             playerAnim.SetBool("IsIdleRight", true);
         }
@@ -109,7 +109,7 @@ public class PlayerAnimator : MonoBehaviour
             playerAnim.SetBool("IsIdleRight", false);
         }
         //Left Idle
-        if (playerFakeBody.gameObject.transform.rotation.eulerAngles.z < 135 && playerFakeBody.gameObject.transform.rotation.eulerAngles.z > 45 && movement.vector2.y == 0 && movement.vector2.x == 0 && IsSlashing == false)
+        if (playerFakeBody.transform.rotation.eulerAngles.z < 135 && playerFakeBody.transform.rotation.eulerAngles.z > 45 && movement.vector2.y == 0 && movement.vector2.x == 0 && IsSlashing == false)
         {
             playerAnim.SetBool("IsIdleLeft", true);
         }
@@ -123,26 +123,26 @@ public class PlayerAnimator : MonoBehaviour
     {
         //Slash Animations---------------------------------------------------------------------------------------------------------------------------------
         //Down Slash
-        if ((playerFakeBody.gameObject.transform.rotation.eulerAngles.z < 225 && playerFakeBody.gameObject.transform.rotation.eulerAngles.z > 135) && Input.GetMouseButtonDown(0) && IsSlashing == false && isComatPhase == true)
+        if ((playerFakeBody.transform.rotation.eulerAngles.z < 225 && playerFakeBody.transform.rotation.eulerAngles.z > 135) && Input.GetMouseButtonDown(0) && IsSlashing == false && isComatPhase == true)
         {
             playerAnim.SetBool("IsSlashingDown", true);
             IsSlashing = true;
         }
         //Up Slash
-        if ((playerFakeBody.gameObject.transform.rotation.eulerAngles.z > 315 || playerFakeBody.gameObject.transform.rotation.eulerAngles.z < 45) && Input.GetMouseButtonDown(0) && IsSlashing == false && isComatPhase == true)
+        if ((playerFakeBody.transform.rotation.eulerAngles.z > 315 || playerFakeBody.transform.rotation.eulerAngles.z < 45) && Input.GetMouseButtonDown(0) && IsSlashing == false && isComatPhase == true)
         {
             playerAnim.SetBool("IsSlashingUp", true);
             IsSlashing = true;
         }
 
         //Right Slash
-        if (playerFakeBody.gameObject.transform.rotation.eulerAngles.z < 315 && playerFakeBody.gameObject.transform.rotation.eulerAngles.z > 225 && Input.GetMouseButtonDown(0) && IsSlashing == false && isComatPhase == true)
+        if (playerFakeBody.transform.rotation.eulerAngles.z < 315 && playerFakeBody.transform.rotation.eulerAngles.z > 225 && Input.GetMouseButtonDown(0) && IsSlashing == false && isComatPhase == true)
         {
             playerAnim.SetBool("IsSlashingRight", true);
             IsSlashing = true;
         }
         //Left Slash
-        if (playerFakeBody.gameObject.transform.rotation.eulerAngles.z > 45 && playerFakeBody.gameObject.transform.rotation.eulerAngles.z < 135 && Input.GetMouseButtonDown(0) && IsSlashing == false && isComatPhase == true)
+        if (playerFakeBody.transform.rotation.eulerAngles.z < 135 && playerFakeBody.transform.rotation.eulerAngles.z > 45 && Input.GetMouseButtonDown(0) && IsSlashing == false && isComatPhase == true)
         {
             playerAnim.SetBool("IsSlashingLeft", true);
             IsSlashing = true;

@@ -5,18 +5,24 @@ public class Binbagging : MonoBehaviour
     public int MaxBinbag = 5;
     public int BodyCount = 0;
     public int BinbagCount = 0;
-    public Collider2D BinbagCollider;
+    public CircleCollider2D BinbagCollider;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public PlayerInteraction playerInteraction;
 
     // Update is called once per frame
+    void Start()
+    {
+
+    }
+
     void Update()
     {
-        if (gameObject.GetComponent<PolygonCollider2D>().IsTouching(BinbagCollider) && BinbagCount < MaxBinbag)
+        bool isTopTouching = playerInteraction.topCollider.IsTouching(BinbagCollider);
+        bool isBottomTouching = playerInteraction.bottomCollider.IsTouching(BinbagCollider);
+        bool isLeftTouching = playerInteraction.leftCollider.IsTouching(BinbagCollider);
+        bool isRightTouching = playerInteraction.rightCollider.IsTouching(BinbagCollider);
+
+        if ((isTopTouching || isBottomTouching || isLeftTouching || isRightTouching) && BinbagCount < MaxBinbag)
         {
             BinbagCount = 5;
             Debug.Log("Binbag Count: " + BinbagCount);

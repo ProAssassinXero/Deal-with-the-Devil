@@ -11,11 +11,10 @@ public class PlayerMovement : MonoBehaviour
     public FaceMouse combat;
 
     [Header("Movement")]
-    [SerializeField] public Vector2 vector2;
-    [SerializeField] public float CurrentSpeedX;
-    [SerializeField] public float CurrentSpeedY;
-    private Animator playerAnim;
-    [SerializeField] private Vector2 Velo = new Vector2(0, 0);
+    public Vector2 vector2;
+    public float CurrentSpeedX;
+    public float CurrentSpeedY;
+    [SerializeField] private Vector2 Velo = Vector2.zero;
     public int SpeedMax = 5;
     public int SpeedStart = 2;
     public int ChangeSpeed = 1;
@@ -27,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
     {
         CurrentSpeedX = SpeedStart;
         CurrentSpeedY = SpeedStart;
-        playerAnim = PlayerObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame

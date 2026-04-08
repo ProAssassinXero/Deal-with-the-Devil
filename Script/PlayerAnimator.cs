@@ -6,7 +6,8 @@ public class PlayerAnimator : MonoBehaviour
     public PlayerMovement movement;
     public Binbagging binbagging;
     public GameObject playerFakeBody;
-    public bool isComatPhase = false;
+
+    public bool isCombatPhase = false;
     public bool IsSlashing = false;
     public bool isDragging = false;
     public bool canDrag = false;
@@ -120,26 +121,26 @@ public class PlayerAnimator : MonoBehaviour
     {
         //Slash Animations---------------------------------------------------------------------------------------------------------------------------------
         //Down Slash
-        if ((playerFakeBody.transform.rotation.eulerAngles.z < 225 && playerFakeBody.transform.rotation.eulerAngles.z > 135) && Input.GetMouseButtonDown(0) && IsSlashing == false && isComatPhase == true)
+        if ((playerFakeBody.transform.rotation.eulerAngles.z < 225 && playerFakeBody.transform.rotation.eulerAngles.z > 135) && Input.GetMouseButtonDown(0) && IsSlashing == false && isCombatPhase == true)
         {
             playerAnim.SetBool("IsSlashingDown", true);
             IsSlashing = true;
         }
         //Up Slash
-        if ((playerFakeBody.transform.rotation.eulerAngles.z > 315 || playerFakeBody.transform.rotation.eulerAngles.z < 45) && Input.GetMouseButtonDown(0) && IsSlashing == false && isComatPhase == true)
+        if ((playerFakeBody.transform.rotation.eulerAngles.z > 315 || playerFakeBody.transform.rotation.eulerAngles.z < 45) && Input.GetMouseButtonDown(0) && IsSlashing == false && isCombatPhase == true)
         {
             playerAnim.SetBool("IsSlashingUp", true);
             IsSlashing = true;
         }
 
         //Right Slash
-        if (playerFakeBody.transform.rotation.eulerAngles.z < 315 && playerFakeBody.transform.rotation.eulerAngles.z > 225 && Input.GetMouseButtonDown(0) && IsSlashing == false && isComatPhase == true)
+        if (playerFakeBody.transform.rotation.eulerAngles.z < 315 && playerFakeBody.transform.rotation.eulerAngles.z > 225 && Input.GetMouseButtonDown(0) && IsSlashing == false && isCombatPhase == true)
         {
             playerAnim.SetBool("IsSlashingRight", true);
             IsSlashing = true;
         }
         //Left Slash
-        if (playerFakeBody.transform.rotation.eulerAngles.z < 135 && playerFakeBody.transform.rotation.eulerAngles.z > 45 && Input.GetMouseButtonDown(0) && IsSlashing == false && isComatPhase == true)
+        if (playerFakeBody.transform.rotation.eulerAngles.z < 135 && playerFakeBody.transform.rotation.eulerAngles.z > 45 && Input.GetMouseButtonDown(0) && IsSlashing == false && isCombatPhase == true)
         {
             playerAnim.SetBool("IsSlashingLeft", true);
             IsSlashing = true;
@@ -202,9 +203,8 @@ public class PlayerAnimator : MonoBehaviour
         {
             isDragging = false;
         }
-
         //Drag Animations---------------------------------------------------------------------------------------------------------------------------------
-        canDrag = !IsSlashing && !isComatPhase && binbagging.BodyCount == 1;
+        canDrag = !IsSlashing && !isCombatPhase && binbagging.BodyCount == 1;
 
         // Down Drag
         if (canDrag && (movement.vector2.y < 0 || lastDirection.y < 0))

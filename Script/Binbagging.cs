@@ -36,7 +36,7 @@ public class Binbagging : MonoBehaviour
         if (collision.gameObject.CompareTag("body") && BinbagCount > 0)
         {
             SpriteRenderer spriteRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
-            if (collision.gameObject.tag == "body" && !playerInteraction.PlayerAnimator.isDragging)
+            if (collision.gameObject.tag == "body" && !playerInteraction.PlayerAnimator.isDragging && !playerInteraction.PlayerAnimator.isCombatPhase)
             {
                 collision.gameObject.tag = "BaggedBody";
                 BinbagCount--;
@@ -44,13 +44,13 @@ public class Binbagging : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.CompareTag("BaggedBody") && BodyCount < 1 && Input.GetKey(KeyCode.E))
+        if (collision.gameObject.CompareTag("BaggedBody") && !playerInteraction.PlayerAnimator.isCombatPhase && BodyCount < 1 && Input.GetKey(KeyCode.E))
         {
             BodyCount++;
             Destroy(collision.gameObject);
             Debug.Log("Body Count: " + BodyCount);
         }
-        if (collision.gameObject.CompareTag("Disposal") && BodyCount == 1 && Input.GetKey(KeyCode.E))
+        if (collision.gameObject.CompareTag("Disposal") && !playerInteraction.PlayerAnimator.isCombatPhase && BodyCount == 1 && Input.GetKey(KeyCode.E))
         {
             BodyCount--;
             DisposedBody++;

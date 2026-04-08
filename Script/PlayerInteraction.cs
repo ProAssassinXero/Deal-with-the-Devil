@@ -25,7 +25,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         //Interaction Hitbox
         // Down
-        if (PlayerAnimator.playerAnim.GetBool("IsWalkingDown") == true || PlayerAnimator.playerAnim.GetBool("IsIdleDown") == true)
+        if (PlayerAnimator.playerAnim.GetBool("IsWalkingDown") == true || PlayerAnimator.playerAnim.GetBool("IsIdleDown") == true || (PlayerAnimator.playerFakeBody.transform.rotation.eulerAngles.z < 225 && PlayerAnimator.playerFakeBody.transform.rotation.eulerAngles.z > 135) || PlayerAnimator.playerAnim.GetBool("IsDraggingDown"))
         {
             bottomSprite.enabled = true;
             bottomCollider.enabled = true;
@@ -39,7 +39,7 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         // Up
-        if (PlayerAnimator.playerAnim.GetBool("IsWalkingUp") == true || PlayerAnimator.playerAnim.GetBool("IsIdleUp") == true)
+        if (PlayerAnimator.playerAnim.GetBool("IsWalkingUp") == true || PlayerAnimator.playerAnim.GetBool("IsIdleUp") == true || (PlayerAnimator.playerFakeBody.transform.rotation.eulerAngles.z > 315 || PlayerAnimator.playerFakeBody.transform.rotation.eulerAngles.z < 45) || PlayerAnimator.playerAnim.GetBool("IsDraggingUp"))
         {
             topSprite.enabled = true;
             topCollider.enabled = true;
@@ -51,7 +51,7 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         // Left
-        if (PlayerAnimator.playerAnim.GetBool("IsWalkingLeft") == true || PlayerAnimator.playerAnim.GetBool("IsIdleLeft") == true)
+        if (PlayerAnimator.playerAnim.GetBool("IsWalkingLeft") == true || PlayerAnimator.playerAnim.GetBool("IsIdleLeft") == true || (PlayerAnimator.playerFakeBody.transform.rotation.eulerAngles.z < 135 && PlayerAnimator.playerFakeBody.transform.rotation.eulerAngles.z > 45) || PlayerAnimator.playerAnim.GetBool("IsDraggingLeft"))
         {
             leftSprite.enabled = true;
             leftCollider.enabled = true;
@@ -65,7 +65,7 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         //Right
-        if (PlayerAnimator.playerAnim.GetBool("IsWalkingRight") == true || PlayerAnimator.playerAnim.GetBool("IsIdleRight") == true)
+        if (PlayerAnimator.playerAnim.GetBool("IsWalkingRight") == true || PlayerAnimator.playerAnim.GetBool("IsIdleRight") == true || (PlayerAnimator.playerFakeBody.transform.rotation.eulerAngles.z < 315 && PlayerAnimator.playerFakeBody.transform.rotation.eulerAngles.z > 225) || PlayerAnimator.playerAnim.GetBool("IsDraggingRight"))
         {
             rightSprite.enabled = true;
             rightCollider.enabled = true;

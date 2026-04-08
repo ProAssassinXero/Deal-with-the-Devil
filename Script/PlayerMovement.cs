@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 vector2;
     public float CurrentSpeedX;
     public float CurrentSpeedY;
-    [SerializeField] private Vector2 Velo = Vector2.zero;
+    public Vector2 Velo = Vector2.zero;
     public int SpeedMax = 5;
     public int SpeedStart = 2;
     public int ChangeSpeed = 1;
@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        // Probably will use this for combat, i don't like it in the bar. It's too jammy, out of place, and doesn't feel good. But it works, so maybe we'll use it in the future.
+        // It's too jammy!!!
         /*
         float XSpeed = vector2.x;
         float YSpeed = vector2.y;

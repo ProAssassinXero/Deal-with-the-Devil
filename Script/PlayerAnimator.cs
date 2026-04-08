@@ -1,12 +1,16 @@
-using System.Numerics;
 using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
 {
+    public Vector2 lastDirection;
     public PlayerMovement movement;
+    public Binbagging binbagging;
     public GameObject playerFakeBody;
     public bool isComatPhase = false;
     public bool IsSlashing = false;
+    public bool isDragging = false;
+    public bool canDrag = false;
+
     public Animator playerAnim;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,14 +23,17 @@ public class PlayerAnimator : MonoBehaviour
     {
         CheckSlashFinished();
         SlashAnimations();
+        IdleAnimations();
+        MovementAnimations();
+        BinDragAnimation();
     }
 
-    private void FixedUpdate()
+    void MovementAnimations()
     {
         // Asset integration for the animation
         //Movement Animations---------------------------------------------------------------------------------------------------------------------------------
         // Down
-        if (movement.vector2.y < 0 && IsSlashing == false)
+        if (movement.vector2.y < 0 && IsSlashing == false && isDragging == false)
         {
             playerAnim.SetBool("IsWalkingDown", true);
         }
@@ -36,7 +43,7 @@ public class PlayerAnimator : MonoBehaviour
         }
 
         // Up
-        if (movement.vector2.y > 0 && IsSlashing == false)
+        if (movement.vector2.y > 0 && IsSlashing == false && isDragging == false)
         {
             playerAnim.SetBool("IsWalkingUp", true);
         }
@@ -46,7 +53,7 @@ public class PlayerAnimator : MonoBehaviour
         }
 
         // Right
-        if (movement.vector2.x > 0 && IsSlashing == false)
+        if (movement.vector2.x > 0 && IsSlashing == false && isDragging == false)
         {
             playerAnim.SetBool("IsWalkingRight", true);
         }
@@ -56,7 +63,7 @@ public class PlayerAnimator : MonoBehaviour
         }
 
         // Left
-        if (movement.vector2.x < 0 && IsSlashing == false)
+        if (movement.vector2.x < 0 && IsSlashing == false && isDragging == false)
         {
             playerAnim.SetBool("IsWalkingLeft", true);
         }
@@ -64,23 +71,13 @@ public class PlayerAnimator : MonoBehaviour
         {
             playerAnim.SetBool("IsWalkingLeft", false);
         }
+    }
 
-        //combat reference for the animation
-        if (IsSlashing)
-        {
-            movement.CurrentSpeedX = 4;
-            movement.CurrentSpeedY = 4;
-            playerAnim.SetBool("IsWalkingDown", false);
-            playerAnim.SetBool("IsWalkingUp", false);
-            playerAnim.SetBool("IsWalkingRight", false);
-            playerAnim.SetBool("IsWalkingLeft", false);
-        }
-
-
-
+    void IdleAnimations()
+    {
         //Idle Animations---------------------------------------------------------------------------------------------------------------------------------
         //Down Idle
-        if (playerFakeBody.transform.rotation.eulerAngles.z < 225 && playerFakeBody.transform.rotation.eulerAngles.z > 135 && movement.vector2.y == 0 && movement.vector2.x == 0 && IsSlashing == false)
+        if (playerFakeBody.transform.rotation.eulerAngles.z < 225 && playerFakeBody.transform.rotation.eulerAngles.z > 135 && movement.vector2.y == 0 && movement.vector2.x == 0 && IsSlashing == false && isDragging == false)
         {
             playerAnim.SetBool("IsIdleDown", true);
         }
@@ -89,7 +86,7 @@ public class PlayerAnimator : MonoBehaviour
             playerAnim.SetBool("IsIdleDown", false);
         }
         //Up Idle
-        if ((playerFakeBody.transform.rotation.eulerAngles.z > 315 || playerFakeBody.transform.rotation.eulerAngles.z < 45) && movement.vector2.y == 0 && movement.vector2.x == 0 && IsSlashing == false)
+        if ((playerFakeBody.transform.rotation.eulerAngles.z > 315 || playerFakeBody.transform.rotation.eulerAngles.z < 45) && movement.vector2.y == 0 && movement.vector2.x == 0 && IsSlashing == false && isDragging == false)
         {
             playerAnim.SetBool("IsIdleUp", true);
         }
@@ -100,7 +97,7 @@ public class PlayerAnimator : MonoBehaviour
 
 
         //Right Idle
-        if (playerFakeBody.transform.rotation.eulerAngles.z < 315 && playerFakeBody.transform.rotation.eulerAngles.z > 225 && movement.vector2.y == 0 && movement.vector2.x == 0 && IsSlashing == false)
+        if (playerFakeBody.transform.rotation.eulerAngles.z < 315 && playerFakeBody.transform.rotation.eulerAngles.z > 225 && movement.vector2.y == 0 && movement.vector2.x == 0 && IsSlashing == false && isDragging == false)
         {
             playerAnim.SetBool("IsIdleRight", true);
         }
@@ -109,7 +106,7 @@ public class PlayerAnimator : MonoBehaviour
             playerAnim.SetBool("IsIdleRight", false);
         }
         //Left Idle
-        if (playerFakeBody.transform.rotation.eulerAngles.z < 135 && playerFakeBody.transform.rotation.eulerAngles.z > 45 && movement.vector2.y == 0 && movement.vector2.x == 0 && IsSlashing == false)
+        if (playerFakeBody.transform.rotation.eulerAngles.z < 135 && playerFakeBody.transform.rotation.eulerAngles.z > 45 && movement.vector2.y == 0 && movement.vector2.x == 0 && IsSlashing == false && isDragging == false)
         {
             playerAnim.SetBool("IsIdleLeft", true);
         }
@@ -147,6 +144,17 @@ public class PlayerAnimator : MonoBehaviour
             playerAnim.SetBool("IsSlashingLeft", true);
             IsSlashing = true;
         }
+
+        //combat reference for the animation
+        if (IsSlashing)
+        {
+            movement.CurrentSpeedX = 4.5f;
+            movement.CurrentSpeedY = 4.5f;
+            playerAnim.SetBool("IsWalkingDown", false);
+            playerAnim.SetBool("IsWalkingUp", false);
+            playerAnim.SetBool("IsWalkingRight", false);
+            playerAnim.SetBool("IsWalkingLeft", false);
+        }
     }
 
     public void StopSlash()
@@ -180,6 +188,66 @@ public class PlayerAnimator : MonoBehaviour
         if (stateInfo.IsName("The Client-Left Slash") && stateInfo.normalizedTime >= 1)
         {
             StopSlash();
+        }
+    }
+
+    void BinDragAnimation()
+    {
+        // Last Direction for Dragging Animations
+        if (movement.Velo != Vector2.zero)
+        {
+            lastDirection = movement.Velo;
+        }
+        if (binbagging.BodyCount == 0)
+        {
+            isDragging = false;
+        }
+
+        //Drag Animations---------------------------------------------------------------------------------------------------------------------------------
+        canDrag = !IsSlashing && !isComatPhase && binbagging.BodyCount == 1;
+
+        // Down Drag
+        if (canDrag && (movement.vector2.y < 0 || lastDirection.y < 0))
+        {
+            playerAnim.SetBool("IsDraggingDown", true);
+            isDragging = true;
+        }
+        else
+        {
+            playerAnim.SetBool("IsDraggingDown", false);
+        }
+
+        // Up Drag
+        if (canDrag && (movement.vector2.y > 0 || lastDirection.y > 0))
+        {
+            playerAnim.SetBool("IsDraggingUp", true);
+            isDragging = true;
+        }
+        else
+        {
+            playerAnim.SetBool("IsDraggingUp", false);
+        }
+
+        // Right Drag
+        if (canDrag && (movement.vector2.x > 0 || lastDirection.x > 0))
+        {
+            playerAnim.SetBool("IsDraggingRight", true);
+            isDragging = true;
+        }
+        else
+        {
+            playerAnim.SetBool("IsDraggingRight", false);
+        }
+
+        // Left Drag
+        if (canDrag && (movement.vector2.x < 0 || lastDirection.x < 0))
+        {
+            playerAnim.SetBool("IsDraggingLeft", true);
+            isDragging = true;
+        }
+        else
+        {
+            playerAnim.SetBool("IsDraggingLeft", false);
         }
     }
 }

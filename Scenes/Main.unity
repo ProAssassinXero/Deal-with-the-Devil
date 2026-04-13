@@ -1618,15 +1618,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88bf91c9520f86d41ba4c7d610d363c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimator
-  lastDirection: {x: 0, y: 0}
   movement: {fileID: 976843501}
   binbagging: {fileID: 976843505}
   playerFakeBody: {fileID: 50047936}
-  isComatPhase: 0
+  playerAnim: {fileID: 976843503}
+  lastDirection: {x: 0, y: 0}
+  isCombatPhase: 1
   IsSlashing: 0
   isDragging: 0
   canDrag: 0
-  playerAnim: {fileID: 976843503}
+  mouseDirectionDown: 0
+  mouseDirectionUp: 0
+  mouseDirectionRight: 0
+  mouseDirectionLeft: 0
 --- !u!114 &976843505
 MonoBehaviour:
   m_ObjectHideFlags: 0

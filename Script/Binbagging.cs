@@ -11,6 +11,7 @@ public class Binbagging : MonoBehaviour
     public PlayerInteraction playerInteraction;
     public int DisposedBody;
 
+
     // Update is called once per frame
     void Start()
     {
@@ -36,7 +37,7 @@ public class Binbagging : MonoBehaviour
         if (collision.gameObject.CompareTag("body") && BinbagCount > 0)
         {
             SpriteRenderer spriteRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
-            if (collision.gameObject.tag == "body" && !playerInteraction.PlayerAnimator.isDragging && !playerInteraction.PlayerAnimator.isCombatPhase)
+            if (collision.gameObject.CompareTag("body") && !playerInteraction.PlayerAnimator.isDragging && !playerInteraction.PlayerAnimator.isCombatPhase)
             {
                 collision.gameObject.tag = "BaggedBody";
                 BinbagCount--;

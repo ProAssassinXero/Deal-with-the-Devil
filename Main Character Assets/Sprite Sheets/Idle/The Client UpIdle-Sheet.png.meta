@@ -106,7 +106,7 @@ TextureImporter:
         x: 0
         y: 0
         width: 250
-        height: 340
+        height: 350
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,6 +117,28 @@ TextureImporter:
       bones: []
       spriteID: 2a0f0c132247c62b0800000000000000
       internalID: -5589965347261189982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: The Client UpIdle-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 250
+        height: 350
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49d0f0c0111cdc14f916774156704e3f
+      internalID: -606245805
       vertices: []
       indices: 
       edges: []
@@ -136,6 +158,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       The Client IdleUp-Sheet_0: -5589965347261189982
+      The Client UpIdle-Sheet_0: -606245805
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

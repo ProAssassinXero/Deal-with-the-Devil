@@ -115,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: The Client Fwalk-Sheet_0
+      name: The Client DownWalk-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,16 +128,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 299905f23dfcc06e0800000000000000
-      internalID: -1869891239326738030
+      spriteID: 6ec9d15815f3b9644a57230409a4581e
+      internalID: -61626629
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The Client Fwalk-Sheet_1
+      name: The Client DownWalk-Sheet_1
       rect:
         serializedVersion: 2
         x: 270
@@ -150,16 +150,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0aea744494e8d24c0800000000000000
-      internalID: -4310632822994391392
+      spriteID: 2bd9bf190479a0243a0364332685779f
+      internalID: -2093047281
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The Client Fwalk-Sheet_2
+      name: The Client DownWalk-Sheet_2
       rect:
         serializedVersion: 2
         x: 540
@@ -172,16 +172,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5e5940f3c0d377560800000000000000
-      internalID: 7311379642865456613
+      spriteID: 7225bf1fbb37ffb47a9f7540e72aebfc
+      internalID: -1745673019
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The Client Fwalk-Sheet_3
+      name: The Client DownWalk-Sheet_3
       rect:
         serializedVersion: 2
         x: 810
@@ -194,16 +194,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5639bbb7ec14968c0800000000000000
-      internalID: -4005598038474386587
+      spriteID: 7c78119fcafa85747a723106a7a177f7
+      internalID: -1730343546
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The Client Fwalk-Sheet_4
+      name: The Client DownWalk-Sheet_4
       rect:
         serializedVersion: 2
         x: 1080
@@ -216,16 +216,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 58b1b5d4897729b90800000000000000
-      internalID: -7236590155214414971
+      spriteID: c58ac2191a53fea40adcc9d4749950d1
+      internalID: -1573065934
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The Client Fwalk-Sheet_5
+      name: The Client DownWalk-Sheet_5
       rect:
         serializedVersion: 2
         x: 1350
@@ -238,10 +238,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 348104cddffa72330800000000000000
-      internalID: 3686108324882815043
+      spriteID: f3511e5a6a094a0449279d3c9bd5a7b6
+      internalID: 2097091192
       vertices: []
       indices: 
       edges: []
@@ -262,12 +262,12 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":1.0},"gridSpriteSize":{"x":270.0,"y":350.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      The Client Fwalk-Sheet_0: -1869891239326738030
-      The Client Fwalk-Sheet_1: -4310632822994391392
-      The Client Fwalk-Sheet_2: 7311379642865456613
-      The Client Fwalk-Sheet_3: -4005598038474386587
-      The Client Fwalk-Sheet_4: -7236590155214414971
-      The Client Fwalk-Sheet_5: 3686108324882815043
+      The Client DownWalk-Sheet_0: -61626629
+      The Client DownWalk-Sheet_1: -2093047281
+      The Client DownWalk-Sheet_2: -1745673019
+      The Client DownWalk-Sheet_3: -1730343546
+      The Client DownWalk-Sheet_4: -1573065934
+      The Client DownWalk-Sheet_5: 2097091192
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

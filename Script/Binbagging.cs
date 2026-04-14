@@ -33,7 +33,8 @@ public class Binbagging : MonoBehaviour
     }
 
     private void OnTriggerStay2D(Collider2D collision)
-    {
+    {   
+
         if (collision.gameObject.CompareTag("body") && BinbagCount > 0)
         {
             SpriteRenderer spriteRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
@@ -42,6 +43,7 @@ public class Binbagging : MonoBehaviour
                 collision.gameObject.tag = "BaggedBody";
                 BinbagCount--;
                 spriteRenderer.color = Color.lawnGreen;
+                
             }
         }
 

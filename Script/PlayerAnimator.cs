@@ -89,10 +89,10 @@ public class PlayerAnimator : MonoBehaviour
         bool restrictions = !IsSlashing && !isDragging;
         bool isIdle = movement.vector2 == Vector2.zero;
 
-        playerAnim.SetBool(IsIdleDown, mouseDirectionDown && isIdle && restrictions);
-        playerAnim.SetBool(IsIdleUp, mouseDirectionUp && isIdle && restrictions);
-        playerAnim.SetBool(IsIdleRight, mouseDirectionRight && isIdle && restrictions);
-        playerAnim.SetBool(IsIdleLeft, mouseDirectionLeft && isIdle && restrictions);
+        playerAnim.SetBool(IsIdleDown, (movement.vector2.y < 0 || lastDirection.y < 0) && isIdle && restrictions);
+        playerAnim.SetBool(IsIdleUp, (movement.vector2.y > 0 || lastDirection.y > 0) && isIdle && restrictions);
+        playerAnim.SetBool(IsIdleRight, (movement.vector2.x > 0 || lastDirection.x > 0) && isIdle && restrictions);
+        playerAnim.SetBool(IsIdleLeft, (movement.vector2.x < 0 || lastDirection.x < 0) && isIdle && restrictions);
     }
 
     // Handles slash input and animation
@@ -103,10 +103,10 @@ public class PlayerAnimator : MonoBehaviour
 
         if (canSlash && mouseDown)
         {
-            if (mouseDirectionDown) SetSlash("IsSlashingDown");
-            else if (mouseDirectionUp) SetSlash("IsSlashingUp");
-            else if (mouseDirectionRight) SetSlash("IsSlashingRight");
-            else if (mouseDirectionLeft) SetSlash("IsSlashingLeft");
+            if (movement.vector2.y < 0 || lastDirection.y < 0) SetSlash("IsSlashingDown");
+            else if (movement.vector2.y > 0 || lastDirection.y > 0) SetSlash("IsSlashingUp");
+            else if (movement.vector2.x > 0 || lastDirection.x > 0) SetSlash("IsSlashingRight");
+            else if (movement.vector2.x < 0 || lastDirection.x < 0) SetSlash("IsSlashingLeft");
         }
 
         // While slashing, stop movement animations
@@ -155,6 +155,7 @@ public class PlayerAnimator : MonoBehaviour
         }
     }
 
+    private bool dragStart = false;
     // Handles dragging logic + animations
     void BinDragAnimation()
     {
@@ -168,18 +169,44 @@ public class PlayerAnimator : MonoBehaviour
         // Can we drag?
         canDrag = !IsSlashing && !isCombatPhase && binbagging.BodyCount == 1;
 
+        if (dragStart && playerAnim.speed == 1)
+        {
+            dragStart = false;
+        }
+
         // Start dragging
         if (canDrag && !isDragging)
+        {
+            dragStart = true;
             isDragging = true;
+        }
+            
+            
 
         // Stop dragging
         if (binbagging.BodyCount == 0)
+        {
             isDragging = false;
-
+        }
+            
+        
         // Drag animations
-        playerAnim.SetBool(IsDraggingDown, canDrag && (movement.vector2.y < 0 || lastDirection.y < 0));
-        playerAnim.SetBool(IsDraggingUp, canDrag && (movement.vector2.y > 0 || lastDirection.y > 0));
-        playerAnim.SetBool(IsDraggingRight, canDrag && (movement.vector2.x > 0 || lastDirection.x > 0));
-        playerAnim.SetBool(IsDraggingLeft, canDrag && (movement.vector2.x < 0 || lastDirection.x < 0));
+
+        if (dragStart)
+        {
+            playerAnim.SetBool(IsDraggingDown, canDrag && (movement.vector2.y > 0 || lastDirection.y > 0));
+            playerAnim.SetBool(IsDraggingUp, canDrag && (movement.vector2.y < 0 || lastDirection.y < 0));
+            playerAnim.SetBool(IsDraggingRight, canDrag && (movement.vector2.x < 0 || lastDirection.x < 0));
+            playerAnim.SetBool(IsDraggingLeft, canDrag && (movement.vector2.x > 0 || lastDirection.x > 0));
+            
+        }
+        else
+        {
+            playerAnim.SetBool(IsDraggingDown, canDrag && (movement.vector2.y < 0 || lastDirection.y < 0));
+            playerAnim.SetBool(IsDraggingUp, canDrag && (movement.vector2.y > 0 || lastDirection.y > 0));
+            playerAnim.SetBool(IsDraggingRight, canDrag && (movement.vector2.x > 0 || lastDirection.x > 0));
+            playerAnim.SetBool(IsDraggingLeft, canDrag && (movement.vector2.x < 0 || lastDirection.x < 0));
+        }
+        
     }
 }

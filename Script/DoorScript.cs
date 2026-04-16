@@ -18,15 +18,16 @@ public class DoorScript : MonoBehaviour
             Collider.enabled = false;
             gameObject.SetActive(false);
         }
-            
-        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Brother.SetActive(true);
-        Brother.GetComponent<Collider2D>().enabled = false;
-        Collider.enabled = true;
-        gameObject.SetActive(false);
+        if (collision.CompareTag("PlayerBody"))
+        {
+            Brother.SetActive(true);
+            Brother.GetComponent<Collider2D>().enabled = true;
+            Collider.enabled = false;
+            gameObject.SetActive(false);
+        }
     }
 }

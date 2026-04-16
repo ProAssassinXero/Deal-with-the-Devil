@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerAnimator : MonoBehaviour
+public class PlayerAnimator : PhaseManager
 {
     // References
     public PlayerMovement movement;
@@ -10,16 +10,12 @@ public class PlayerAnimator : MonoBehaviour
 
     // State
     public Vector2 lastDirection;
-    public bool isCombatPhase = false;
+
+    public PhaseManager PhaseManager;
+
     public bool IsSlashing = false;
     public bool isDragging = false;
     public bool canDrag = false;
-
-    // Mouse direction flags
-    public bool mouseDirectionDown;
-    public bool mouseDirectionUp;
-    public bool mouseDirectionRight;
-    public bool mouseDirectionLeft;
 
     // Animator hashes
     public readonly int IsWalkingDown = Animator.StringToHash("IsWalkingDown");
@@ -51,7 +47,6 @@ public class PlayerAnimator : MonoBehaviour
     // Runs every frame
     void Update()
     {
-        PlayerMouseDirection();   // update mouse direction first
         CheckSlashFinished();     // check if slash ended
 
         SlashAnimations();        // combat
@@ -61,15 +56,6 @@ public class PlayerAnimator : MonoBehaviour
     }
 
     // Gets mouse direction based on rotation
-    public void PlayerMouseDirection()
-    {
-        float z = playerFakeBody.transform.rotation.eulerAngles.z;
-
-        mouseDirectionDown = z < 225 && z > 135;
-        mouseDirectionUp = z > 315 || z < 45;
-        mouseDirectionRight = z < 315 && z > 225;
-        mouseDirectionLeft = z < 135 && z > 45;
-    }
 
     // Handles walking animations
     void MovementAnimations()
@@ -98,7 +84,7 @@ public class PlayerAnimator : MonoBehaviour
     // Handles slash input and animation
     void SlashAnimations()
     {
-        bool canSlash = !isDragging && !IsSlashing && isCombatPhase;
+        bool canSlash = !isDragging && !IsSlashing && PhaseManager.CurrentPhase == Phases.Combat;
         bool mouseDown = Input.GetMouseButtonDown(0);
 
         if (canSlash && mouseDown)
@@ -167,7 +153,7 @@ public class PlayerAnimator : MonoBehaviour
         playerAnim.speed = (movement.Velo == Vector2.zero && isDragging) ? 0 : 1;
 
         // Can we drag?
-        canDrag = !IsSlashing && !isCombatPhase && binbagging.BodyCount == 1;
+        canDrag = !IsSlashing && PhaseManager.CurrentPhase == Phases.Clean_Up && binbagging.BodyCount == 1;
 
         if (dragStart && playerAnim.speed == 1)
         {

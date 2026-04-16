@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Binbagging : MonoBehaviour
+public class Binbagging : PhaseManager
 {
     public int MaxBinbag = 5;
     public int BodyCount = 0;
@@ -11,6 +11,7 @@ public class Binbagging : MonoBehaviour
     public PlayerInteraction playerInteraction;
     public int DisposedBody;
 
+    public PhaseManager PhaseManager;
 
     // Update is called once per frame
     void Start()
@@ -33,12 +34,12 @@ public class Binbagging : MonoBehaviour
     }
 
     private void OnTriggerStay2D(Collider2D collision)
-    {   
+    {
 
         if (collision.gameObject.CompareTag("body") && BinbagCount > 0)
         {
             SpriteRenderer spriteRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
-            if (collision.gameObject.CompareTag("body") && !playerInteraction.PlayerAnimator.isDragging && !playerInteraction.PlayerAnimator.isCombatPhase)
+            if (collision.gameObject.CompareTag("body") && !playerInteraction.PlayerAnimator.isDragging && PhaseManager.CurrentPhase == Phases.Clean_Up)
             {
                 collision.gameObject.tag = "BaggedBody";
                 BinbagCount--;
@@ -47,13 +48,13 @@ public class Binbagging : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.CompareTag("BaggedBody") && !playerInteraction.PlayerAnimator.isCombatPhase && BodyCount < 1 && Input.GetKey(KeyCode.E))
+        if (collision.gameObject.CompareTag("BaggedBody") && PhaseManager.CurrentPhase == Phases.Clean_Up && BodyCount < 1 && Input.GetKey(KeyCode.E))
         {
             BodyCount++;
             Destroy(collision.gameObject);
             Debug.Log("Body Count: " + BodyCount);
         }
-        if (collision.gameObject.CompareTag("Disposal") && !playerInteraction.PlayerAnimator.isCombatPhase && BodyCount == 1 && Input.GetKey(KeyCode.E))
+        if (collision.gameObject.CompareTag("Disposal") && PhaseManager.CurrentPhase == Phases.Clean_Up && BodyCount == 1 && Input.GetKey(KeyCode.E))
         {
             BodyCount--;
             DisposedBody++;

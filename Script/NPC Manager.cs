@@ -4,7 +4,7 @@ using UnityEngine;
 public class NPC_Manager : MonoBehaviour
 { 
     public Enemy npc;
-    public Transform[] target;
+    public GameObject Enemy;
     public int targetIndex;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,13 +19,13 @@ public class NPC_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        npc.Agent.SetDestination(target[targetIndex].position);
+        gameObject.transform.position = Enemy.transform.position;
     }
 
-    private void OnCollisionEnter2D(UnityEngine.Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("adwawefwefWs");
-        if (collision.gameObject.CompareTag("Stop") == true)
+        if (collision.gameObject.CompareTag("Stop"))
         {
            
             StartCoroutine(WaitOnTarget());

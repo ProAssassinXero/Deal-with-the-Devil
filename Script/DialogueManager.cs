@@ -5,38 +5,28 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance;
     public TextMeshProUGUI dialogueText;
-    public string[] lines;
     public GameObject dialogueBox;
-    public int index = 0;
-
+    public string lines;
 
 
     void Awake()
     {
             instance = this;
     }
-    public void StartDialogue(string[] newline)
+    public void StartDialogue(string newline)
     {
         dialogueBox.SetActive(true);
         lines = newline;
-        index = 0;
         Advance();
     }
     public void Advance()
     {
-        if (index < lines.Length)
-        {
-            dialogueText.text = lines[index];
-            Debug.Log(lines[index]);
-            index++;
-        }
-        else
-        {
-            EndDialogue();
-        }
+
+         dialogueText.text = lines;
+         Debug.Log(lines);
     }
 
-    void EndDialogue()
+    public void EndDialogue()
     {
         dialogueBox.SetActive(false);
     }

@@ -12,6 +12,6 @@ public class LuciferDialogueScript : MonoBehaviour
 
     public void LuciSend()
     {
-        DialogueManager.instance.StartDialogue(luciferDialogue);
+        //DialogueManager.instance.StartDialogue(luciferDialogue);
     }
 }

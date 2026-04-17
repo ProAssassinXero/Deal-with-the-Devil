@@ -155,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 420, y: -184.5}
+  m_AnchoredPosition: {x: 420, y: -158.806}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &21113020
@@ -281,6 +281,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7844e4394c59f3d4eabc5960c5b1552f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GabrielDialogueScript
+  Order:
+  - One vodka and some ice
+  - 2 beers
+  - 1 whisky
+  - A water
+  orderToNum: 
+  pickedOrder: 
 --- !u!4 &166014853
 Transform:
   m_ObjectHideFlags: 0
@@ -405,16 +412,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
   dialogueText: {fileID: 2008996940}
-  lines:
-  - 12
-  - 34
-  - 56
-  - 78
-  - 90
-  - 11
-  - 12
   dialogueBox: {fileID: 1495936250}
-  index: 0
+  lines: 
 --- !u!4 &413658691
 Transform:
   m_ObjectHideFlags: 0
@@ -604,7 +603,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 420, y: -93.694}
+  m_AnchoredPosition: {x: 420, y: -68}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &595623971
@@ -874,7 +873,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 420, y: -2.8874}
+  m_AnchoredPosition: {x: 420, y: 22.8066}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &974525102

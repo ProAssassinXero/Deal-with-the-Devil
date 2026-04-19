@@ -5,7 +5,9 @@ public class NPC_Manager : MonoBehaviour
 { 
     public Enemy npc;
     public GameObject Enemy;
+    public Enemy enemyScript;
     public int targetIndex;
+    public Transform target;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,17 +21,17 @@ public class NPC_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        target = npc.target[targetIndex];
         gameObject.transform.position = Enemy.transform.position;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("adwawefwefWs");
-        if (collision.gameObject.CompareTag("Stop"))
+        if (collision.gameObject.CompareTag("TheCounter"))
         {
-           
             StartCoroutine(WaitOnTarget());
             targetIndex += 1;
+            enemyScript.targetIndex++;
         }
     }
 

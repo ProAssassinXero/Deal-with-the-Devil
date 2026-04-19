@@ -3,8 +3,8 @@ using UnityEngine;
 public class PlayerAnimator : PhaseManager
 {
     // References
-    public PlayerMovement movement;
-    public Binbagging binbagging;
+    private PlayerMovement movement;
+    private Binbagging binbagging;
     public GameObject playerFakeBody;
     public Animator playerAnim;
 
@@ -42,6 +42,8 @@ public class PlayerAnimator : PhaseManager
     void Start()
     {
         playerAnim = GetComponent<Animator>();
+        movement = GetComponent<PlayerMovement>();
+        binbagging = GetComponent<Binbagging>();
     }
 
     // Runs every frame

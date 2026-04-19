@@ -4,16 +4,20 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    public DialogueManager dialogueManager;
+    public NPC_OrderScript npc_OrderScript;
     public int targetIndex;
     public int saveTargetIndex;
     public bool destinationUpdate = false;
     public Transform[] target;
     public Transform self;
-    NavMeshAgent Agent;
+    public NavMeshAgent Agent;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+
         Agent = GetComponent<NavMeshAgent>();
         Agent.updateUpAxis = false;
         Agent.updateRotation = false;
@@ -26,7 +30,7 @@ public class Enemy : MonoBehaviour
     {
         if(destinationUpdate)
         {
-            positon();
+            Positon();
         }
         if (targetIndex == target.Length - 1)
         {
@@ -37,14 +41,11 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("adwawefwefWs");
-       
-        if (collision.gameObject.CompareTag("Stop"))
+
+        if (collision.gameObject.CompareTag("OrderTarget"))
         {
             Agent.SetDestination(self.position);
-            StartCoroutine(WaitOnTarget());
-            saveTargetIndex++;
-
+            npc_OrderScript.GabiSend();
         }
     }
 
@@ -55,7 +56,7 @@ public class Enemy : MonoBehaviour
         destinationUpdate = true;
     }
 
-    void positon()
+    void Positon()
     {
         Agent.SetDestination(target[targetIndex].position);
         destinationUpdate = false;

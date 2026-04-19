@@ -1,29 +1,39 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance;
+    public Enemy enemy;
     public TextMeshProUGUI dialogueText;
     public GameObject dialogueBox;
-    public string lines;
-
+    public string line;
+    public bool sent;
+    public bool Dbox;
 
     void Awake()
     {
-            instance = this;
+        instance = this;
     }
+
     public void StartDialogue(string newline)
     {
-        dialogueBox.SetActive(true);
-        lines = newline;
-        Advance();
+        Dbox = true;
+        line = newline;
+        sent = true;
+        dialogueText.text = line;
+
     }
     public void Advance()
     {
+        
+        Debug.Log(line);
 
-         dialogueText.text = lines;
-         Debug.Log(lines);
+        if (sent)
+        {
+            EndDialogue();
+            enemy.Agent.SetDestination(enemy.target[1].position);
+        }
     }
 
     public void EndDialogue()

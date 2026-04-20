@@ -6,6 +6,7 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager instance;
     public Enemy enemy;
     public TextMeshProUGUI dialogueText;
+    public TextMeshProUGUI orderDisplay;
     public GameObject dialogueBox;
     public string line;
     public bool sent;
@@ -28,12 +29,7 @@ public class DialogueManager : MonoBehaviour
     {
         
         Debug.Log(line);
-
-        if (sent)
-        {
-            EndDialogue();
-            enemy.Agent.SetDestination(enemy.target[1].position);
-        }
+        orderDisplay.text = "Order:" + line;
     }
 
     public void EndDialogue()

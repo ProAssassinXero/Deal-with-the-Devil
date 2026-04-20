@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator WaitOnTarget()
     {
-        yield return new WaitForSecondsRealtime(0.1f);        
+        yield return new WaitForSecondsRealtime(0.1f);
         targetIndex = saveTargetIndex;
         destinationUpdate = true;
     }

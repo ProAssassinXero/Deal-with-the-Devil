@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;// Required when using Event data.
 public class Shaker : PhaseManager, IBeginDragHandler, IDragHandler, IEndDragHandler // These are the interfaces the OnPointerUp method requires.
 {
     private Vector2 StartPos = Vector2.zero;
+    public Slider _slider;
 
     private bool debounce = false;
     private Vector2 Direaction;
@@ -14,6 +15,7 @@ public class Shaker : PhaseManager, IBeginDragHandler, IDragHandler, IEndDragHan
     private Vector3 mouseDir;
     private Vector3 LastmouseDir;
     public int ShakeCounter = 0;
+
 
     public bool Draging = false;
 
@@ -33,11 +35,6 @@ public class Shaker : PhaseManager, IBeginDragHandler, IDragHandler, IEndDragHan
         transform.position = Input.mousePosition;
     }
 
-    void Update()
-    {
-        
-    }
-
     bool Approximate(Vector3 Pos1, Vector3 Pos2, float Range)
     {
         if ((Pos1.x > Pos2.x - Range && Pos1.x < Pos2.x + Range) && (Pos1.y > Pos2.y - Range && Pos1.y < Pos2.y + Range))
@@ -53,17 +50,19 @@ public class Shaker : PhaseManager, IBeginDragHandler, IDragHandler, IEndDragHan
         {
             return;
         }
+        
         LastmouseDir = mouseDir;
         mouseVelo = (Input.mousePosition - lastMousePosition) / Time.deltaTime;
         mouseDir = mouseVelo.normalized;
         lastMousePosition = Input.mousePosition;
         Debug.Log(mouseDir);
-        if (Approximate(mouseDir,-mouseDir, mouseVelo.magnitude * 0.00125f) && !debounce)
+        if (Approximate(mouseDir,-mouseDir, mouseVelo.magnitude * 0.0012f) && !debounce)
         {
             ShakeCounter++;
+            _slider.value = ShakeCounter;
             debounce = true;
         }
-        else if (debounce && Approximate(mouseDir, LastmouseDir, mouseVelo.magnitude* 0.0025f) && mouseVelo.magnitude >= 3)
+        else if (debounce && Approximate(mouseDir, LastmouseDir, mouseVelo.magnitude* 0.0012f) && mouseVelo.magnitude >= 3)
         {
             debounce = false;
         }

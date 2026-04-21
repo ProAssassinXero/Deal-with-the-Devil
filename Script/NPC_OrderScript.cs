@@ -13,8 +13,6 @@ public class NPC_OrderScript : MonoBehaviour
 
     public void GabiSend()
     {
-
-        Debug.Log("2");
         int length = Order.Count;
         randomiser = Random.Range(0, length);
 

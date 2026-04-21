@@ -11,7 +11,7 @@ public class Binbagging : PhaseManager
     public PlayerInteraction playerInteraction;
     public int DisposedBody;
 
-    public PhaseManager PhaseManager;
+    public PlayerPhases PhaseManager;
 
     // Update is called once per frame
     void Start()

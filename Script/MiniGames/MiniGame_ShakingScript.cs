@@ -1,12 +1,16 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;// Required when using Event data.
 
-public class MiniGame_ShakingScript : PhaseManager, IPointerUpHandler// These are the interfaces the OnPointerUp method requires.
+public class MiniGame_ShakingScript : PhaseManager
 {
-    public void OnPointerUp(PointerEventData eventData)
+    public void RestartDrink()
     {
-        Debug.Log("The mouse click was released");
+
     }
+    public string CurrentType;
+
+    Dictionary<int, string> CurrentMix = new Dictionary<int, string>();
 }

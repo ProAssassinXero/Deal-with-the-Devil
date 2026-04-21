@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BarMiniGames : MonoBehaviour
+public class Mixing : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

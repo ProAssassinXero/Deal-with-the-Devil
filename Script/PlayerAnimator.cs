@@ -11,7 +11,7 @@ public class PlayerAnimator : PhaseManager
     // State
     public Vector2 lastDirection;
 
-    public PhaseManager PhaseManager;
+    public PlayerPhases PhaseManager;
 
     public bool IsSlashing = false;
     public bool isDragging = false;

@@ -2,17 +2,14 @@ using UnityEngine;
 
 public class ChooseType : MonoBehaviour
 {
+
     public MiniGame_ShakingScript Manager;
+    public GameObject NextStage;
 
-
-    void Start()
+    public void Choose_Type(string _Type)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        NextStage.SetActive(true);
+        Manager.CurrentType = _Type;
+        gameObject.SetActive(false);
     }
 }

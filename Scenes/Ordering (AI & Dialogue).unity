@@ -326,19 +326,18 @@ MonoBehaviour:
   speed: 9
   index: 0
   orderReceived: 0
-  decidedArea: 0
+  centerDecidedArea: 0
+  rightDecidedArea: 0
+  leftDecidedArea: 0
   lower: 0
   firstTrans: 0
   toChair: 0
   firstRandomIndex: 0
   frontCounter: {fileID: 2041157188}
-  firstTransitions:
+  chairTransform:
   - {fileID: 1555547963}
   - {fileID: 1708316966}
   - {fileID: 966599097}
-  leftChairTransition: {fileID: 1555547963}
-  centerChairTransition: {fileID: 1708316966}
-  rightChairTransition: {fileID: 966599097}
   c_ChairToGoTo:
   - {fileID: 1130079001}
   - {fileID: 1673958237}
@@ -346,8 +345,7 @@ MonoBehaviour:
   lC_ChairToGoTo:
   - {fileID: 941078414}
   - {fileID: 250001044}
-  r_ChairToGoTo: {fileID: 1696923174}
-  lR_ChairToGoTo: {fileID: 218973401}
+  rightChairs: []
   l_ChairToGoTo: {fileID: 120025598}
   lL_ChairToGoTo: {fileID: 1460277875}
 --- !u!1 &120025597

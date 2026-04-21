@@ -6,18 +6,22 @@ public class AIMovement : MonoBehaviour
     public int speed;
     public int index;
     public bool orderReceived;
-    public bool decidedArea;
+
+    public bool centerDecidedArea;
+    public bool rightDecidedArea;
+    public bool leftDecidedArea;
+
     public bool lower;
     public bool firstTrans;
     public int toChair;
     public int firstRandomIndex;
     public Transform frontCounter;
-    public Transform[] firstTransitions;
 
     [Header("Chairs to go to")]
-    public Transform leftChairTransition;
-    public Transform centerChairTransition;
-    public Transform rightChairTransition;
+    public Transform[] chairTransform;
+    //public Transform leftChairTransition;
+    //public Transform centerChairTransition;
+    //public Transform rightChairTransition;
 
     [Header("Center Chairs")]
     public Transform[] c_ChairToGoTo;
@@ -25,9 +29,7 @@ public class AIMovement : MonoBehaviour
     public Transform[] lC_ChairToGoTo;
 
     [Header("Right Chairs")]
-    public Transform r_ChairToGoTo;
-    [Header("Right Lower Chairs")]
-    public Transform lR_ChairToGoTo;
+    public Transform[] rightChairs;
 
     [Header("Left Chairs")]
     public Transform l_ChairToGoTo;
@@ -66,11 +68,11 @@ public class AIMovement : MonoBehaviour
         }
 
 
-
-        else if (firstTrans && !decidedArea && lower == false)
+        // To transition Points
+        else if (firstTrans && !centerDecidedArea && lower == false)
         {
-            Vector2 targetPos = new Vector2(centerChairTransition.position.x, gameObject.transform.position.y);
-            Vector2 nexttargetpos = new Vector2(gameObject.transform.position.x, centerChairTransition.position.y);
+            Vector2 targetPos = new Vector2(chairTransform[firstRandomIndex].position.x, gameObject.transform.position.y);
+            Vector2 nextTargetpos = new Vector2(gameObject.transform.position.x, chairTransform[firstRandomIndex].position.y);
             bool done = false;
 
             //Movement
@@ -78,19 +80,19 @@ public class AIMovement : MonoBehaviour
             {
                 gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, targetPos, speed * Time.deltaTime);
             }
-            if (gameObject.transform.position.x == centerChairTransition.position.x)
+            if (gameObject.transform.position.x == chairTransform[firstRandomIndex].position.x)
             {
                 done = true;
             }
             if (done)
             {
-                gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, nexttargetpos, speed * Time.deltaTime);
+                gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, nextTargetpos, speed * Time.deltaTime);
             }
         }
 
 
 
-        else if (decidedArea && !lower)
+        else if (centerDecidedArea && !lower)
         {
             Vector2 targetPos = new Vector2(c_ChairToGoTo[toChair].position.x, gameObject.transform.position.y);
             Vector2 nexttargetpos = new Vector2(gameObject.transform.position.x, c_ChairToGoTo[toChair].position.y);
@@ -137,21 +139,31 @@ public class AIMovement : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        firstRandomIndex = Random.Range(0, firstTransitions.Length);
+        firstRandomIndex = Random.Range(0, chairTransform.Length);
         toChair = Random.Range(0, c_ChairToGoTo.Length - 1);
         if (collision.gameObject.CompareTag("Counter"))
         {
             orderReceived = true;
             firstTrans = true;
         }
+
         if (collision.gameObject.CompareTag("CenterSeatTransition"))
         {
-            decidedArea = true;
+            centerDecidedArea = true;
         }
+        if (collision.gameObject.CompareTag("RightSeatTransition"))
+        {
+            rightDecidedArea = true;
+        }
+        if (collision.gameObject.CompareTag("LeftSeatTransition"))
+        {
+            leftDecidedArea = true;
+        }
+
         if (collision.gameObject.CompareTag("LowerSeatTransition"))
         {
             lower = true;
-            decidedArea = false;
+            centerDecidedArea = false;
         }
     }       
 }

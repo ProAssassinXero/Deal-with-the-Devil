@@ -12,6 +12,7 @@ public class MiniGame_ShakingScript : PhaseManager
         CurrentMix = new Dictionary<string, int>();
     }
     public string CurrentType;
+    public string CurrentDrink;
 
     Dictionary<string, int> TypePartLimit = new Dictionary<string, int>()
     {
@@ -22,13 +23,25 @@ public class MiniGame_ShakingScript : PhaseManager
 
     Dictionary<string, int> CurrentMix = new Dictionary<string, int>();
 
-    Dictionary<string, Dictionary<string, int>> Drinks = new Dictionary<string, Dictionary<string, int>>()
+    Dictionary<string, Dictionary<string, int>> MixDrinks = new Dictionary<string, Dictionary<string, int>>()
     {
-        {"Vodka Collins",   new Dictionary<string, int>()
+        {"Vodka Collins", new Dictionary<string, int>()
         {
-            
-        }}
+            {"vodka", 3},
+            {"simple_syrup", 5}
+        } 
+        },
     };
+
+    Dictionary<string, Dictionary<string, Dictionary<string, int>>> DrinksType = new Dictionary<string, Dictionary<string, Dictionary<string, int>>>();
+
+    public void Start()
+    {
+        DrinksType = new Dictionary<string, Dictionary<string, Dictionary<string, int>>>()
+    {
+        {"Mixing",MixDrinks},
+    };
+    }
 
     bool CheckAddPart()
     {
@@ -45,12 +58,39 @@ public class MiniGame_ShakingScript : PhaseManager
         return false;
     }
 
+    string IsDrink()
+    {
+        Dictionary<string, Dictionary<string, int>> FilerType = DrinksType[CurrentType];
+        string Name = "something";
+        Debug.Log(CurrentMix.Keys );
+        foreach (string DrinkName in FilerType.Keys)
+        {
+            Dictionary<string, int> DrinkIng = FilerType[DrinkName];
+            int IngCount = DrinkIng.Count;
+            int count = 0;
+            foreach (string IngName in DrinkIng.Keys)
+            {
+                if (CurrentMix.ContainsKey(IngName))
+                {
+                    if (CurrentMix[IngName] == DrinkIng[IngName])
+                    {
+                        count++;
+                    }
+                }
+            }
+            if (count == IngCount)
+            {
+                Name = DrinkName;
+            }
+        }
+        return Name;
+    }
+
     public void AddPart(string NamePart)
     {
         Debug.Log(NamePart);
         if (!CheckAddPart())
         {
-            Debug.Log("Can't add part");
             return;
         }
         if (CurrentMix.TryGetValue(NamePart, out int value))
@@ -61,7 +101,11 @@ public class MiniGame_ShakingScript : PhaseManager
         {
             CurrentMix.Add(NamePart, 1);
         }
-        
+        if (!CheckAddPart())
+        {
+            string DrinkName = IsDrink();
+            Debug.Log(DrinkName);
+        }
         Debug.Log(CurrentMix[NamePart]);
     }
 }

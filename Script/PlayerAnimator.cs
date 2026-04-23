@@ -102,11 +102,11 @@ public class PlayerAnimator : PhaseManager
         {
             movement.CurrentSpeedX = 4.5f;
             movement.CurrentSpeedY = 4.5f;
-
-            playerAnim.SetBool(IsWalkingDown, false);
+            
             playerAnim.SetBool(IsWalkingUp, false);
-            playerAnim.SetBool(IsWalkingRight, false);
+            playerAnim.SetBool(IsWalkingDown, false);
             playerAnim.SetBool(IsWalkingLeft, false);
+            playerAnim.SetBool(IsWalkingRight, false);
         }
     }
 

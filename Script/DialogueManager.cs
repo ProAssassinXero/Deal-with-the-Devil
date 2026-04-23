@@ -4,7 +4,7 @@ using UnityEngine;
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance;
-    public Enemy enemy;
+    public AIMovement aIMovement;
     public TextMeshProUGUI dialogueText;
     public TextMeshProUGUI orderDisplay;
     public GameObject dialogueBox;
@@ -22,18 +22,20 @@ public class DialogueManager : MonoBehaviour
         Dbox = true;
         line = newline;
         sent = true;
+
         dialogueText.text = line;
 
     }
     public void Advance()
     {
-        
         Debug.Log(line);
-        orderDisplay.text = "Order:" + line;
+        orderDisplay.text = "Order: " + line;
+        EndDialogue();
     }
 
     public void EndDialogue()
     {
         dialogueBox.SetActive(false);
+        aIMovement.doneOrder = false;
     }
 }

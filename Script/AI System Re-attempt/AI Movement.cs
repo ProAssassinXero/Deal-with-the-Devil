@@ -4,7 +4,9 @@ public class AIMovement : MonoBehaviour
 {
     public int speed;
     public Vector2 moveSpeed;
+
     public bool orderReceived;
+    public bool doneOrder;
 
     public bool centerDecidedArea;
     public bool rightDecidedArea;
@@ -90,6 +92,15 @@ public class AIMovement : MonoBehaviour
             }
         }
         // To transition Points
+        else if (doneOrder)
+        {
+            orderReceived = true;
+            centerDecidedArea = false;
+            rightDecidedArea = false;
+            leftDecidedArea = false;
+            lower = false;
+        }
+
         else if (orderReceived && !centerDecidedArea && !rightDecidedArea && !leftDecidedArea && lower == false)
         {
             Vector2 targetPos = new Vector2(chairTransform[firstRandomIndex].position.x, gameObject.transform.position.y);
@@ -123,13 +134,13 @@ public class AIMovement : MonoBehaviour
         toCenterChair = Random.Range(0, c_ChairToGoTo.Length);
         toRightChair = Random.Range(0, r_ChairToGoTo.Length);
         toLeftChair = Random.Range(0, l_ChairToGoTo.Length);
-
         toLowerCenterChair = Random.Range(0, lC_ChairToGoTo.Length);
 
         if (collision.gameObject.CompareTag("Counter"))
         {
             orderReceived = true;
         }
+
 
         if (collision.gameObject.CompareTag("CenterSeatTransition"))
         {
@@ -224,7 +235,7 @@ public class AIMovement : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
             }
 
-            if (transform.position.y == r_ChairToGoTo[toRightChair].position.x)
+            if (transform.position.y == r_ChairToGoTo[toRightChair].position.y)
             {
                 done = true;
             }

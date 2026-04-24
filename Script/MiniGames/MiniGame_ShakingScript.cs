@@ -14,6 +14,11 @@ public class MiniGame_ShakingScript : PhaseManager
     public string CurrentType;
     public string CurrentDrink;
 
+    public List<GameObject> Frames = new List<GameObject>()
+    {
+    };
+
+
     Dictionary<string, int> TypePartLimit = new Dictionary<string, int>()
     {
         {"Mixing", 8},
@@ -61,7 +66,7 @@ public class MiniGame_ShakingScript : PhaseManager
     string IsDrink()
     {
         Dictionary<string, Dictionary<string, int>> FilerType = DrinksType[CurrentType];
-        string Name = "something";
+        string Name = "None";
         Debug.Log(CurrentMix.Keys );
         foreach (string DrinkName in FilerType.Keys)
         {
@@ -88,7 +93,6 @@ public class MiniGame_ShakingScript : PhaseManager
 
     public void AddPart(string NamePart)
     {
-        Debug.Log(NamePart);
         if (!CheckAddPart())
         {
             return;
@@ -103,8 +107,8 @@ public class MiniGame_ShakingScript : PhaseManager
         }
         if (!CheckAddPart())
         {
-            string DrinkName = IsDrink();
-            Debug.Log(DrinkName);
+            CurrentDrink = IsDrink();
+            Debug.Log(CurrentDrink);
         }
         Debug.Log(CurrentMix[NamePart]);
     }

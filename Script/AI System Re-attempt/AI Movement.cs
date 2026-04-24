@@ -11,6 +11,7 @@ public class AIMovement : MonoBehaviour
     public bool centerDecidedArea;
     public bool rightDecidedArea;
     public bool leftDecidedArea;
+    public bool rightStoolArea;
 
     public int toLowerCenterChair;
 
@@ -19,9 +20,16 @@ public class AIMovement : MonoBehaviour
     public int toCenterChair;
     public int toRightChair;
     public int toLeftChair;
+    public int toRightStool;
 
     public int firstRandomIndex;
     public Transform frontCounter;
+
+    [Header("List of Tags")]
+    public string[] normalTagList;
+
+    [Header("List of Lower Tags")]
+    public string[] lowerTagList;
 
     [Header("Chairs to go to")]
     public Transform[] chairTransform;
@@ -42,6 +50,9 @@ public class AIMovement : MonoBehaviour
     [Header("Left Lower Chairs")]
     public Transform lL_ChairToGoTo;
 
+    [Header("Right Stools")]
+    public Transform[] stools;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -60,6 +71,8 @@ public class AIMovement : MonoBehaviour
             centerDecidedArea = false;
             rightDecidedArea = false;
             leftDecidedArea = false;
+            rightStoolArea = false;
+            
 
             toLowerCenterChair = 0;
 
@@ -76,7 +89,7 @@ public class AIMovement : MonoBehaviour
             Vector2 targetPos = new Vector2(frontCounter.position.x, gameObject.transform.position.y);
             Vector2 nextTargetPos = new Vector2(gameObject.transform.position.x, frontCounter.position.y);
             bool done = false;
-
+          
             //Movement
             if (!done)
             {
@@ -98,10 +111,11 @@ public class AIMovement : MonoBehaviour
             centerDecidedArea = false;
             rightDecidedArea = false;
             leftDecidedArea = false;
+            rightStoolArea = false;
             lower = false;
         }
 
-        else if (orderReceived && !centerDecidedArea && !rightDecidedArea && !leftDecidedArea && lower == false)
+        else if (orderReceived && !centerDecidedArea && !rightDecidedArea && !leftDecidedArea && !rightStoolArea && lower == false)
         {
             Vector2 targetPos = new Vector2(chairTransform[firstRandomIndex].position.x, gameObject.transform.position.y);
             Vector2 nextTargetpos = new Vector2(gameObject.transform.position.x, chairTransform[firstRandomIndex].position.y);
@@ -122,6 +136,7 @@ public class AIMovement : MonoBehaviour
             }
         }
 
+        RightStoolLogic();
         CenterChairLogic();
         RightChairLogic();
         LeftChairLogic();
@@ -130,6 +145,7 @@ public class AIMovement : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         firstRandomIndex = Random.Range(0, chairTransform.Length);
+
 
         toCenterChair = Random.Range(0, c_ChairToGoTo.Length);
         toRightChair = Random.Range(0, r_ChairToGoTo.Length);
@@ -170,6 +186,12 @@ public class AIMovement : MonoBehaviour
         {
             rightDecidedArea = true;
             lower = true;
+        }
+
+        if (collision.gameObject.CompareTag("RightStoolTransition"))
+        {
+            rightStoolArea = true;
+            toRightStool = Random.Range(0, stools.Length);
         }
     }
 
@@ -309,6 +331,32 @@ public class AIMovement : MonoBehaviour
             }
 
             if (transform.position.y == lL_ChairToGoTo.position.y)
+            {
+                done = true;
+            }
+
+            if (done)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, nextTargetPos, speed * Time.deltaTime);
+            }
+        }
+    }
+    private void RightStoolLogic()
+    {
+        if (rightStoolArea)
+        {
+            Vector2 targetPos = new Vector2(transform.position.x, stools[toRightStool].position.y);
+            Vector2 nextTargetPos = new Vector2(stools[toRightStool].position.x, transform.position.y);
+            
+            bool done = false;
+            
+            if (!done)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+                Debug.Log(done);
+            }
+
+            if (transform.position.y == stools[toRightStool].position.y)
             {
                 done = true;
             }

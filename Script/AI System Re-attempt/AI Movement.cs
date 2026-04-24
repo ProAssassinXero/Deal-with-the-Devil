@@ -12,6 +12,7 @@ public class AIMovement : MonoBehaviour
     public bool rightDecidedArea;
     public bool leftDecidedArea;
     public bool rightStoolArea;
+    public bool upperRightDecidedArea;
 
     public int toLowerCenterChair;
 
@@ -21,15 +22,13 @@ public class AIMovement : MonoBehaviour
     public int toRightChair;
     public int toLeftChair;
     public int toRightStool;
+    public int toUpperRightChair;
 
     public int firstRandomIndex;
+
+    public AIWaypointBar AIWaypointBar;
+
     public Transform frontCounter;
-
-    [Header("List of Tags")]
-    public string[] normalTagList;
-
-    [Header("List of Lower Tags")]
-    public string[] lowerTagList;
 
     [Header("Chairs to go to")]
     public Transform[] chairTransform;
@@ -53,10 +52,27 @@ public class AIMovement : MonoBehaviour
     [Header("Right Stools")]
     public Transform[] stools;
 
+    [Header("Upper Right Seats")]
+    public Transform[] upperChairs;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        AIWaypointBar = Object.FindAnyObjectByType<AIWaypointBar>();
 
+        if (AIWaypointBar != null)
+        {
+            frontCounter = AIWaypointBar.frontCounter;
+            chairTransform = AIWaypointBar.chairTransform;
+            c_ChairToGoTo = AIWaypointBar.c_ChairToGoTo;
+            lC_ChairToGoTo = AIWaypointBar.lC_ChairToGoTo;
+            r_ChairToGoTo = AIWaypointBar.r_ChairToGoTo;
+            lR_ChairToGoTo = AIWaypointBar.lR_ChairToGoTo;
+            l_ChairToGoTo = AIWaypointBar.l_ChairToGoTo;
+            lL_ChairToGoTo = AIWaypointBar.lL_ChairToGoTo;
+            upperChairs = AIWaypointBar.upperChairs;
+            stools = AIWaypointBar.stools;
+        }
     }
 
     // Update is called once per frame
@@ -72,7 +88,8 @@ public class AIMovement : MonoBehaviour
             rightDecidedArea = false;
             leftDecidedArea = false;
             rightStoolArea = false;
-            
+            upperRightDecidedArea = false;
+
 
             toLowerCenterChair = 0;
 
@@ -80,6 +97,7 @@ public class AIMovement : MonoBehaviour
             toCenterChair = 0;
             toRightChair = 0;
             toLeftChair = 0;
+            toUpperRightChair = 0;
 
             firstRandomIndex = 0;
         }
@@ -89,7 +107,7 @@ public class AIMovement : MonoBehaviour
             Vector2 targetPos = new Vector2(frontCounter.position.x, gameObject.transform.position.y);
             Vector2 nextTargetPos = new Vector2(gameObject.transform.position.x, frontCounter.position.y);
             bool done = false;
-          
+
             //Movement
             if (!done)
             {
@@ -115,10 +133,10 @@ public class AIMovement : MonoBehaviour
             lower = false;
         }
 
-        else if (orderReceived && !centerDecidedArea && !rightDecidedArea && !leftDecidedArea && !rightStoolArea && lower == false)
+        else if (orderReceived && !centerDecidedArea && !rightDecidedArea && !leftDecidedArea && !rightStoolArea && !upperRightDecidedArea && !lower)
         {
             Vector2 targetPos = new Vector2(chairTransform[firstRandomIndex].position.x, gameObject.transform.position.y);
-            Vector2 nextTargetpos = new Vector2(gameObject.transform.position.x, chairTransform[firstRandomIndex].position.y);
+            Vector2 nextTargetPos = new Vector2(gameObject.transform.position.x, chairTransform[firstRandomIndex].position.y);
             bool done = false;
 
             //Movement
@@ -126,16 +144,16 @@ public class AIMovement : MonoBehaviour
             {
                 gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, targetPos, speed * Time.deltaTime);
             }
-            if (gameObject.transform.position.x == chairTransform[firstRandomIndex].position.x)
+            if (gameObject.transform.position.y == chairTransform[firstRandomIndex].position.y)
             {
                 done = true;
             }
             if (done)
             {
-                gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, nextTargetpos, speed * Time.deltaTime);
+                gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, nextTargetPos, speed * Time.deltaTime);
             }
         }
-
+        UpperRightChairLogic();
         RightStoolLogic();
         CenterChairLogic();
         RightChairLogic();
@@ -192,6 +210,11 @@ public class AIMovement : MonoBehaviour
         {
             rightStoolArea = true;
             toRightStool = Random.Range(0, stools.Length);
+        }
+        if (collision.gameObject.CompareTag("UpperRightSeatsTransition"))
+        {
+            upperRightDecidedArea = true;
+            toUpperRightChair = Random.Range(0, upperChairs.Length);
         }
     }
 
@@ -324,7 +347,7 @@ public class AIMovement : MonoBehaviour
 
 
             bool done = false;
-             
+
             if (!done)
             {
                 transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
@@ -347,9 +370,9 @@ public class AIMovement : MonoBehaviour
         {
             Vector2 targetPos = new Vector2(transform.position.x, stools[toRightStool].position.y);
             Vector2 nextTargetPos = new Vector2(stools[toRightStool].position.x, transform.position.y);
-            
+
             bool done = false;
-            
+
             if (!done)
             {
                 transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
@@ -357,6 +380,34 @@ public class AIMovement : MonoBehaviour
             }
 
             if (transform.position.y == stools[toRightStool].position.y)
+            {
+                done = true;
+            }
+
+            if (done)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, nextTargetPos, speed * Time.deltaTime);
+            }
+        }
+    }
+
+
+    private void UpperRightChairLogic()
+    {
+        if (upperRightDecidedArea)
+        {
+            Vector2 nextTargetPos = new Vector2(upperChairs[toUpperRightChair].position.x, transform.position.y);
+            Vector2 targetPos = new Vector2(transform.position.x, upperChairs[toUpperRightChair].position.y);
+
+            bool done = false;
+
+            if (!done)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+                Debug.Log(done);
+            }
+
+            if (transform.position.y == upperChairs[toUpperRightChair].position.y)
             {
                 done = true;
             }

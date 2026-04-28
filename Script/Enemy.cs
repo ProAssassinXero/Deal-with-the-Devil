@@ -4,20 +4,19 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public DialogueManager dialogueManager;
-    public NPC_OrderScript npc_OrderScript;
     public int targetIndex;
     public int saveTargetIndex;
     public bool destinationUpdate = false;
-    public Transform[] target;
+    public Transform[] targetGroup;
+    public Transform CurrentTarget;
     public Transform self;
     public NavMeshAgent Agent;
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
-
         Agent = GetComponent<NavMeshAgent>();
         Agent.updateUpAxis = false;
         Agent.updateRotation = false;
@@ -28,37 +27,40 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(destinationUpdate)
+        CurrentTarget = FindTarget();
+
+        if(CurrentTarget)
         {
             Positon();
         }
-        if (targetIndex == target.Length - 1)
-        {
-            targetIndex = 0;
-            saveTargetIndex = 0;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
-        if (collision.gameObject.CompareTag("OrderTarget"))
-        {
-            Agent.SetDestination(self.position);
-            npc_OrderScript.GabiSend();
-        }
-    }
-
-    public IEnumerator WaitOnTarget()
-    {
-        yield return new WaitForSecondsRealtime(0.1f);
-        targetIndex = saveTargetIndex;
-        destinationUpdate = true;
     }
 
     void Positon()
     {
-        Agent.SetDestination(target[targetIndex].position);
+        Agent.SetDestination(CurrentTarget.position);
         destinationUpdate = false;
+    }
+
+    float Distance(Vector2 Pos1 , Vector2 Pos2)
+    {
+        return (Pos1 - Pos2).magnitude;
+    }
+
+    Transform FindTarget()
+    {
+        Transform Choosen = CurrentTarget;
+        foreach (Transform PossibleTargets in targetGroup)
+        {
+            
+            if (!transform.gameObject.active)
+            {
+                continue;
+            }
+            if (Distance(transform.position, PossibleTargets.position) < Distance(transform.position, CurrentTarget.position))
+            {
+                Choosen = PossibleTargets;
+            }
+        }
+        return Choosen;
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AIMovement : MonoBehaviour
@@ -36,29 +37,29 @@ public class AIMovement : MonoBehaviour
     public Transform frontCounter;
 
     [Header("Chairs to go to")]
-    public Transform[] chairTransform;
+    public List<Transform> chairTransform;
 
     [Header("Center Chairs")]
-    public Transform[] c_ChairToGoTo;
+    public List<Transform> c_ChairToGoTo;
     [Header("Lower Center Chairs")]
-    public Transform[] lC_ChairToGoTo;
+    public List<Transform> lC_ChairToGoTo;
 
 
     [Header("Right Chairs")]
-    public Transform[] r_ChairToGoTo;
+    public List<Transform> r_ChairToGoTo;
     [Header("Lower Right Chairs")]
     public Transform lR_ChairToGoTo;
 
     [Header("Left Chairs")]
-    public Transform[] l_ChairToGoTo;
+    public List<Transform> l_ChairToGoTo;
     [Header("Left Lower Chairs")]
     public Transform lL_ChairToGoTo;
 
     [Header("Right Stools")]
-    public Transform[] stools;
+    public List<Transform> stools;
 
     [Header("Upper Right Seats")]
-    public Transform[] upperChairs;
+    public List<Transform> upperChairs;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -193,13 +194,13 @@ public class AIMovement : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        firstRandomIndex = Random.Range(0, chairTransform.Length);
+        firstRandomIndex = Random.Range(0, chairTransform.Count);
 
 
         if (collision.gameObject.CompareTag("Counter"))
         {
             orderReceived = true;
-            firstRandomIndex = Random.Range(0, chairTransform.Length);
+            firstRandomIndex = Random.Range(0, chairTransform.Count);
         }
 
         if (collision.gameObject.CompareTag("Chair"))
@@ -210,23 +211,23 @@ public class AIMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("CenterSeatTransition"))
         {
             centerDecidedArea = true;
-            toCenterChair = Random.Range(0, c_ChairToGoTo.Length);
+            toCenterChair = Random.Range(0, c_ChairToGoTo.Count);
         }
         if (collision.gameObject.CompareTag("RightSeatTransition"))
         {
             rightDecidedArea = true;
-            toRightChair = Random.Range(0, r_ChairToGoTo.Length);
+            toRightChair = Random.Range(0, r_ChairToGoTo.Count);
         }
         if (collision.gameObject.CompareTag("LeftSeatTransition"))
         {
             leftDecidedArea = true;
-            toLeftChair = Random.Range(0, l_ChairToGoTo.Length);
+            toLeftChair = Random.Range(0, l_ChairToGoTo.Count);
         }
 
 
         if (collision.gameObject.CompareTag("LowerCenterSeatTransition"))
         {
-            toLowerCenterChair = Random.Range(0, lC_ChairToGoTo.Length);
+            toLowerCenterChair = Random.Range(0, lC_ChairToGoTo.Count);
             centerDecidedArea = true;
             lower = true;
         }
@@ -244,12 +245,12 @@ public class AIMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("RightStoolTransition"))
         {
             rightStoolArea = true;
-            toRightStool = Random.Range(0, stools.Length);
+            toRightStool = Random.Range(0, stools.Count);
         }
         if (collision.gameObject.CompareTag("UpperRightSeatsTransition"))
         {
             upperRightDecidedArea = true;
-            toUpperRightChair = Random.Range(0, upperChairs.Length);
+            toUpperRightChair = Random.Range(0, upperChairs.Count);
         }
     }
 

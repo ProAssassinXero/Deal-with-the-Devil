@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AIWaypointBar : MonoBehaviour
@@ -5,27 +6,27 @@ public class AIWaypointBar : MonoBehaviour
     public Transform frontCounter;
 
     [Header("Chairs to go to")]
-    public Transform[] chairTransform;
+    public List<Transform> chairTransform;
 
     [Header("Center Chairs")]
-    public Transform[] c_ChairToGoTo;
+    public List<Transform> c_ChairToGoTo;
     [Header("Lower Center Chairs")]
-    public Transform[] lC_ChairToGoTo;
+    public List<Transform> lC_ChairToGoTo;
 
 
     [Header("Right Chairs")]
-    public Transform[] r_ChairToGoTo;
+    public List<Transform> r_ChairToGoTo;
     [Header("Lower Right Chairs")]
     public Transform lR_ChairToGoTo;
 
     [Header("Left Chairs")]
-    public Transform[] l_ChairToGoTo;
+    public List<Transform> l_ChairToGoTo;
     [Header("Left Lower Chairs")]
     public Transform lL_ChairToGoTo;
 
     [Header("Right Stools")]
-    public Transform[] stools;
+    public List<Transform> stools;
 
     [Header("Upper Right Seats")]
-    public Transform[] upperChairs;
+    public List<Transform> upperChairs;
 }

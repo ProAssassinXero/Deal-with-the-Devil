@@ -5,6 +5,11 @@ public class AIMovement : MonoBehaviour
     public int speed;
     public Vector2 moveSpeed;
 
+    public Vector2 lastFacing;
+    public Vector2 lastPosition;
+    public Vector2 movementDirection;
+
+    public bool sitting;
     public bool orderReceived;
     public bool doneOrder;
 
@@ -58,6 +63,7 @@ public class AIMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        lastPosition = transform.position;
         AIWaypointBar = Object.FindAnyObjectByType<AIWaypointBar>();
 
         if (AIWaypointBar != null)
@@ -79,6 +85,13 @@ public class AIMovement : MonoBehaviour
     void Update()
     {
         moveSpeed = gameObject.transform.position * speed;
+        Vector2 posBeforeMovement = transform.position;
+
+        if (movementDirection != Vector2.zero)
+        {
+            lastFacing = movementDirection;
+        }
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             gameObject.transform.position = new Vector2(11.6f, 1f);
@@ -130,6 +143,7 @@ public class AIMovement : MonoBehaviour
             rightDecidedArea = false;
             leftDecidedArea = false;
             rightStoolArea = false;
+            sitting = false;
             lower = false;
         }
 
@@ -144,7 +158,7 @@ public class AIMovement : MonoBehaviour
             {
                 gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, targetPos, speed * Time.deltaTime);
             }
-            if (gameObject.transform.position.y == chairTransform[firstRandomIndex].position.y)
+            if (gameObject.transform.position.x == chairTransform[firstRandomIndex].position.x)
             {
                 done = true;
             }
@@ -158,6 +172,23 @@ public class AIMovement : MonoBehaviour
         CenterChairLogic();
         RightChairLogic();
         LeftChairLogic();
+
+        CalculateDirection(posBeforeMovement);
+    }
+
+    private void CalculateDirection(Vector2 posBefore)
+    {
+        Vector2 displacement = (Vector2)transform.position - posBefore;
+
+        if (displacement.magnitude > 0.0001f)
+        {
+            Vector2 normalized = displacement.normalized;
+            movementDirection = new Vector2(Mathf.Round(normalized.x), Mathf.Round(normalized.y));
+        }
+        else
+        {
+            movementDirection = Vector2.zero;
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -165,33 +196,37 @@ public class AIMovement : MonoBehaviour
         firstRandomIndex = Random.Range(0, chairTransform.Length);
 
 
-        toCenterChair = Random.Range(0, c_ChairToGoTo.Length);
-        toRightChair = Random.Range(0, r_ChairToGoTo.Length);
-        toLeftChair = Random.Range(0, l_ChairToGoTo.Length);
-        toLowerCenterChair = Random.Range(0, lC_ChairToGoTo.Length);
-
         if (collision.gameObject.CompareTag("Counter"))
         {
             orderReceived = true;
+            firstRandomIndex = Random.Range(0, chairTransform.Length);
         }
 
+        if (collision.gameObject.CompareTag("Chair"))
+        {
+            sitting = true;
+        }
 
         if (collision.gameObject.CompareTag("CenterSeatTransition"))
         {
             centerDecidedArea = true;
+            toCenterChair = Random.Range(0, c_ChairToGoTo.Length);
         }
         if (collision.gameObject.CompareTag("RightSeatTransition"))
         {
             rightDecidedArea = true;
+            toRightChair = Random.Range(0, r_ChairToGoTo.Length);
         }
         if (collision.gameObject.CompareTag("LeftSeatTransition"))
         {
             leftDecidedArea = true;
+            toLeftChair = Random.Range(0, l_ChairToGoTo.Length);
         }
 
 
         if (collision.gameObject.CompareTag("LowerCenterSeatTransition"))
         {
+            toLowerCenterChair = Random.Range(0, lC_ChairToGoTo.Length);
             centerDecidedArea = true;
             lower = true;
         }

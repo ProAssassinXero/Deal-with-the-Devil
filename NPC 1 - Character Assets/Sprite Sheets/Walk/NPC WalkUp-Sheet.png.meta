@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 7dbc8d4c1f26f6644be85a8872fa2790
+guid: d935d2d40128871438c3f5845f741f24
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5741820717528261864
-    second: The Client UpDrag-Sheet_0
+      213: -3983572771019554935
+    second: NPC WalkUp-Sheet_0
   - first:
-      213: -1525959201434546015
-    second: The Client UpDrag-Sheet_1
+      213: -482451977559582356
+    second: NPC WalkUp-Sheet_1
   - first:
-      213: -3675631862474535835
-    second: The Client UpDrag-Sheet_2
+      213: 5171469707346030067
+    second: NPC WalkUp-Sheet_2
   - first:
-      213: 1884079967833315098
-    second: The Client UpDrag-Sheet_3
+      213: -7694456175882943228
+    second: NPC WalkUp-Sheet_3
   - first:
-      213: -5948676891252270672
-    second: The Client UpDrag-Sheet_4
+      213: 7850479581892519860
+    second: NPC WalkUp-Sheet_4
   - first:
-      213: 3355721179365001165
-    second: The Client UpDrag-Sheet_5
+      213: -3929860495481034672
+    second: NPC WalkUp-Sheet_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +52,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -88,9 +88,9 @@ TextureImporter:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 0
+    resizeAlgorithm: 1
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -115,13 +115,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: The Client UpDrag-Sheet_0
+      name: NPC WalkUp-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 310
-        height: 350
+        width: 210
+        height: 330
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,20 +130,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8e42048658b0faf40800000000000000
-      internalID: 5741820717528261864
+      spriteID: 98ff57eaba187b8c0800000000000000
+      internalID: -3983572771019554935
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The Client UpDrag-Sheet_1
+      name: NPC WalkUp-Sheet_1
       rect:
         serializedVersion: 2
-        x: 310
+        x: 210
         y: 0
-        width: 310
-        height: 350
+        width: 210
+        height: 330
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1a051c0f034b2dae0800000000000000
-      internalID: -1525959201434546015
+      spriteID: c6950688b7cfd49f0800000000000000
+      internalID: -482451977559582356
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The Client UpDrag-Sheet_2
+      name: NPC WalkUp-Sheet_2
       rect:
         serializedVersion: 2
-        x: 620
+        x: 420
         y: 0
-        width: 310
-        height: 350
+        width: 210
+        height: 330
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 56c0910ab488dfcc0800000000000000
-      internalID: -3675631862474535835
+      spriteID: 3fdad099c40c4c740800000000000000
+      internalID: 5171469707346030067
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The Client UpDrag-Sheet_3
+      name: NPC WalkUp-Sheet_3
       rect:
         serializedVersion: 2
-        x: 930
+        x: 630
         y: 0
-        width: 310
-        height: 350
+        width: 210
+        height: 330
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,20 +196,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a17522b9fb8952a10800000000000000
-      internalID: 1884079967833315098
+      spriteID: 405cfa000ecc73590800000000000000
+      internalID: -7694456175882943228
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The Client UpDrag-Sheet_4
+      name: NPC WalkUp-Sheet_4
       rect:
         serializedVersion: 2
-        x: 1240
+        x: 840
         y: 0
-        width: 310
-        height: 350
+        width: 210
+        height: 330
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,20 +218,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0b9555582ed027da0800000000000000
-      internalID: -5948676891252270672
+      spriteID: 4b7292b069182fc60800000000000000
+      internalID: 7850479581892519860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: The Client UpDrag-Sheet_5
+      name: NPC WalkUp-Sheet_5
       rect:
         serializedVersion: 2
-        x: 1550
+        x: 1050
         y: 0
-        width: 310
-        height: 350
+        width: 210
+        height: 330
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -240,8 +240,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dc74e4d12aae19e20800000000000000
-      internalID: 3355721179365001165
+      spriteID: 058230e53b45679c0800000000000000
+      internalID: -3929860495481034672
       vertices: []
       indices: 
       edges: []
@@ -250,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5ef45eaec7a910d419f56d0c52414f21
+    spriteID: 0fbac5dbd4907ee4da187983cb127c72
     internalID: 0
     vertices: []
     indices: 
@@ -260,14 +260,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":1.0},"gridSpriteSize":{"x":310.0,"y":350.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":1.0},"gridSpriteSize":{"x":210.0,"y":330.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      The Client UpDrag-Sheet_0: 5741820717528261864
-      The Client UpDrag-Sheet_1: -1525959201434546015
-      The Client UpDrag-Sheet_2: -3675631862474535835
-      The Client UpDrag-Sheet_3: 1884079967833315098
-      The Client UpDrag-Sheet_4: -5948676891252270672
-      The Client UpDrag-Sheet_5: 3355721179365001165
+      NPC WalkUp-Sheet_0: -3983572771019554935
+      NPC WalkUp-Sheet_1: -482451977559582356
+      NPC WalkUp-Sheet_2: 5171469707346030067
+      NPC WalkUp-Sheet_3: -7694456175882943228
+      NPC WalkUp-Sheet_4: 7850479581892519860
+      NPC WalkUp-Sheet_5: -3929860495481034672
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

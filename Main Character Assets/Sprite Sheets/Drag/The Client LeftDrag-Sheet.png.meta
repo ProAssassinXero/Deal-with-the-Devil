@@ -118,12 +118,12 @@ TextureImporter:
       name: The Client LeftDrag-Sheet_0
       rect:
         serializedVersion: 2
-        x: 99
-        y: 39
-        width: 152
-        height: 252
+        x: 0
+        y: 0
+        width: 330
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -140,12 +140,12 @@ TextureImporter:
       name: The Client LeftDrag-Sheet_1
       rect:
         serializedVersion: 2
-        x: 349
-        y: 39
-        width: 172
-        height: 252
+        x: 330
+        y: 0
+        width: 330
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -162,12 +162,12 @@ TextureImporter:
       name: The Client LeftDrag-Sheet_2
       rect:
         serializedVersion: 2
-        x: 639
-        y: 39
-        width: 152
-        height: 242
+        x: 660
+        y: 0
+        width: 330
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -184,12 +184,12 @@ TextureImporter:
       name: The Client LeftDrag-Sheet_3
       rect:
         serializedVersion: 2
-        x: 909
-        y: 39
-        width: 152
-        height: 242
+        x: 990
+        y: 0
+        width: 330
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -206,12 +206,12 @@ TextureImporter:
       name: The Client LeftDrag-Sheet_4
       rect:
         serializedVersion: 2
-        x: 1179
-        y: 39
-        width: 152
-        height: 252
+        x: 1320
+        y: 0
+        width: 330
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -228,12 +228,12 @@ TextureImporter:
       name: The Client LeftDrag-Sheet_5
       rect:
         serializedVersion: 2
-        x: 1449
-        y: 39
-        width: 152
-        height: 252
+        x: 1650
+        y: 0
+        width: 330
+        height: 320
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -250,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d5aa17eb2beae5f4db70e6967ae9a2ff
     internalID: 0
     vertices: []
     indices: 
@@ -258,7 +258,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":1.0},"gridSpriteSize":{"x":330.0,"y":320.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       The Client LeftDrag-Sheet_0: 5981705522628124808
       The Client LeftDrag-Sheet_1: -71831902866889336

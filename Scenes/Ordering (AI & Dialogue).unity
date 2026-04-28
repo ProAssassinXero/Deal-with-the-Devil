@@ -2716,6 +2716,7 @@ GameObject:
   - component: {fileID: 1060463428}
   - component: {fileID: 1060463427}
   - component: {fileID: 1060463433}
+  - component: {fileID: 1060463434}
   - component: {fileID: 1060463432}
   m_Layer: 0
   m_Name: NPC
@@ -2741,6 +2742,7 @@ MonoBehaviour:
   lastFacing: {x: 0, y: 0}
   lastPosition: {x: 0, y: 0}
   movementDirection: {x: 0, y: 0}
+  target: {fileID: 0}
   sitting: 0
   orderReceived: 0
   doneOrder: 0
@@ -2941,6 +2943,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AI_Animation
   aiAnimator: {fileID: 1060463432}
   aiMovement: {fileID: 1060463427}
+--- !u!114 &1060463434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060463426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97cd6bcac2a1bde4b81d9b73949576e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AISeatStorage
+  npcCollider: {fileID: 0}
+  aiMovement: {fileID: 1060463427}
+  AIWaypointBar: {fileID: 0}
+  currentSeat: {fileID: 0}
+  sat: 0
+  seatSpeed: 0
 --- !u!1 &1130079000
 GameObject:
   m_ObjectHideFlags: 0
@@ -3602,6 +3622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7beb8df6da69e774a97f6d40dfbe9ab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIWaypointBar
+  AISeatStorage: {fileID: 0}
   frontCounter: {fileID: 2041157188}
   chairTransform:
   - {fileID: 1555547963}

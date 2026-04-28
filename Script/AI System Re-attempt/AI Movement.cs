@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AIMovement : MonoBehaviour
@@ -9,6 +11,7 @@ public class AIMovement : MonoBehaviour
     public Vector2 lastFacing;
     public Vector2 lastPosition;
     public Vector2 movementDirection;
+    public Transform target;
 
     public bool sitting;
     public bool orderReceived;
@@ -252,6 +255,18 @@ public class AIMovement : MonoBehaviour
             upperRightDecidedArea = true;
             toUpperRightChair = Random.Range(0, upperChairs.Count);
         }
+
+        if (collision.gameObject.tag == "Chair")
+        {
+            StartCoroutine(waitabit());
+        }
+    }
+
+    private IEnumerator waitabit()
+    {
+
+        yield return new WaitForSecondsRealtime(2f);
+        c_ChairToGoTo.RemoveAt(toCenterChair);
     }
 
     private void CenterChairLogic()
@@ -348,6 +363,7 @@ public class AIMovement : MonoBehaviour
             if (done)
             {
                 transform.position = Vector2.MoveTowards(transform.position, nextTargetPos, speed * Time.deltaTime);
+
             }
         }
     }

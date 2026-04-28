@@ -1,8 +1,11 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AIWaypointBar : MonoBehaviour
 {
+    public AISeatStorage AISeatStorage;
+
     public Transform frontCounter;
 
     [Header("Chairs to go to")]

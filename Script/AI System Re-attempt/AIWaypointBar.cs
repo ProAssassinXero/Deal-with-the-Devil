@@ -20,12 +20,12 @@ public class AIWaypointBar : MonoBehaviour
     [Header("Right Chairs")]
     public List<Transform> r_ChairToGoTo;
     [Header("Lower Right Chairs")]
-    public Transform lR_ChairToGoTo;
+    public List<Transform> lR_ChairToGoTo;
 
     [Header("Left Chairs")]
     public List<Transform> l_ChairToGoTo;
     [Header("Left Lower Chairs")]
-    public Transform lL_ChairToGoTo;
+    public List<Transform> lL_ChairToGoTo;
 
     [Header("Right Stools")]
     public List<Transform> stools;

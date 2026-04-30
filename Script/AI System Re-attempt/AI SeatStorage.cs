@@ -1,23 +1,39 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+
+public class TransformListLast
+{
+    [SerializeField] public List<List<Transform>> seatList;
+}
 
 public class AISeatStorage : MonoBehaviour
 {
+    public AIWaypointBar AIWaypointBar;
     public CircleCollider2D npcCollider;
     public AIMovement aiMovement;
-    public AIWaypointBar AIWaypointBar;
-    public Transform currentSeat;
+
+    public Transform currentSeat; // just store the single hit transform
+    public List<Transform> currentSeatGroup; // the list it belongs to
     public bool sat;
     public float seatSpeed;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private List<List<Transform>> allLists;
+
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //store the chairs location from the ai movement script
+        allLists = new List<List<Transform>>
+        {
+            AIWaypointBar.chairTransform,
+            AIWaypointBar.c_ChairToGoTo,
+            AIWaypointBar.lC_ChairToGoTo,
+            AIWaypointBar.r_ChairToGoTo,
+            AIWaypointBar.lR_ChairToGoTo,
+            AIWaypointBar.l_ChairToGoTo,
+            AIWaypointBar.lL_ChairToGoTo,
+            AIWaypointBar.stools,
+            AIWaypointBar.upperChairs
+        };
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -25,8 +41,14 @@ public class AISeatStorage : MonoBehaviour
         if (collision.gameObject.tag == "Chair")
         {
             currentSeat = collision.transform;
-            
-            sat = true;
+
+            // Search all lists for the collided transform
+            currentSeatGroup = allLists.FirstOrDefault(list => list.Contains(currentSeat));
+
+            if (currentSeatGroup != null)
+            {
+                Debug.Log("Found seat in group!");
+            }
         }
     }
 }

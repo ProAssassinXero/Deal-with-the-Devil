@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
         foreach (Transform PossibleTargets in targetGroup)
         {
             
-            if (!transform.gameObject.active)
+            if (!transform.gameObject.activeSelf)
             {
                 continue;
             }

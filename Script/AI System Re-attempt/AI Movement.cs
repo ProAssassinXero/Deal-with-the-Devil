@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class AIMovement : MonoBehaviour
@@ -11,6 +9,7 @@ public class AIMovement : MonoBehaviour
     public Vector2 lastFacing;
     public Vector2 lastPosition;
     public Vector2 movementDirection;
+    public Transform currentSeat;
     public Transform target;
 
     public bool sitting;
@@ -37,6 +36,7 @@ public class AIMovement : MonoBehaviour
 
     public AIWaypointBar AIWaypointBar;
 
+    public List<List<Transform>> listOfSeats;
     public Transform frontCounter;
 
     [Header("Chairs to go to")]
@@ -51,24 +51,30 @@ public class AIMovement : MonoBehaviour
     [Header("Right Chairs")]
     public List<Transform> r_ChairToGoTo;
     [Header("Lower Right Chairs")]
-    public Transform lR_ChairToGoTo;
+    public List<Transform> lR_ChairToGoTo;
 
     [Header("Left Chairs")]
     public List<Transform> l_ChairToGoTo;
     [Header("Left Lower Chairs")]
-    public Transform lL_ChairToGoTo;
+    public List<Transform> lL_ChairToGoTo;
 
     [Header("Right Stools")]
     public List<Transform> stools;
 
     [Header("Upper Right Seats")]
     public List<Transform> upperChairs;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         lastPosition = transform.position;
         AIWaypointBar = Object.FindAnyObjectByType<AIWaypointBar>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        moveSpeed = gameObject.transform.position * speed;
+        Vector2 posBeforeMovement = transform.position;
 
         if (AIWaypointBar != null)
         {
@@ -83,13 +89,6 @@ public class AIMovement : MonoBehaviour
             upperChairs = AIWaypointBar.upperChairs;
             stools = AIWaypointBar.stools;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        moveSpeed = gameObject.transform.position * speed;
-        Vector2 posBeforeMovement = transform.position;
 
         if (movementDirection != Vector2.zero)
         {
@@ -255,19 +254,8 @@ public class AIMovement : MonoBehaviour
             upperRightDecidedArea = true;
             toUpperRightChair = Random.Range(0, upperChairs.Count);
         }
-
-        if (collision.gameObject.tag == "Chair")
-        {
-            StartCoroutine(waitabit());
-        }
     }
 
-    private IEnumerator waitabit()
-    {
-
-        yield return new WaitForSecondsRealtime(2f);
-        c_ChairToGoTo.RemoveAt(toCenterChair);
-    }
 
     private void CenterChairLogic()
     {
@@ -344,8 +332,8 @@ public class AIMovement : MonoBehaviour
 
         else if (rightDecidedArea && lower)
         {
-            Vector2 nextTargetPos = new Vector2(lR_ChairToGoTo.position.x, transform.position.y);
-            Vector2 targetPos = new Vector2(transform.position.x, lR_ChairToGoTo.position.y);
+            Vector2 nextTargetPos = new Vector2(lR_ChairToGoTo[0].position.x, transform.position.y);
+            Vector2 targetPos = new Vector2(transform.position.x, lR_ChairToGoTo[0].position.y);
 
 
             bool done = false;
@@ -355,7 +343,7 @@ public class AIMovement : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
             }
 
-            if (transform.position.y == lR_ChairToGoTo.position.y)
+            if (transform.position.y == lR_ChairToGoTo[0].position.y)
             {
                 done = true;
             }
@@ -394,8 +382,8 @@ public class AIMovement : MonoBehaviour
 
         else if (leftDecidedArea && lower)
         {
-            Vector2 nextTargetPos = new Vector2(lL_ChairToGoTo.position.x, transform.position.y);
-            Vector2 targetPos = new Vector2(transform.position.x, lL_ChairToGoTo.position.y);
+            Vector2 nextTargetPos = new Vector2(lL_ChairToGoTo[0].position.x, transform.position.y);
+            Vector2 targetPos = new Vector2(transform.position.x, lL_ChairToGoTo[0].position.y);
 
 
             bool done = false;
@@ -405,7 +393,7 @@ public class AIMovement : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
             }
 
-            if (transform.position.y == lL_ChairToGoTo.position.y)
+            if (transform.position.y == lL_ChairToGoTo[0].position.y)
             {
                 done = true;
             }

@@ -21,7 +21,7 @@ public class NPC_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        target = npc.target[targetIndex];
+       // target = npc.target[targetIndex];
         gameObject.transform.position = Enemy.transform.position;
     }
 

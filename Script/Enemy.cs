@@ -1,18 +1,18 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour
 {
     public int targetIndex;
     public int saveTargetIndex;
-    public bool destinationUpdate = false;
-    public Transform[] targetGroup;
+    public List<Transform> targetGroup;
     public Transform CurrentTarget;
-    public Transform self;
     public NavMeshAgent Agent;
 
-
+    public MonsterHandler Mananger;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,11 +22,18 @@ public class Enemy : MonoBehaviour
         Agent.updateRotation = false;
         targetIndex = 0;
         saveTargetIndex = 0;
+        
+        Mananger.AddRandomMonster(this);
     }
 
     // Update is called once per frame
-    void Update()
+     public virtual void Update()
     {
+        if (targetGroup.Count < 1)
+        {
+            return;
+        }
+
         CurrentTarget = FindTarget();
 
         if(CurrentTarget)
@@ -35,28 +42,37 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Positon()
+    public void Positon()
     {
         Agent.SetDestination(CurrentTarget.position);
-        destinationUpdate = false;
     }
 
-    float Distance(Vector2 Pos1 , Vector2 Pos2)
+    public float Distance(Vector2 Pos1 , Vector2 Pos2)
     {
-        return (Pos1 - Pos2).magnitude;
+        return Mathf.Abs((Pos1 - Pos2).magnitude);
     }
 
-    Transform FindTarget()
+    public virtual Transform FindTarget()
     {
         Transform Choosen = CurrentTarget;
         foreach (Transform PossibleTargets in targetGroup)
         {
+<<<<<<< Updated upstream:Script/Removed/Enemy.cs
             
             if (!transform.gameObject.activeSelf)
+=======
+            if (Choosen == null)
+            {
+                Choosen = PossibleTargets;
+                
+            }
+
+            if (!PossibleTargets.gameObject.activeInHierarchy)
+>>>>>>> Stashed changes:Script/Enemy.cs
             {
                 continue;
             }
-            if (Distance(transform.position, PossibleTargets.position) < Distance(transform.position, CurrentTarget.position))
+            if (Distance(transform.position, PossibleTargets.position) <= Distance(transform.position, Choosen.position))
             {
                 Choosen = PossibleTargets;
             }

@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent Agent;
 
     public MonsterHandler Mananger;
+    public GameObject Player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,8 +22,6 @@ public class Enemy : MonoBehaviour
         Agent.updateRotation = false;
         targetIndex = 0;
         saveTargetIndex = 0;
-        
-        Mananger.AddRandomMonster(this);
     }
 
     // Update is called once per frame
@@ -56,10 +55,8 @@ public class Enemy : MonoBehaviour
         Transform Choosen = CurrentTarget;
         foreach (Transform PossibleTargets in targetGroup)
         {
-//<<<<<<< Updated upstream:Script/Removed/Enemy.cs
             
             if (!transform.gameObject.activeSelf)
-//=======
             if (Choosen == null)
             {
                 Choosen = PossibleTargets;
@@ -67,7 +64,6 @@ public class Enemy : MonoBehaviour
             }
 
             if (!PossibleTargets.gameObject.activeInHierarchy)
-//>>>>>>> Stashed changes:Script/Enemy.cs
             {
                 continue;
             }

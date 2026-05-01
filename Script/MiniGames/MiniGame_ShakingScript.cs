@@ -14,15 +14,12 @@ public class MiniGame_ShakingScript : PhaseManager
     public string CurrentType;
     public string CurrentDrink;
 
-    public List<GameObject> Frames = new List<GameObject>()
-    {
-    };
 
 
     Dictionary<string, int> TypePartLimit = new Dictionary<string, int>()
     {
         {"Mixing", 8},
-        {"Shot", 1},
+        {"Shots", 1},
         {"Shake", 8}
     };
 
@@ -34,9 +31,19 @@ public class MiniGame_ShakingScript : PhaseManager
         {
             {"vodka", 3},
             {"simple_syrup", 5}
-        } 
+        }
         },
     };
+
+    Dictionary<string, Dictionary<string, int>> ShotsDrinks = new Dictionary<string, Dictionary<string, int>>()
+    {
+        {"Vodka Shot", new Dictionary<string, int>()
+        {
+            {"vodka", 1}
+        }
+        },
+    };
+
 
     Dictionary<string, Dictionary<string, Dictionary<string, int>>> DrinksType = new Dictionary<string, Dictionary<string, Dictionary<string, int>>>();
 
@@ -45,6 +52,7 @@ public class MiniGame_ShakingScript : PhaseManager
         DrinksType = new Dictionary<string, Dictionary<string, Dictionary<string, int>>>()
     {
         {"Mixing",MixDrinks},
+        {"Shots",ShotsDrinks}
     };
     }
 

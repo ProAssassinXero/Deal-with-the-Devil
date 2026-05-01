@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,6 +35,7 @@ public class AIMovement : MonoBehaviour
 
     public int firstRandomIndex;
 
+    public AISeatStorage AISeatStorage;
     public AIWaypointBar AIWaypointBar;
 
     public List<List<Transform>> listOfSeats;
@@ -95,7 +97,7 @@ public class AIMovement : MonoBehaviour
             lastFacing = movementDirection;
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) )
         {
             gameObject.transform.position = new Vector2(11.6f, 1f);
 
@@ -177,6 +179,22 @@ public class AIMovement : MonoBehaviour
         LeftChairLogic();
 
         CalculateDirection(posBeforeMovement);
+
+        if (AISeatStorage.seated)
+        {
+            gameObject.transform.position = new Vector2(AISeatStorage.currentSeat.position.x, AISeatStorage.currentSeat.position.y);
+
+            toLowerCenterChair = 0;
+            lower = false;
+            toCenterChair = 0;
+            toRightChair = 0;
+            toLeftChair = 0;
+            toUpperRightChair = 0;
+            firstRandomIndex = 0;
+
+            movementDirection = Vector2.zero;
+            Debug.Log("Running");
+        }
     }
 
     private void CalculateDirection(Vector2 posBefore)
@@ -218,12 +236,12 @@ public class AIMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("RightSeatTransition"))
         {
             rightDecidedArea = true;
-            toRightChair = Random.Range(0, r_ChairToGoTo.Count);
+            toRightChair = Random.Range(1, r_ChairToGoTo.Count);
         }
         if (collision.gameObject.CompareTag("LeftSeatTransition"))
         {
             leftDecidedArea = true;
-            toLeftChair = Random.Range(0, l_ChairToGoTo.Count);
+            toLeftChair = Random.Range(1, l_ChairToGoTo.Count);
         }
 
 

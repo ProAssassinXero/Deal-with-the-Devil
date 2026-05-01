@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using System.Collections;
 using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour
@@ -57,10 +56,10 @@ public class Enemy : MonoBehaviour
         Transform Choosen = CurrentTarget;
         foreach (Transform PossibleTargets in targetGroup)
         {
-<<<<<<< Updated upstream:Script/Removed/Enemy.cs
+//<<<<<<< Updated upstream:Script/Removed/Enemy.cs
             
             if (!transform.gameObject.activeSelf)
-=======
+//=======
             if (Choosen == null)
             {
                 Choosen = PossibleTargets;
@@ -68,7 +67,7 @@ public class Enemy : MonoBehaviour
             }
 
             if (!PossibleTargets.gameObject.activeInHierarchy)
->>>>>>> Stashed changes:Script/Enemy.cs
+//>>>>>>> Stashed changes:Script/Enemy.cs
             {
                 continue;
             }

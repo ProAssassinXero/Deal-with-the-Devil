@@ -2737,7 +2737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e84bd5a8c2e2e34494b2fb2d1c20641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIMovement
-  speed: 0
+  speed: 5
   moveSpeed: {x: 0, y: 0}
   lastFacing: {x: 0, y: 0}
   lastPosition: {x: 0, y: 0}
@@ -2760,8 +2760,9 @@ MonoBehaviour:
   toRightStool: 0
   toUpperRightChair: 0
   firstRandomIndex: 0
-  AIWaypointBar: {fileID: 0}
-  frontCounter: {fileID: 0}
+  AISeatStorage: {fileID: 1060463434}
+  AIWaypointBar: {fileID: 1423608844}
+  frontCounter: {fileID: 2041157188}
   chairTransform: []
   c_ChairToGoTo: []
   lC_ChairToGoTo: []
@@ -2943,7 +2944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AI_Animation
   aiAnimator: {fileID: 1060463432}
-  aiMovement: {fileID: 0}
+  aiMovement: {fileID: 1060463427}
 --- !u!114 &1060463434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2956,6 +2957,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97cd6bcac2a1bde4b81d9b73949576e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AISeatStorage
+  AIWaypointBar: {fileID: 1423608844}
+  currentSeat: {fileID: 0}
+  currentSeatGroup: []
+  seated: 0
 --- !u!1 &1130079000
 GameObject:
   m_ObjectHideFlags: 0
@@ -3617,7 +3622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7beb8df6da69e774a97f6d40dfbe9ab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIWaypointBar
-  AISeatStorage: {fileID: 0}
+  AISeatStorage: {fileID: 1060463434}
   frontCounter: {fileID: 2041157188}
   chairTransform:
   - {fileID: 1555547963}
@@ -3635,11 +3640,13 @@ MonoBehaviour:
   r_ChairToGoTo:
   - {fileID: 1970311818}
   - {fileID: 1696923174}
-  lR_ChairToGoTo: []
+  lR_ChairToGoTo:
+  - {fileID: 218973401}
   l_ChairToGoTo:
   - {fileID: 1346501365}
   - {fileID: 120025598}
-  lL_ChairToGoTo: []
+  lL_ChairToGoTo:
+  - {fileID: 1460277875}
   stools:
   - {fileID: 207142635}
   - {fileID: 1428939444}
@@ -4087,6 +4094,7 @@ GameObject:
   - component: {fileID: 1555547963}
   - component: {fileID: 1555547964}
   - component: {fileID: 1555547965}
+  - component: {fileID: 1555547966}
   m_Layer: 0
   m_Name: To Left Chairs
   m_TagString: LeftSeatTransition
@@ -4204,6 +4212,18 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &1555547966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555547962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a647dc716125314d86ac80dd224d2bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &1577104722
 GameObject:
   m_ObjectHideFlags: 0
@@ -5038,11 +5058,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   targetIndex: 0
   saveTargetIndex: 0
-  destinationUpdate: 1
   targetGroup: []
   CurrentTarget: {fileID: 0}
-  self: {fileID: 1897647525}
   Agent: {fileID: 0}
+  Mananger: {fileID: 0}
 --- !u!195 &1897647523
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5184,7 +5203,7 @@ MonoBehaviour:
   - A water 7
   orderToNum: 
   dialogueManager: {fileID: 2022133400}
-  aIMovement: {fileID: 0}
+  aIMovement: {fileID: 1060463427}
   nPC: {fileID: 1060463426}
   orderIsReceiced: 0
   Counter: {fileID: 2041157187}
@@ -5668,7 +5687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fc3921f4397aca41863bfda373fc61b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
-  aIMovement: {fileID: 0}
+  aIMovement: {fileID: 1060463427}
   dialogueText: {fileID: 1427095272}
   orderDisplay: {fileID: 2063959430}
   dialogueBox: {fileID: 49358951}

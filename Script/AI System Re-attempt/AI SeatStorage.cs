@@ -1,26 +1,20 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class TransformListLast
-{
-    [SerializeField] public List<List<Transform>> seatList;
-}
-
+[System.Serializable]
 public class AISeatStorage : MonoBehaviour
 {
     public AIWaypointBar AIWaypointBar;
-    public CircleCollider2D npcCollider;
-    public AIMovement aiMovement;
 
-    public Transform currentSeat; // just store the single hit transform
-    public List<Transform> currentSeatGroup; // the list it belongs to
-    public bool sat;
-    public float seatSpeed;
+    public Transform currentSeat;
+    public List<Transform> currentSeatGroup;
 
+    public bool seated;
     private List<List<Transform>> allLists;
 
-    void Start()
+    void Update()
     {
         allLists = new List<List<Transform>>
         {
@@ -38,7 +32,7 @@ public class AISeatStorage : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Chair")
+        if (collision.gameObject.CompareTag("Chair"))
         {
             currentSeat = collision.transform;
 
@@ -48,7 +42,15 @@ public class AISeatStorage : MonoBehaviour
             if (currentSeatGroup != null)
             {
                 Debug.Log("Found seat in group!");
+                StartCoroutine(WaitToBeSeated());
             }
         }
+    }
+
+    IEnumerator WaitToBeSeated()
+    {
+        yield return new WaitForSeconds(2f);
+        seated = true;
+        currentSeatGroup.Remove(currentSeat);
     }
 }

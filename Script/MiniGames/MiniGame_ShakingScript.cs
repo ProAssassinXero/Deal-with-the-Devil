@@ -30,10 +30,24 @@ public class MiniGame_ShakingScript : PhaseManager
 
     Dictionary<string, Dictionary<string, int>> MixDrinks = new Dictionary<string, Dictionary<string, int>>()
     {
-        {"Vodka Collins", new Dictionary<string, int>()
+        {"Taquila_Sunrise_Twist", new Dictionary<string, int>()
         {
-            {"vodka", 3},
-            {"simple_syrup", 5}
+            {"Taquila", 1},
+            {"Cranberry", 1}
+        } 
+        },
+        {"Vodka_Citrus", new Dictionary<string, int>()
+        {
+            {"Vodka", 1},
+            {"Triple_Sec", 1},
+            {"Lime", 1}
+        } 
+        },
+        {"Curacao_Sunset", new Dictionary<string, int>()
+        {
+            {"Blue_Curacao", 1},
+            {"Cranberry", 1},
+            {"Lime", 1}
         } 
         },
     };

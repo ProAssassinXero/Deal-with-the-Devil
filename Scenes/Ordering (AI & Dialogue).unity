@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 56273791}
   m_Layer: 0
   m_Name: Upper Right Chairs
-  m_TagString: Chair
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 120025600}
   m_Layer: 0
   m_Name: Left
-  m_TagString: Chair
+  m_TagString: RightChair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 207142637}
   m_Layer: 0
   m_Name: Top
-  m_TagString: Chair
+  m_TagString: RightChair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -686,7 +686,7 @@ GameObject:
   - component: {fileID: 218973403}
   m_Layer: 0
   m_Name: Lower Right
-  m_TagString: Chair
+  m_TagString: UpChair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -824,7 +824,7 @@ GameObject:
   - component: {fileID: 250001046}
   m_Layer: 0
   m_Name: Lower Center Right
-  m_TagString: Chair
+  m_TagString: UpChair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1475,7 +1475,7 @@ GameObject:
   - component: {fileID: 471193671}
   m_Layer: 0
   m_Name: Bottom
-  m_TagString: Chair
+  m_TagString: RightChair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2146,7 +2146,7 @@ GameObject:
   - component: {fileID: 857745687}
   m_Layer: 0
   m_Name: Middle Bottom
-  m_TagString: Chair
+  m_TagString: RightChair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2281,6 +2281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 931748037}
   - component: {fileID: 931748036}
+  - component: {fileID: 931748038}
   m_Layer: 0
   m_Name: NPC Manager
   m_TagString: Untagged
@@ -2339,6 +2340,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &931748038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931748035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b9c981de4b2c74391b03fc3ad27cef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InstanceNPC
+  nPC: {fileID: 1060463426}
 --- !u!1 &941078413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2352,7 +2366,7 @@ GameObject:
   - component: {fileID: 941078416}
   m_Layer: 0
   m_Name: Lower Center Left
-  m_TagString: Chair
+  m_TagString: UpChair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2775,7 +2789,10 @@ MonoBehaviour:
   movementDirection: {x: 0, y: 0}
   currentSeat: {fileID: 0}
   target: {fileID: 0}
-  sitting: 0
+  sitUp: 0
+  sitDown: 0
+  sitLeft: 0
+  sitRight: 0
   orderReceived: 0
   doneOrder: 0
   centerDecidedArea: 0
@@ -2934,7 +2951,7 @@ Transform:
   m_GameObject: {fileID: 1060463426}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.6, y: 1, z: 0}
+  m_LocalPosition: {x: -28.6, y: -0.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3005,7 +3022,7 @@ GameObject:
   - component: {fileID: 1130079003}
   m_Layer: 0
   m_Name: Center Right
-  m_TagString: Chair
+  m_TagString: RightChair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3174,7 +3191,7 @@ GameObject:
   - component: {fileID: 1173980885}
   m_Layer: 0
   m_Name: Top
-  m_TagString: Chair
+  m_TagString: LeftChair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3686,6 +3703,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1386066416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1386066418}
+  - component: {fileID: 1386066417}
+  m_Layer: 0
+  m_Name: AI InfoStorage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1386066417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386066416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc74a041d0c70a84f82acd4016e96cc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AIInfoStorage
+  npcAnimator: {fileID: 0}
+  aIMovement: {fileID: 0}
+--- !u!4 &1386066418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386066416}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.76796, y: -2.08792, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1423608843
 GameObject:
   m_ObjectHideFlags: 0
@@ -3913,7 +3976,7 @@ GameObject:
   - component: {fileID: 1428939446}
   m_Layer: 0
   m_Name: Middle Top
-  m_TagString: Chair
+  m_TagString: RightChair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4051,7 +4114,7 @@ GameObject:
   - component: {fileID: 1460277877}
   m_Layer: 0
   m_Name: Lower Left
-  m_TagString: Chair
+  m_TagString: UpChair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4409,7 +4472,7 @@ GameObject:
   - component: {fileID: 1673958239}
   m_Layer: 0
   m_Name: Center Left
-  m_TagString: Chair
+  m_TagString: LeftChair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4547,7 +4610,7 @@ GameObject:
   - component: {fileID: 1696923176}
   m_Layer: 0
   m_Name: Right
-  m_TagString: Chair
+  m_TagString: LeftChair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5936,7 +5999,7 @@ GameObject:
   - component: {fileID: 2140466286}
   m_Layer: 0
   m_Name: Bottom
-  m_TagString: Chair
+  m_TagString: UpChair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6069,7 +6132,9 @@ SceneRoots:
   - {fileID: 774631174}
   - {fileID: 1136821635}
   - {fileID: 1423608845}
+  - {fileID: 1386066418}
   - {fileID: 1060463431}
+  - {fileID: 931748037}
   - {fileID: 486518758}
   - {fileID: 1335849539}
   - {fileID: 2041157188}
@@ -6085,5 +6150,4 @@ SceneRoots:
   - {fileID: 1941894130}
   - {fileID: 2072694587}
   - {fileID: 2022133401}
-  - {fileID: 931748037}
   - {fileID: 1975012180}

@@ -17,6 +17,12 @@ public class AI_Animation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Walk();
+        Seating();
+    }
+
+    void Walk()
+    {
         if (aiMovement.movementDirection.x > 0)
         {
             aiAnimator.SetBool("IsWalkingRight", true);
@@ -52,46 +58,47 @@ public class AI_Animation : MonoBehaviour
         {
             aiAnimator.SetBool("IsWalkingDown", false);
         }
+    }
+    void Seating()
+    {
 
-
-        if (aiMovement.sitting == true)
+        //up
+        if (aiMovement.sitUp && aiMovement.movementDirection == Vector2.zero)
         {
-            //right
-            if (aiMovement.lastFacing.x > 0)
-            {
-                aiAnimator.SetBool("IsSittingRight", true);
-            }
-            else
-            {
-                aiAnimator.SetBool("IsSittingRight", false);
-            }
-            //left
-            if (aiMovement.lastFacing.x < 0)
-            {
-                aiAnimator.SetBool("IsSittingLeft", true);
-            }
-            else
-            {
-                aiAnimator.SetBool("IsSittingLeft", false);
-            }
-            //up
-            if (aiMovement.lastFacing.y > 0)
-            {
-                aiAnimator.SetBool("IsSittingUp", true);
-            }
-            else
-            {
-                aiAnimator.SetBool("IsSittingUp", false);
-            }
-            //down
-            if (aiMovement.lastFacing.y < 0)
-            {
-                aiAnimator.SetBool("IsSittingDown", true);
-            }
-            else
-            {
-                aiAnimator.SetBool("IsSittingDown", false);
-            }
+            aiAnimator.SetBool("IsSittingUp", true);
         }
+        else
+        {
+            aiAnimator.SetBool("IsSittingUp", false);
+        }
+
+        //down
+        if (aiMovement.sitDown && aiMovement.movementDirection == Vector2.zero)
+        {
+            aiAnimator.SetBool("IsSittingDown", true);
+        }
+        else
+        {
+            aiAnimator.SetBool("IsSittingDown", false);
+        }
+
+        //left
+        if (aiMovement.sitLeft && aiMovement.movementDirection == Vector2.zero)
+        {
+            aiAnimator.SetBool("IsSittingLeft", true);
+        }
+        else
+        {
+            aiAnimator.SetBool("IsSittingLeft", false);
+        }
+
+        if (aiMovement.sitRight && aiMovement.movementDirection == Vector2.zero)
+        {
+            aiAnimator.SetBool("IsSittingRight", true);
+        }
+        else
+        {
+            aiAnimator.SetBool("IsSittingRight", false);
+        }            
     }
 }

@@ -12,7 +12,11 @@ public class AIMovement : MonoBehaviour
     public Transform currentSeat;
     public Transform target;
 
-    public bool sitting;
+    public bool sitUp;
+    public bool sitDown;
+    public bool sitLeft;
+    public bool sitRight;
+
     public bool orderReceived;
     public bool doneOrder;
 
@@ -64,6 +68,7 @@ public class AIMovement : MonoBehaviour
 
     [Header("Upper Right Seats")]
     public List<Transform> upperChairs;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -96,9 +101,9 @@ public class AIMovement : MonoBehaviour
             lastFacing = movementDirection;
         }
 
-        if (Input.GetKeyDown(KeyCode.R) )
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            gameObject.transform.position = new Vector2(11.6f, 1f);
+            gameObject.transform.position = new Vector2(-28f, 0f);
 
             orderReceived = false;
             centerDecidedArea = false;
@@ -106,9 +111,12 @@ public class AIMovement : MonoBehaviour
             leftDecidedArea = false;
             rightStoolArea = false;
             upperRightDecidedArea = false;
-
-
             toLowerCenterChair = 0;
+
+            sitUp = false;
+            sitDown = false;
+            sitLeft = false;
+            sitRight = false;
 
             lower = false;
             toCenterChair = 0;
@@ -147,7 +155,7 @@ public class AIMovement : MonoBehaviour
             rightDecidedArea = false;
             leftDecidedArea = false;
             rightStoolArea = false;
-            sitting = false;
+            sitUp = false;
             lower = false;
         }
 
@@ -192,7 +200,6 @@ public class AIMovement : MonoBehaviour
             firstRandomIndex = 0;
 
             movementDirection = Vector2.zero;
-            Debug.Log("Running");
         }
     }
 
@@ -222,9 +229,21 @@ public class AIMovement : MonoBehaviour
             firstRandomIndex = Random.Range(0, chairTransform.Count);
         }
 
-        if (collision.gameObject.CompareTag("Chair"))
+        if (collision.gameObject.CompareTag("UpChair"))
         {
-            sitting = true;
+            sitUp = true;
+        }
+        if (collision.gameObject.CompareTag("DownChair"))
+        {
+            sitDown = true;
+        }
+        if (collision.gameObject.CompareTag("LeftChair"))
+        {
+            sitLeft = true;
+        }
+        if (collision.gameObject.CompareTag("RightChair"))
+        {
+            sitRight = true;
         }
 
         if (collision.gameObject.CompareTag("CenterSeatTransition"))

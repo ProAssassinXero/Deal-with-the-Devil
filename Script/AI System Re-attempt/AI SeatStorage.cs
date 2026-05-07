@@ -32,7 +32,7 @@ public class AISeatStorage : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Chair"))
+        if (collision.gameObject.CompareTag("UpChair") || collision.gameObject.CompareTag("DownChair") || collision.gameObject.CompareTag("LeftChair") || collision.gameObject.CompareTag("RightChair"))
         {
             currentSeat = collision.transform;
 

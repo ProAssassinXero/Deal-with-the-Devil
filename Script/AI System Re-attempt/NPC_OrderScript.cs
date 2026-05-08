@@ -16,9 +16,21 @@ public class NPC_OrderScript : MonoBehaviour
     public GameObject Counter;
     public bool debounce = false;
 
+    public BoxCollider2D takeOrder;
+
+    public PlayerInteraction playerInteraction;
+    public BoxCollider2D top;
+    public BoxCollider2D bottom;
+    public BoxCollider2D left;
+    public BoxCollider2D right;
+
     private void Start()
     {
         debounce = false;
+        top = playerInteraction.leftCollider;
+        bottom = playerInteraction.rightCollider;
+        left = playerInteraction.topCollider;
+        right = playerInteraction.bottomCollider;
     }
     public void GabiSend()
     {
@@ -49,11 +61,19 @@ public class NPC_OrderScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ((nPC.transform.position - Counter.transform.position).magnitude < 1 && !debounce) 
+        bool isTopTouching = playerInteraction.topCollider.IsTouching(takeOrder);
+        bool isBottomTouching = playerInteraction.bottomCollider.IsTouching(takeOrder);
+        bool isLeftTouching = playerInteraction.leftCollider.IsTouching(takeOrder);
+        bool isRightTouching = playerInteraction.rightCollider.IsTouching(takeOrder);
+
+        if ((nPC.transform.position - Counter.transform.position).magnitude < 1 && !debounce && (isTopTouching || isBottomTouching || isLeftTouching || isRightTouching) && Input.GetKeyDown(KeyCode.E))
         {
-            debounce = true;
             GabiSend();
-            aIMovement.doneOrder = true;
+            debounce = true;
+        }
+        else if (aIMovement.doneOrder == true)
+        {
+            debounce = false;
         }
     }
 }

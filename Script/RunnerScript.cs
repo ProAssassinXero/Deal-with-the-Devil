@@ -11,7 +11,7 @@ public class RunnerScript : Enemy
 
     public override Transform FindTarget()
     {
-        if (Distance(transform.position, Player.transform.position) <= 15 && Distance(transform.position, CurrentTarget.position) <5)
+        if (Distance(transform.position, Player.transform.position) <= 20 && Distance(transform.position, CurrentTarget.position) <5)
         {
             Transform[] Nieghbours = CurrentTarget.GetComponent<RunnerTargetsScript>().Neighbours;
             foreach (Transform Child in Nieghbours)

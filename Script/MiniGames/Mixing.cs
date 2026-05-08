@@ -50,6 +50,10 @@ public class Mixing : MonoBehaviour, IPointerDownHandler,IPointerUpHandler // Th
             MixingCounter++;
             _slider.value = MixingCounter;
         }
+        if (_slider.maxValue <= MixingCounter)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)

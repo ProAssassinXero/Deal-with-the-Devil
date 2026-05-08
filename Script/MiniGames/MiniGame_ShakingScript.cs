@@ -14,13 +14,17 @@ public class MiniGame_ShakingScript : PhaseManager
     public string CurrentType;
     public string CurrentDrink;
 
+    [Header("Mini-Games")]
+    public GameObject _Mixing;
+    public GameObject _Shaking;
+    public GameObject _Pouring;
 
 
     Dictionary<string, int> TypePartLimit = new Dictionary<string, int>()
     {
-        {"Mixing", 8},
+        {"Mixing", 6},
         {"Shots", 1},
-        {"Shake", 8}
+        {"Shake", 6}
     };
 
     Dictionary<string, int> CurrentMix = new Dictionary<string, int>();
@@ -29,21 +33,47 @@ public class MiniGame_ShakingScript : PhaseManager
     {
         {"Taquila_Sunrise_Twist", new Dictionary<string, int>()
         {
-            {"Taquila", 1},
-            {"Cranberry", 1}
+            {"Taquila", 3},
+            {"Cranberry", 3}
         } 
         },
         {"Vodka_Citrus", new Dictionary<string, int>()
         {
-            {"Vodka", 1},
-            {"Triple_Sec", 1},
+            {"Vodka", 3},
+            {"Triple_Sec", 2},
             {"Lime", 1}
         } 
         },
         {"Curacao_Sunset", new Dictionary<string, int>()
         {
-            {"Blue_Curacao", 1},
-            {"Cranberry", 1},
+            {"Blue_Curacao", 2},
+            {"Cranberry", 3},
+            {"Lime", 1}
+        }
+        },
+    };
+
+    Dictionary<string, Dictionary<string, int>> ShakeDrinks = new Dictionary<string, Dictionary<string, int>>()
+    {
+        {"Taquila_Sunrise_Twist", new Dictionary<string, int>()
+        {
+            {"Triple_Sec", 1},
+            {"Cranberry", 2},
+            {"Lime", 1},
+            {"Vodka", 2}
+        }
+        },
+        {"Vodka_Citrus", new Dictionary<string, int>()
+        {
+            {"Taquila", 2},
+            {"Triple_Sec", 3},
+            {"Lime", 1}
+        }
+        },
+        {"Curacao_Sunset", new Dictionary<string, int>()
+        {
+            {"Blue_Curacao", 2},
+            {"Taquila", 3},
             {"Lime", 1}
         }
         },
@@ -66,7 +96,8 @@ public class MiniGame_ShakingScript : PhaseManager
         DrinksType = new Dictionary<string, Dictionary<string, Dictionary<string, int>>>()
     {
         {"Mixing",MixDrinks},
-        {"Shots",ShotsDrinks}
+        {"Shots",ShotsDrinks},
+        {"Shake",ShakeDrinks}
     };
     }
 
@@ -113,6 +144,11 @@ public class MiniGame_ShakingScript : PhaseManager
         return Name;
     }
 
+    public void ResetDrink()
+    {
+        CurrentMix.Clear();
+    }
+
     public void AddPart(string NamePart)
     {
         if (!CheckAddPart())
@@ -131,6 +167,16 @@ public class MiniGame_ShakingScript : PhaseManager
         {
             CurrentDrink = IsDrink();
             Debug.Log(CurrentDrink);
+            if (CurrentType == "Mixing")
+            {
+                _Mixing.SetActive(true);
+            }
+            else if (CurrentType == "Shake")
+            {
+                _Shaking.SetActive(true);
+            }
+            _Pouring.SetActive(false);
+
         }
         Debug.Log(CurrentMix[NamePart]);
     }

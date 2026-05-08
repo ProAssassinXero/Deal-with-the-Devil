@@ -66,6 +66,10 @@ public class Shaker : PhaseManager, IBeginDragHandler, IDragHandler, IEndDragHan
         {
             debounce = false;
         }
+        if (_slider.maxValue <= ShakeCounter)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
 

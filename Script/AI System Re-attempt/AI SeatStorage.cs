@@ -16,6 +16,7 @@ public class AISeatStorage : MonoBehaviour
 
     void Update()
     {
+        transform.position = currentSeat.position;
         allLists = new List<List<Transform>>
         {
             AIWaypointBar.chairTransform,
@@ -52,5 +53,6 @@ public class AISeatStorage : MonoBehaviour
         yield return new WaitForSeconds(2f);
         seated = true;
         currentSeatGroup.Remove(currentSeat);
+        //gameObject.GetComponent;
     }
 }

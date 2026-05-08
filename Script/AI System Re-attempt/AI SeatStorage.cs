@@ -7,6 +7,7 @@ using UnityEngine;
 public class AISeatStorage : MonoBehaviour
 {
     public AIWaypointBar AIWaypointBar;
+    public AIMovement AIMovement;
 
     public Transform currentSeat;
     public List<Transform> currentSeatGroup;
@@ -16,7 +17,10 @@ public class AISeatStorage : MonoBehaviour
 
     void Update()
     {
-        transform.position = currentSeat.position;
+        if (currentSeat != null)
+        {
+            transform.position = currentSeat.position;
+        }
         allLists = new List<List<Transform>>
         {
             AIWaypointBar.chairTransform,
@@ -53,6 +57,6 @@ public class AISeatStorage : MonoBehaviour
         yield return new WaitForSeconds(2f);
         seated = true;
         currentSeatGroup.Remove(currentSeat);
-        //gameObject.GetComponent;
+        GetComponent<DialogueManager>().enabled = false;
     }
 }

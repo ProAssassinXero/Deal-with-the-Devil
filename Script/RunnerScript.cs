@@ -3,82 +3,26 @@ using System.Collections.Generic;
 
 public class RunnerScript : Enemy
 {
-
-
-    public virtual bool CheckHit(Vector2 Ori, Vector2 dir)
+    void Start()
     {
-        Ray _Ray = new Ray(Ori, dir);
-        RaycastHit Hit;
-        
-        if (Physics.Raycast(_Ray, out Hit))
-        {
-            Debug.Log(Hit);
-            if (Hit.collider.gameObject == Player)
-            {
-                return true;
-            }
-        }
-        return false;
+        int _Random = Random.Range(1, 7);
+        CurrentTarget = targetGroup[_Random];
     }
 
     public override Transform FindTarget()
     {
-        Transform Choosen = CurrentTarget;
-        List<Transform> AllPossibleTarger = new List<Transform>(targetGroup);
-        foreach (Transform PossibleTargets in targetGroup)
+        if (Distance(transform.position, Player.transform.position) <= 15 && Distance(transform.position, CurrentTarget.position) <5)
         {
-            if (!PossibleTargets.gameObject.activeInHierarchy)
+            Transform[] Nieghbours = CurrentTarget.GetComponent<RunnerTargetsScript>().Neighbours;
+            foreach (Transform Child in Nieghbours)
             {
-                AllPossibleTarger.Remove(PossibleTargets);
-                continue;
-            }
-            if (Player.transform.position.x < transform.position.x)
-            {
-                if (transform.position.x > PossibleTargets.position.x)
+                if (Distance(Player.transform.position, CurrentTarget.position) < Distance(Player.transform.position, Child.position))
                 {
-                    AllPossibleTarger.Remove(PossibleTargets);
-                    continue;
+                    CurrentTarget = Child;
                 }
-            }
-            else
-            {
-                if (transform.position.x > PossibleTargets.position.x)
-                {
-                    AllPossibleTarger.Remove(PossibleTargets);
-                    continue;
-                }
-            }
-            Debug.Log("Pass X");
-            if (Player.transform.position.y < transform.position.y)
-            {
-                if (transform.position.y > PossibleTargets.position.y)
-                {
-                    AllPossibleTarger.Remove(PossibleTargets);
-                    continue;
-                }
-            }
-            else
-            {
-                if (transform.position.y < PossibleTargets.position.y)
-                {
-                    AllPossibleTarger.Remove(PossibleTargets);
-                    continue;
-                }
-            }
-            Debug.Log("Pass Y");
-        }
-        foreach (Transform PossibleTargets in AllPossibleTarger)
-        {
-            if (Choosen == null)
-            {
-                Choosen = PossibleTargets;
-            }
-            if ((Distance(transform.position, PossibleTargets.position) <= Distance(transform.position, Choosen.position)))
-            {
-                Choosen = PossibleTargets;
             }
         }
-        return Choosen;
+        return CurrentTarget;
     }
 
     public override void Update()

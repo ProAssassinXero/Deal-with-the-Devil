@@ -7,17 +7,18 @@ public class NPC_OrderScript : MonoBehaviour
     public int pickedOrder;
     public int randomiser;
     public int IndexToRemove;
-    public List<string> Order;
+    public List<string> Order;         
     public List<int> orderToNum;
     public DialogueManager dialogueManager;
     public AIMovement aIMovement;
     public GameObject nPC;
     public bool orderIsReceiced;
-    public GameObject Counter;
-    public bool debounce = false;
+    public GameObject Counter;  
+    public bool debounce = false;     
 
-    public BoxCollider2D takeOrder;
+    public BoxCollider2D takeOrder;   
 
+    public GameObject miniGame;    
     public PlayerInteraction playerInteraction;
     public BoxCollider2D top;
     public BoxCollider2D bottom;
@@ -32,6 +33,7 @@ public class NPC_OrderScript : MonoBehaviour
         left = playerInteraction.topCollider;
         right = playerInteraction.bottomCollider;
     }
+
     public void GabiSend()
     {
         int length = Order.Count;
@@ -48,14 +50,11 @@ public class NPC_OrderScript : MonoBehaviour
         IndexToRemove = Order.IndexOf(Order[randomiser]);
         pickedOrder = randomiser;
         orderToNum = new List<int>(new int[length - 1]);
+
         DialogueManager.instance.dialogueBox.SetActive(true);
         DialogueManager.instance.StartDialogue(Order[randomiser]);
 
         FindAnyObjectByType<DialogueManager>().gameObject.SetActive(true);
-        
-
-
-        //An order is picked and removed from the list, then the dialogue box is closed
         Order.RemoveAt(IndexToRemove);
     }
 
@@ -69,11 +68,14 @@ public class NPC_OrderScript : MonoBehaviour
         if ((nPC.transform.position - Counter.transform.position).magnitude < 1 && !debounce && (isTopTouching || isBottomTouching || isLeftTouching || isRightTouching) && Input.GetKeyDown(KeyCode.E))
         {
             GabiSend();
-            debounce = true;
+            debounce = true;    
+            miniGame.SetActive(true);
         }
+  
         else if (aIMovement.doneOrder == true)
         {
             debounce = false;
+            miniGame.SetActive(false);
         }
     }
 }

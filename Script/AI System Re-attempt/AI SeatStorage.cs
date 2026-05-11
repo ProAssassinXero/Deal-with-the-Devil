@@ -37,14 +37,14 @@ public class AISeatStorage : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("UpChair") || collision.gameObject.CompareTag("DownChair") || collision.gameObject.CompareTag("LeftChair") || collision.gameObject.CompareTag("RightChair"))
+        if (collision.gameObject.CompareTag("UpChair") /*|| collision.gameObject.CompareTag("DownChair")*/ || collision.gameObject.CompareTag("LeftChair") || collision.gameObject.CompareTag("RightChair"))
         {
             currentSeat = collision.transform;
 
             // Search all lists for the collided transform
             currentSeatGroup = allLists.FirstOrDefault(list => list.Contains(currentSeat));
 
-            if (currentSeatGroup != null)
+            if (currentSeatGroup != null && gameObject.transform.position == currentSeat.transform.position)
             {
                 Debug.Log("Found seat in group!");
                 StartCoroutine(WaitToBeSeated());
@@ -57,6 +57,6 @@ public class AISeatStorage : MonoBehaviour
         yield return new WaitForSeconds(2f);
         seated = true;
         currentSeatGroup.Remove(currentSeat);
-        GetComponent<DialogueManager>().enabled = false;
+        Debug.Log(" the AIMovement component is " + GetComponent<AIMovement>().enabled);
     }
 }

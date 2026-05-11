@@ -21,6 +21,21 @@ public class AI_Animation : MonoBehaviour
         Seating();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Counter") && !aiMovement.doneOrder)
+        {
+            aiAnimator.SetBool("IsAtCounter", true);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Counter") && aiMovement.doneOrder)
+        {
+            aiAnimator.SetBool("IsAtCounter", false);
+        }
+    }
+
     void Walk()
     {
         if (aiMovement.movementDirection.x > 0)

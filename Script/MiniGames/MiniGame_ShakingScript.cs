@@ -1,11 +1,13 @@
-using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;// Required when using Event data.
+using UnityEngine;
 
 public class MiniGame_ShakingScript : PhaseManager
 {
+    public DialogueManager dialogueManager;
+    public AIMovement AIMovement;
+    public ResetToSelection ResetToSelection;
+
+
     public void RestartDrink()
     {
         CurrentType = "";
@@ -30,63 +32,93 @@ public class MiniGame_ShakingScript : PhaseManager
     Dictionary<string, int> CurrentMix = new Dictionary<string, int>();
 
     Dictionary<string, Dictionary<string, int>> MixDrinks = new Dictionary<string, Dictionary<string, int>>()
-    {
-        {"Taquila_Sunrise_Twist", new Dictionary<string, int>()
+{
+    {"Tequila Sunrise Twist", new Dictionary<string, int>()
         {
-            {"Taquila", 3},
-            {"Cranberry", 3}
-        } 
-        },
-        {"Vodka_Citrus", new Dictionary<string, int>()
+            {"Tequila", 3},
+            {"Cranberry", 2},
+            {"Blue Curacao", 1}
+        }
+    },
+    {"Vodka Citrus Cooler", new Dictionary<string, int>()
         {
             {"Vodka", 3},
-            {"Triple_Sec", 2},
-            {"Lime", 1}
-        } 
-        },
-        {"Curacao_Sunset", new Dictionary<string, int>()
+            {"Triple_Sec", 1},
+            {"Lime", 1},
+            {"Cranberry", 1}
+        }
+    },
+    {"Curacao Sunset", new Dictionary<string, int>()
         {
             {"Blue_Curacao", 2},
             {"Cranberry", 3},
             {"Lime", 1}
         }
-        },
-    };
+    },
+};
 
     Dictionary<string, Dictionary<string, int>> ShakeDrinks = new Dictionary<string, Dictionary<string, int>>()
-    {
-        {"Taquila_Sunrise_Twist", new Dictionary<string, int>()
+{
+    {"Classic Cosmopolitan", new Dictionary<string, int>()
         {
+            {"Vodka", 2},
             {"Triple_Sec", 1},
             {"Cranberry", 2},
+            {"Lime", 1}
+        }
+    },
+    {"Blue Margarita", new Dictionary<string, int>()
+        {
+            {"Tequila", 2},
+            {"Blue_Curacao", 3},
+            {"Lime", 1}
+        }
+    },
+    {"Full Six Fusion", new Dictionary<string, int>()
+        {
+            {"Tequila", 1},
+            {"Vodka", 1},
+            {"Triple_Sec", 1},
+            {"Blue_Curacao", 1},
             {"Lime", 1},
-            {"Vodka", 2}
+            {"Cranberry", 1}
         }
-        },
-        {"Vodka_Citrus", new Dictionary<string, int>()
-        {
-            {"Taquila", 2},
-            {"Triple_Sec", 3},
-            {"Lime", 1}
-        }
-        },
-        {"Curacao_Sunset", new Dictionary<string, int>()
-        {
-            {"Blue_Curacao", 2},
-            {"Taquila", 3},
-            {"Lime", 1}
-        }
-        },
-    };
+    },
+};
 
     Dictionary<string, Dictionary<string, int>> ShotsDrinks = new Dictionary<string, Dictionary<string, int>>()
-    {
-        {"Vodka Shot", new Dictionary<string, int>()
+{
+    {"Tequila Shot", new Dictionary<string, int>()
         {
-            {"vodka", 1}
+            {"Tequila", 1}
         }
-        },
-    };
+    },
+    {"Vodka Shot", new Dictionary<string, int>()
+        {
+            {"Vodka", 1}
+        }
+    },
+    {"Triple Sec Shot", new Dictionary<string, int>()
+        {
+            {"Triple_Sec", 1}
+        }
+    },
+    {"Blue Curacao Shot", new Dictionary<string, int>()
+        {
+            {"Blue_Curacao", 1}
+        }
+    },
+    {"Lime Shot", new Dictionary<string, int>()
+        {
+            {"Lime", 1}
+        }
+    },
+    {"Cranberry Shot", new Dictionary<string, int>()
+        {
+            {"Cranberry", 1}
+        }
+    },
+};
 
 
     Dictionary<string, Dictionary<string, Dictionary<string, int>>> DrinksType = new Dictionary<string, Dictionary<string, Dictionary<string, int>>>();
@@ -120,7 +152,7 @@ public class MiniGame_ShakingScript : PhaseManager
     {
         Dictionary<string, Dictionary<string, int>> FilerType = DrinksType[CurrentType];
         string Name = "None";
-        Debug.Log(CurrentMix.Keys );
+        Debug.Log(CurrentMix.Keys);
         foreach (string DrinkName in FilerType.Keys)
         {
             Dictionary<string, int> DrinkIng = FilerType[DrinkName];
@@ -136,7 +168,7 @@ public class MiniGame_ShakingScript : PhaseManager
                     }
                 }
             }
-            if (count == IngCount)
+            if (count == IngCount && CurrentMix.Count == IngCount)
             {
                 Name = DrinkName;
             }
@@ -179,5 +211,20 @@ public class MiniGame_ShakingScript : PhaseManager
 
         }
         Debug.Log(CurrentMix[NamePart]);
+    }
+
+    void Update()
+    {
+        if (CurrentDrink == dialogueManager.orderStore && AIMovement.doneOrder == false && dialogueManager.orderStore != "")
+        {
+            ResetToSelection.ResetToSelectionMenu();
+            dialogueManager.miniGame.SetActive(false);
+            AIMovement.doneOrder = true;
+            Debug.Log(CurrentDrink);
+        }
+        else if (CurrentDrink != dialogueManager.orderStore && CurrentDrink != "")
+        {
+            ResetToSelection.ResetToSelectionMenu();
+        }
     }
 }

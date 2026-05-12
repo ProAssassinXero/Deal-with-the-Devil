@@ -13,21 +13,44 @@ public class Runner_Animations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (runnerScript.movementDirection.x == 1)
+        // RunRight: moving right AND horizontal > vertical
+        if (runnerScript.movementDirection.x > 0 && runnerScript.movementDirection.x > runnerScript.movementDirection.y)
         {
-            animator.SetFloat("Xaxis", 1);
+            animator.SetBool("RunRight", true);
         }
-        if (runnerScript.movementDirection.x == -1)
+        else
         {
-            animator.SetFloat("Xaxis", -1);
+            animator.SetBool("RunRight", false);
         }
-        if (runnerScript.movementDirection.y == 1)
+
+        // RunLeft: moving left AND horizontal magnitude > vertical
+        if (runnerScript.movementDirection.x < 0 && runnerScript.movementDirection.x < runnerScript.movementDirection.y)
         {
-            animator.SetFloat("Yaxis", 1);
+            animator.SetBool("RunLeft", true);
         }
-        if (runnerScript.movementDirection.y == -1)
+        else
         {
-            animator.SetFloat("Yaxis", -1);
+            animator.SetBool("RunLeft", false);
+        }
+
+        // RunUp: moving up AND vertical > horizontal
+        if (runnerScript.movementDirection.y > 0 && runnerScript.movementDirection.y > runnerScript.movementDirection.x)
+        {
+            animator.SetBool("RunUp", true);
+        }
+        else
+        {
+            animator.SetBool("RunUp", false);
+        }
+
+        // RunDown: moving down AND vertical magnitude > horizontal
+        if (runnerScript.movementDirection.y < 0 && runnerScript.movementDirection.y < runnerScript.movementDirection.x)
+        {
+            animator.SetBool("RunDown", true);
+        }
+        else
+        {
+            animator.SetBool("RunDown", false);
         }
     }
 }

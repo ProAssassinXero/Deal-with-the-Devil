@@ -5,9 +5,11 @@ public class RunnerScript : Enemy
 {
     public GameObject sprite;
     public Vector2 movementDirection;
+    private Vector2 lastPos;
 
     void Start()
     {
+        lastPos = transform.position;
         int _Random = Random.Range(1, 7);
         CurrentTarget = targetGroup[_Random];
     }
@@ -32,6 +34,8 @@ public class RunnerScript : Enemy
     {
         base.Update();
         sprite.transform.position = transform.position;
+        CalculateDirection(lastPos);
+        lastPos = transform.position;
     }
 
     public void CalculateDirection(Vector2 posBefore)
@@ -41,11 +45,7 @@ public class RunnerScript : Enemy
         if (displacement.magnitude > 0.0001f)
         {
             Vector2 normalized = displacement.normalized;
-            movementDirection = new Vector2(Mathf.Round(normalized.x), Mathf.Round(normalized.y));
-        }
-        else
-        {
-            movementDirection = Vector2.zero;
+            movementDirection = new Vector2(normalized.x, normalized.y);
         }
     }
 }

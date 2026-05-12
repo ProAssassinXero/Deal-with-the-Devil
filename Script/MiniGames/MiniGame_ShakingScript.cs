@@ -108,7 +108,7 @@ public class MiniGame_ShakingScript : PhaseManager
             {"Blue_Curacao", 1}
         }
     },
-    {"Lime Shot", new Dictionary<string, int>()
+    {"Lime Juice Shot", new Dictionary<string, int>()
         {
             {"Lime", 1}
         }

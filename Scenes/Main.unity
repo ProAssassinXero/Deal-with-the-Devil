@@ -1393,7 +1393,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 1918708116, guid: 33c78418e3d3b38438b1c2dddc24271f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2298,7 +2298,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8023817512725925544, guid: 33c78418e3d3b38438b1c2dddc24271f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2344,7 +2344,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.57}
+  m_Offset: {x: 0, y: -0.78}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2354,7 +2354,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 12.42, y: 2.1}
+  m_Size: {x: 12.42, y: 1.8}
   m_EdgeRadius: 0
 --- !u!1 &283531740
 GameObject:
@@ -4631,6 +4631,55 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &698372912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 698372914}
+  - component: {fileID: 698372913}
+  m_Layer: 0
+  m_Name: ResetToSelection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &698372913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698372912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c44b87003ce0b80429ddd5e45364e873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResetToSelection
+  Manager: {fileID: 1542945546}
+  SelectionMenu: {fileID: 1863860308}
+  MixingStage: {fileID: 2121858974}
+  ShakingStage: {fileID: 79834659}
+  PouringStage: {fileID: 841591657}
+--- !u!4 &698372914
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698372912}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.51214, y: 2.40249, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &702273862
 GameObject:
   m_ObjectHideFlags: 0
@@ -5749,6 +5798,9 @@ MonoBehaviour:
   line: 
   sent: 0
   Dbox: 0
+  orderStore: 
+  miniGameScript: {fileID: 1542945546}
+  miniGame: {fileID: 1863860308}
 --- !u!4 &783666665
 Transform:
   m_ObjectHideFlags: 0
@@ -7277,7 +7329,7 @@ Transform:
   m_GameObject: {fileID: 976843495}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: -1.18, z: 0}
+  m_LocalPosition: {x: -5.42, y: 5.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9866,16 +9918,18 @@ MonoBehaviour:
   randomiser: 0
   IndexToRemove: 0
   Order:
-  - One vodka and some ice
-  - 2 beers
-  - 1 whisky
-  - A water 1
-  - A water 2
-  - A water 3
-  - A water 4
-  - A water 5
-  - A water 6
-  - A water 7
+  - Classic Cosmopolitan
+  - Blue Margarita
+  - Full Six Fusion
+  - Tequila Sunrise Twist
+  - Vodka Citrus Cooler
+  - 'Curacao Sunset '
+  - Tequila Shot
+  - Vodka Shot
+  - Triple Sec  Shot
+  - 'Blue Curacao Shot '
+  - Lime Juice Shot
+  - Cranberry  Shot
   orderToNum: 
   dialogueManager: {fileID: 783666664}
   aIMovement: {fileID: 567856270}
@@ -9884,6 +9938,7 @@ MonoBehaviour:
   Counter: {fileID: 1161268719}
   debounce: 0
   takeOrder: {fileID: 755865079}
+  miniGame: {fileID: 1542945544}
   playerInteraction: {fileID: 1540924913}
   top: {fileID: 1142484611}
   bottom: {fileID: 653115717}
@@ -11649,7 +11704,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Taquila
+          m_StringArgument: Tequila
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1430133767
@@ -12078,7 +12133,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Shot
+          m_StringArgument: Shots
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1479731304
@@ -12547,7 +12602,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1542945545
 Transform:
   m_ObjectHideFlags: 0
@@ -12576,6 +12631,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a7d3aeb311d3b94c92f9fab8080248f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniGame_ShakingScript
+  dialogueManager: {fileID: 783666664}
+  AIMovement: {fileID: 567856270}
+  ResetToSelection: {fileID: 698372913}
   CurrentType: 
   CurrentDrink: 
   _Mixing: {fileID: 2121858974}
@@ -14097,7 +14155,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1863860309
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16607,6 +16665,7 @@ SceneRoots:
   - {fileID: 1097727209}
   - {fileID: 619394802}
   - {fileID: 908680645}
+  - {fileID: 698372914}
   - {fileID: 1542945545}
   - {fileID: 976843500}
   - {fileID: 1766320623}

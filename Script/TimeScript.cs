@@ -4,7 +4,7 @@ using TMPro;
 public class TimeScript : MonoBehaviour
 {
     public int CurrentTime = 11;
-    public string FinalText = "AM";
+    public string FinalText = " : AM";
 
     public TextMeshProUGUI TextBox;
 
@@ -18,7 +18,7 @@ public class TimeScript : MonoBehaviour
         CurrentTime += Amount;
         if (CurrentTime > 12)
         {
-            FinalText = "PM";
+            FinalText = " : PM";
             CurrentTime -= 12;
         }
         ChangeDisplayTime();

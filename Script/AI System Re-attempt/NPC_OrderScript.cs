@@ -69,7 +69,7 @@ public class NPC_OrderScript : MonoBehaviour
         {
             GabiSend();
             debounce = true;    
-            miniGame.SetActive(true);
+            
         }
   
         else if (aIMovement.doneOrder == true)

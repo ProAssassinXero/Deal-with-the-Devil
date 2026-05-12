@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 public class RunnerScript : Enemy
 {
+    public GameObject sprite;
+    public Vector2 movementDirection;
+
     void Start()
     {
         int _Random = Random.Range(1, 7);
@@ -28,5 +31,21 @@ public class RunnerScript : Enemy
     public override void Update()
     {
         base.Update();
+        sprite.transform.position = transform.position;
+    }
+
+    public void CalculateDirection(Vector2 posBefore)
+    {
+        Vector2 displacement = (Vector2)transform.position - posBefore;
+
+        if (displacement.magnitude > 0.0001f)
+        {
+            Vector2 normalized = displacement.normalized;
+            movementDirection = new Vector2(Mathf.Round(normalized.x), Mathf.Round(normalized.y));
+        }
+        else
+        {
+            movementDirection = Vector2.zero;
+        }
     }
 }

@@ -19,6 +19,8 @@ public class Mixing : MonoBehaviour, IPointerDownHandler,IPointerUpHandler // Th
 
     public bool OnHoldDown = false;
 
+    public GameObject Parnet;
+
     private void Awake()
     {
         StartPos = transform.position;
@@ -52,7 +54,7 @@ public class Mixing : MonoBehaviour, IPointerDownHandler,IPointerUpHandler // Th
         }
         if (_slider.maxValue <= MixingCounter)
         {
-            gameObject.SetActive(false);
+            Parnet.SetActive(false);
         }
     }
 

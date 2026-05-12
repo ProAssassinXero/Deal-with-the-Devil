@@ -65,7 +65,7 @@ public class NPC_OrderScript : MonoBehaviour
         bool isLeftTouching = playerInteraction.leftCollider.IsTouching(takeOrder);
         bool isRightTouching = playerInteraction.rightCollider.IsTouching(takeOrder);
 
-        if ((nPC.transform.position - Counter.transform.position).magnitude < 1 && !debounce && (isTopTouching || isBottomTouching || isLeftTouching || isRightTouching) && Input.GetKeyDown(KeyCode.E))
+        if ((nPC.transform.position - Counter.transform.position).magnitude < 2 && !debounce && (isTopTouching || isBottomTouching || isLeftTouching || isRightTouching) && Input.GetKey(KeyCode.E))
         {
             GabiSend();
             debounce = true;    

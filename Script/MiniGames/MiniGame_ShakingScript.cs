@@ -98,26 +98,6 @@ public class MiniGame_ShakingScript : PhaseManager
             {"Vodka", 1}
         }
     },
-    {"Triple Sec Shot", new Dictionary<string, int>()
-        {
-            {"Triple_Sec", 1}
-        }
-    },
-    {"Blue Curacao Shot", new Dictionary<string, int>()
-        {
-            {"Blue_Curacao", 1}
-        }
-    },
-    {"Lime Juice Shot", new Dictionary<string, int>()
-        {
-            {"Lime", 1}
-        }
-    },
-    {"Cranberry Shot", new Dictionary<string, int>()
-        {
-            {"Cranberry", 1}
-        }
-    },
 };
 
 

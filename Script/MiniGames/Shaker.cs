@@ -16,6 +16,7 @@ public class Shaker : PhaseManager, IBeginDragHandler, IDragHandler, IEndDragHan
     private Vector3 LastmouseDir;
     public int ShakeCounter = 0;
 
+    public GameObject Parnet;
 
     public bool Draging = false;
 
@@ -68,7 +69,7 @@ public class Shaker : PhaseManager, IBeginDragHandler, IDragHandler, IEndDragHan
         }
         if (_slider.maxValue <= ShakeCounter)
         {
-            gameObject.SetActive(false);
+            Parnet.SetActive(false);
         }
     }
 

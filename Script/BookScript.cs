@@ -4,167 +4,53 @@ using System.Collections.Generic;
 
 public class BookScript : MonoBehaviour
 {
+    public GameObject Flip_1;
+    public GameObject Flip_2;
+    public GameObject Flip_3;
+    public GameObject Flip_4;
+
     public GameObject Book;
+    public int CurrentInt;
 
-    public GameObject FrontPages;
-    public GameObject DrinksPages;
-
-    public GameObject PagesPrefab;
-
-    Dictionary<string, int> TypePartLimit = new Dictionary<string, int>()
+    public bool On = false;
+    Dictionary<int, GameObject> _Index;
+    private void Start()
     {
-        {"Mixing", 6},
-        {"Shots", 1},
-        {"Shake", 6}
-    };
-
-    Dictionary<string, int> CurrentMix = new Dictionary<string, int>();
-
-    Dictionary<string, Dictionary<string, int>> MixDrinks = new Dictionary<string, Dictionary<string, int>>()
-{
-    {"Tequila Sunrise Twist", new Dictionary<string, int>()
-        {
-            {"Tequila", 3},
-            {"Cranberry", 2},
-            {"Blue Curacao", 1}
-        }
-    },
-    {"Vodka Citrus Cooler", new Dictionary<string, int>()
-        {
-            {"Vodka", 3},
-            {"Triple_Sec", 1},
-            {"Lime", 1},
-            {"Cranberry", 1}
-        }
-    },
-    {"Curacao Sunset", new Dictionary<string, int>()
-        {
-            {"Blue_Curacao", 2},
-            {"Cranberry", 3},
-            {"Lime", 1}
-        }
-    },
-};
-
-    Dictionary<string, Dictionary<string, int>> ShakeDrinks = new Dictionary<string, Dictionary<string, int>>()
-{
-    {"Classic Cosmopolitan", new Dictionary<string, int>()
-        {
-            {"Vodka", 2},
-            {"Triple_Sec", 1},
-            {"Cranberry", 2},
-            {"Lime", 1}
-        }
-    },
-    {"Blue Margarita", new Dictionary<string, int>()
-        {
-            {"Tequila", 2},
-            {"Blue_Curacao", 3},
-            {"Lime", 1}
-        }
-    },
-    {"Full Six Fusion", new Dictionary<string, int>()
-        {
-            {"Tequila", 1},
-            {"Vodka", 1},
-            {"Triple_Sec", 1},
-            {"Blue_Curacao", 1},
-            {"Lime", 1},
-            {"Cranberry", 1}
-        }
-    },
-};
-
-    Dictionary<string, Dictionary<string, int>> ShotsDrinks = new Dictionary<string, Dictionary<string, int>>()
-{
-    {"Tequila Shot", new Dictionary<string, int>()
-        {
-            {"Tequila", 1}
-        }
-    },
-    {"Vodka Shot", new Dictionary<string, int>()
-        {
-            {"Vodka", 1}
-        }
-    },
-};
-
-
-    Dictionary<string, Dictionary<string, Dictionary<string, int>>> DrinksType = new Dictionary<string, Dictionary<string, Dictionary<string, int>>>();
-
-    public void Start()
+        _Index = new Dictionary<int, GameObject>()
     {
-        DrinksType = new Dictionary<string, Dictionary<string, Dictionary<string, int>>>()
-    {
-        {"Mixing",MixDrinks},
-        {"Shots",ShotsDrinks},
-        {"Shake",ShakeDrinks}
+        {1, Flip_1},
+        {2, Flip_2},
+        {3, Flip_3},
+        {4, Flip_4},
     };
     }
-
-
-    public void AbleBook()
+    public void CheckFlip(int Anmount)
     {
-        FrontPages.SetActive(true);
-        DrinksPages.SetActive(false);
-    }
-    Dictionary<int, string> _Index;
-    List<GameObject> CurrentPrefabs;
-
-    public void CreateDrinkPrefab()
-    {
-
-    }
-
-    public void FrontPagesButtons(string TypeName)
-    {
-        DrinksPages.SetActive(true);
-        FrontPages.SetActive(false);
-        _Index.Clear();
-        int Count = 0;
-        Dictionary<string, Dictionary<string, int>> TypeDrinks = DrinksType[TypeName];
-        foreach (string DrinkName in TypeDrinks.Keys)
+        if (CurrentInt - Anmount <= 0)
         {
-            Count++;
-            _Index.Add(Count, DrinkName);
-            Dictionary<string, int> Drink = TypeDrinks[DrinkName];
-            Debug.Log("  " + DrinkName);
-            
-            foreach (string Ing in Drink.Keys)
-            {
-                Debug.Log(Ing + " " + Drink[Ing]);
-            }
+            return;
         }
-        for (var i = 1; i < DrinksPages.transform.childCount; i++)
-        {
-            Transform Child = DrinksPages.transform.GetChild(i);
-            GameObject Clone = Instantiate(PagesPrefab);
-            Clone.transform.parent = Child;
-            CurrentPrefabs.Add(Clone);
-            Clone.SetActive(true);
-            GameObject NameHolder = Clone.transform.Find("Name").gameObject;
-            GameObject IngPreFab = Clone.transform.Find("Grid").Find("IngName").gameObject;
-            NameHolder.GetComponent<TextMeshProUGUI>().text = _Index[i];
-            Dictionary<string, int> Drink = TypeDrinks[_Index[i]];
-            foreach (string Ing in Drink.Keys)
-            {
-                IngPreFab.GetComponent<TextMeshProUGUI>().text = Ing;
-                IngPreFab = Instantiate(IngPreFab);
-                Debug.Log(Ing + " " + Drink[Ing]);
-            }
-
-        }
+        _Index[CurrentInt].SetActive(false);
+        CurrentInt += Anmount;
+        _Index[CurrentInt].SetActive(true);
     }
+    void AbleBook()
+    {
+        Book.SetActive(true);
+        Flip_1.SetActive(true);
+        CurrentInt = 1;
+    }
+
+
 
     public void BookButtonFunc()
     {
-        if (Book.activeInHierarchy)
+        if (On)
         {
             Book.SetActive(false);
         }
         else
         {
-            Book.SetActive(true);
             AbleBook();
         }
     }

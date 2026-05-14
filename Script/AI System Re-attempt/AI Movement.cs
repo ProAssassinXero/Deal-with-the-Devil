@@ -207,8 +207,6 @@ public class AIMovement : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Counter"))
         {
-            NPC_QueueManager.instance?.NotifyOrderReceived(this);
-
             orderReceived = true;
             firstRandomIndex = Random.Range(0, chairTransform.Count);
         }
@@ -275,6 +273,11 @@ public class AIMovement : MonoBehaviour
             upperRightDecidedArea = true;
             toUpperRightChair = Random.Range(0, upperChairs.Count);
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        NPC_QueueManager.instance?.NotifyOrderReceived(this);
     }
 
 

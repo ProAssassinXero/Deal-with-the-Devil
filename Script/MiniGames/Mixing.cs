@@ -56,10 +56,6 @@ public class Mixing : MonoBehaviour, IPointerDownHandler,IPointerUpHandler // Th
         if (_slider.maxValue <= MixingCounter)
         {
             Parnet.SetActive(false);
-        }
-
-        if(MixingCounter == _slider.maxValue)
-        {
             DoneMix = true;
         }
     }

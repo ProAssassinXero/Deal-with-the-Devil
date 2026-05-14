@@ -58,7 +58,6 @@ public class Shaker : PhaseManager, IBeginDragHandler, IDragHandler, IEndDragHan
         mouseVelo = (Input.mousePosition - lastMousePosition) / Time.deltaTime;
         mouseDir = mouseVelo.normalized;
         lastMousePosition = Input.mousePosition;
-        Debug.Log(mouseDir);
         if (Approximate(mouseDir,-mouseDir, mouseVelo.magnitude * 0.0012f) && !debounce)
         {
             ShakeCounter++;
@@ -71,6 +70,7 @@ public class Shaker : PhaseManager, IBeginDragHandler, IDragHandler, IEndDragHan
         }
         if (_slider.maxValue <= ShakeCounter)
         {
+            DoneShake = true;
             Parnet.SetActive(false);
         }
     }
@@ -80,6 +80,6 @@ public class Shaker : PhaseManager, IBeginDragHandler, IDragHandler, IEndDragHan
     {
         transform.position = StartPos;
         Draging = false;
-        DoneShake = true;
+        
     }
 }

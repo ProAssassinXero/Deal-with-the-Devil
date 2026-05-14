@@ -42,7 +42,6 @@ public class NPC_OrderScript : MonoBehaviour
         if (length == 0)
         {
             Order = new List<string>();
-            DialogueManager.instance.StartDialogue("I'm good");
             dialogueManager.EndDialogue();
             return;
         }
@@ -52,7 +51,7 @@ public class NPC_OrderScript : MonoBehaviour
         orderToNum = new List<int>(new int[length - 1]);
 
         DialogueManager.instance.dialogueBox.SetActive(true);
-        DialogueManager.instance.StartDialogue(Order[randomiser]);
+        DialogueManager.instance.StartDialogue(Order[randomiser], aIMovement);
 
         FindAnyObjectByType<DialogueManager>().gameObject.SetActive(true);
         Order.RemoveAt(IndexToRemove);

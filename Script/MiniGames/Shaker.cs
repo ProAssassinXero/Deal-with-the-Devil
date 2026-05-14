@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;// Required when using Event data.
 
 public class Shaker : PhaseManager, IBeginDragHandler, IDragHandler, IEndDragHandler // These are the interfaces the OnPointerUp method requires.
 {
+    public NPC_OrderScript OrderScript;
     private Vector2 StartPos = Vector2.zero;
     public Slider _slider;
 
@@ -19,6 +20,7 @@ public class Shaker : PhaseManager, IBeginDragHandler, IDragHandler, IEndDragHan
     public GameObject Parnet;
 
     public bool Draging = false;
+    public bool DoneShake = false;
 
     private void Awake()
     {
@@ -78,5 +80,6 @@ public class Shaker : PhaseManager, IBeginDragHandler, IDragHandler, IEndDragHan
     {
         transform.position = StartPos;
         Draging = false;
+        DoneShake = true;
     }
 }

@@ -18,6 +18,7 @@ public class Mixing : MonoBehaviour, IPointerDownHandler,IPointerUpHandler // Th
     public float AngleRange = 2f;
 
     public bool OnHoldDown = false;
+    public bool DoneMix;
 
     public GameObject Parnet;
 
@@ -55,6 +56,11 @@ public class Mixing : MonoBehaviour, IPointerDownHandler,IPointerUpHandler // Th
         if (_slider.maxValue <= MixingCounter)
         {
             Parnet.SetActive(false);
+        }
+
+        if(MixingCounter == _slider.maxValue)
+        {
+            DoneMix = true;
         }
     }
 

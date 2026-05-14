@@ -16,16 +16,19 @@ public class DialogueManager : MonoBehaviour
     public MiniGame_ShakingScript miniGameScript;
     public GameObject miniGame;
 
+    public AIMovement activeNPC;
+
     void Awake()
     {
         instance = this;
     }
 
-    public void StartDialogue(string newline)
+    public void StartDialogue(string newline, AIMovement npc)
     {
         Dbox = true;
         line = newline;
         sent = true;
+        activeNPC = npc;          
 
         dialogueText.text = line;
     }

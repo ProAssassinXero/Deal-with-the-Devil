@@ -4,8 +4,9 @@ using UnityEngine;
 public class MiniGame_ShakingScript : PhaseManager
 {
     public DialogueManager dialogueManager;
-    public AIMovement AIMovement;
     public ResetToSelection ResetToSelection;
+    public Shaker shaker;
+    public Mixing mixing;
 
 
     public void RestartDrink()
@@ -37,7 +38,7 @@ public class MiniGame_ShakingScript : PhaseManager
         {
             {"Tequila", 3},
             {"Cranberry", 2},
-            {"Blue Curacao", 1}
+            {"Blue_Curacao", 1}
         }
     },
     {"Vodka Citrus Cooler", new Dictionary<string, int>()
@@ -195,15 +196,31 @@ public class MiniGame_ShakingScript : PhaseManager
 
     void Update()
     {
-        if (CurrentDrink == dialogueManager.orderStore && AIMovement.doneOrder == false && dialogueManager.orderStore != "")
+        AIMovement servedNPC = dialogueManager.activeNPC;
+
+        if (servedNPC == null || dialogueManager.orderStore == "")
         {
-            ResetToSelection.ResetToSelectionMenu();
+            return;
+        }
+        if (shaker.DoneShake || mixing.DoneMix)
+        {
+            servedNPC.doneOrder = true;
+        }
+        if (CurrentType == "Shots" && CurrentDrink == dialogueManager.orderStore)
+        {
+            servedNPC.doneOrder = true;
+        }
+
+        if (CurrentDrink == dialogueManager.orderStore && !servedNPC.doneOrder && dialogueManager.orderStore != "")
+        {
+            Debug.Log("Drink completed and matched order: " + CurrentDrink);
             dialogueManager.miniGame.SetActive(false);
-            AIMovement.doneOrder = true;
-            Debug.Log(CurrentDrink);
+            dialogueManager.activeNPC = null;
+
         }
         else if (CurrentDrink != dialogueManager.orderStore && CurrentDrink != "")
         {
+            Debug.Log("Wrong drink made: " + CurrentDrink + " | Expected: " + dialogueManager.orderStore);
             ResetToSelection.ResetToSelectionMenu();
         }
     }

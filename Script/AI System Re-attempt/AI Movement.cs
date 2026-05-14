@@ -73,6 +73,8 @@ public class AIMovement : MonoBehaviour
     {
         lastPosition = transform.position;
         AIWaypointBar = Object.FindAnyObjectByType<AIWaypointBar>();
+
+        NPC_QueueManager.instance?.Enqueue(this);
     }
 
     // Update is called once per frame
@@ -101,21 +103,29 @@ public class AIMovement : MonoBehaviour
 
         if (!orderReceived)
         {
-            Vector2 targetPos = new Vector2(frontCounter.position.x, gameObject.transform.position.y);
-            Vector2 nextTargetPos = new Vector2(gameObject.transform.position.x, frontCounter.position.y);
-            bool done = false;
+            if (NPC_QueueManager.instance != null && NPC_QueueManager.instance.IsMyTurn(this))
+            {
+                Vector2 targetPos = new Vector2(frontCounter.position.x, transform.position.y);
+                Vector2 nextTargetPos = new Vector2(transform.position.x, frontCounter.position.y);
+                bool done = false;
 
-            if (!done)
-            {
-                gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, targetPos, speed * Time.deltaTime);
+                if (!done)
+                    transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+
+                if (transform.position.x == frontCounter.position.x)
+                    done = true;
+
+                if (done)
+                    transform.position = Vector2.MoveTowards(transform.position, nextTargetPos, speed * Time.deltaTime);
             }
-            if (gameObject.transform.position.x == frontCounter.position.x)
+            else if (NPC_QueueManager.instance != null)
             {
-                done = true;
-            }
-            if (done)
-            {
-                gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, nextTargetPos, speed * Time.deltaTime);
+                Vector2 queuePos = NPC_QueueManager.instance.GetQueuePosition(this);
+                transform.position = Vector2.MoveTowards(
+                    transform.position,
+                    queuePos,
+                    NPC_QueueManager.instance.queueMoveSpeed * Time.deltaTime
+                );
             }
         }
 
@@ -197,6 +207,8 @@ public class AIMovement : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Counter"))
         {
+            NPC_QueueManager.instance?.NotifyOrderReceived(this);
+
             orderReceived = true;
             firstRandomIndex = Random.Range(0, chairTransform.Count);
         }

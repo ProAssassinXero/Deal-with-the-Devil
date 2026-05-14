@@ -15,6 +15,10 @@ public class AISeatStorage : MonoBehaviour
     public bool seated;
     private List<List<Transform>> allLists;
 
+    private void Start()
+    {
+        AIWaypointBar = Object.FindAnyObjectByType<AIWaypointBar>();
+    }
     void Update()
     {
         if (currentSeat != null)
@@ -41,7 +45,6 @@ public class AISeatStorage : MonoBehaviour
         {
             currentSeat = collision.transform;
 
-            // Search all lists for the collided transform
             currentSeatGroup = allLists.FirstOrDefault(list => list.Contains(currentSeat));
 
             if (currentSeatGroup != null && gameObject.transform.position == currentSeat.transform.position)

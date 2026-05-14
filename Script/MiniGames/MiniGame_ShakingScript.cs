@@ -197,14 +197,16 @@ public class MiniGame_ShakingScript : PhaseManager
     void Update()
     {
         AIMovement servedNPC = dialogueManager.activeNPC;
-
         if (servedNPC == null || dialogueManager.orderStore == "")
         {
             return;
         }
+        Debug.Log(shaker.DoneShake || mixing.DoneMix);
         if (shaker.DoneShake || mixing.DoneMix)
         {
             servedNPC.doneOrder = true;
+            dialogueManager.activeNPC = null;
+            Debug.Log("YO");
         }
         if (CurrentType == "Shots" && CurrentDrink == dialogueManager.orderStore)
         {
@@ -215,7 +217,7 @@ public class MiniGame_ShakingScript : PhaseManager
         {
             Debug.Log("Drink completed and matched order: " + CurrentDrink);
             dialogueManager.miniGame.SetActive(false);
-            dialogueManager.activeNPC = null;
+            
 
         }
         else if (CurrentDrink != dialogueManager.orderStore && CurrentDrink != "")

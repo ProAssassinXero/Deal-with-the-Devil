@@ -50,11 +50,11 @@ public class NPC_QueueManager : MonoBehaviour
     {
         int index = _queue.IndexOf(npc);
         if (index < 0 || queueStartPoint == null)
+        {
             return npc.transform.position;
-
-        return new Vector2(
-            queueStartPoint.position.x - index * queueSpacing,
-            queueStartPoint.position.y
+        }
+            
+        return new Vector2(queueStartPoint.position.x - index * queueSpacing, queueStartPoint.position.y
         );
     }
     public int QueueLength => _queue.Count;

@@ -24,7 +24,7 @@ public class TimeScript : MonoBehaviour
         ChangeDisplayTime();
     }
 
-    private void Start()
+    public void Start()
     {
         AddTime(1);
     }

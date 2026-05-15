@@ -42,7 +42,7 @@ public class TeleportScript : MonoBehaviour
         }
         if (Debounce)
         {
-            if (Distance(Player.transform.position, transform.position) > Range)
+            if (Distance(Player.transform.position, transform.position) > Range + 3)
             {
                 Debounce = false;
             }

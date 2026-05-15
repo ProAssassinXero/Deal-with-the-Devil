@@ -68,11 +68,10 @@ public class NPC_OrderScript : MonoBehaviour
         if ((nPC.transform.position - Counter.transform.position).magnitude < 2 && !debounce && (isTopTouching || isBottomTouching || isLeftTouching || isRightTouching) && Input.GetKey(KeyCode.E))
         {
             GabiSend();
-            debounce = true;    
-            
+            debounce = true;
         }
   
-        else if (MiniGame_ShakingScript.servedNPC.doneOrder == true)
+        else if (dialogueManager.activeNPC == true && MiniGame_ShakingScript.servedNPC == true)
         {
             debounce = false;
             miniGame.SetActive(false);

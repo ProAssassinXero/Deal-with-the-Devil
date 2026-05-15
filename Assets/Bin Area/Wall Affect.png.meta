@@ -1,0 +1,517 @@
+fileFormatVersion: 2
+guid: 555b3ab45782a8c4682e1364c5703638
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7688808311939712824
+    second: Wall Affect_0
+  - first:
+      213: 3589028184682412822
+    second: Wall Affect_1
+  - first:
+      213: 7033179954686712024
+    second: Wall Affect_2
+  - first:
+      213: -3121368150378122632
+    second: Wall Affect_3
+  - first:
+      213: 8596790436110220683
+    second: Wall Affect_4
+  - first:
+      213: 1811063987601796913
+    second: Wall Affect_5
+  - first:
+      213: -5497310814143358660
+    second: Wall Affect_6
+  - first:
+      213: -6427747203449765057
+    second: Wall Affect_7
+  - first:
+      213: 4226478901680921485
+    second: Wall Affect_8
+  - first:
+      213: -2988443831517958416
+    second: Wall Affect_9
+  - first:
+      213: -2631711182087096874
+    second: Wall Affect_10
+  - first:
+      213: -6417452756779834366
+    second: Wall Affect_11
+  - first:
+      213: -2899354199193415728
+    second: Wall Affect_12
+  - first:
+      213: 3997113265226506538
+    second: Wall Affect_13
+  - first:
+      213: -8473441368801574382
+    second: Wall Affect_14
+  - first:
+      213: 433258670274327078
+    second: Wall Affect_15
+  - first:
+      213: 9159699653193430142
+    second: Wall Affect_16
+  - first:
+      213: -4227621179027806557
+    second: Wall Affect_17
+  - first:
+      213: -4772885352868788257
+    second: Wall Affect_18
+  - first:
+      213: 1571542243107692549
+    second: Wall Affect_19
+  - first:
+      213: -7382735268547637264
+    second: Wall Affect_20
+  - first:
+      213: 2204599781617804556
+    second: Wall Affect_21
+  - first:
+      213: 342437688627508505
+    second: Wall Affect_22
+  - first:
+      213: -8804423173205478227
+    second: Wall Affect_23
+  - first:
+      213: 7875910704227367998
+    second: Wall Affect_24
+  - first:
+      213: -4878197139542353213
+    second: Wall Affect_25
+  - first:
+      213: 9157101655616652688
+    second: Wall Affect_26
+  - first:
+      213: 1646643045897252679
+    second: Wall Affect_27
+  - first:
+      213: 6795502729657709588
+    second: Wall Affect_28
+  - first:
+      213: 6073180787577534262
+    second: Wall Affect_29
+  - first:
+      213: 8868537220852321649
+    second: Wall Affect_30
+  - first:
+      213: -9112808728297449971
+    second: Wall Affect_31
+  - first:
+      213: 1600480112472285482
+    second: Wall Affect_32
+  - first:
+      213: 4147816164599083666
+    second: Wall Affect_33
+  - first:
+      213: 4315741829907876493
+    second: Wall Affect_34
+  - first:
+      213: 5011984908940879980
+    second: Wall Affect_35
+  - first:
+      213: 7128761902528416931
+    second: Wall Affect_36
+  - first:
+      213: -6228857925642684641
+    second: Wall Affect_37
+  - first:
+      213: -5324743420467480453
+    second: Wall Affect_38
+  - first:
+      213: -2457671798110695529
+    second: Wall Affect_39
+  - first:
+      213: -6499450098581417344
+    second: Wall Affect_40
+  - first:
+      213: 3697394209000440159
+    second: Wall Affect_41
+  - first:
+      213: 6386488325952994227
+    second: Wall Affect_42
+  - first:
+      213: -4853285264510567175
+    second: Wall Affect_43
+  - first:
+      213: 4028770846173436409
+    second: Wall Affect_44
+  - first:
+      213: -2705878395137969093
+    second: Wall Affect_45
+  - first:
+      213: 6652410898193565410
+    second: Wall Affect_46
+  - first:
+      213: 8549807286913954320
+    second: Wall Affect_47
+  - first:
+      213: -1191296797641545748
+    second: Wall Affect_48
+  - first:
+      213: -7436318920947214853
+    second: Wall Affect_49
+  - first:
+      213: -5281088826340529293
+    second: Wall Affect_50
+  - first:
+      213: -5033378758051246293
+    second: Wall Affect_51
+  - first:
+      213: -5325078714900558462
+    second: Wall Affect_52
+  - first:
+      213: -3495288092028821602
+    second: Wall Affect_53
+  - first:
+      213: 8758727317918489594
+    second: Wall Affect_54
+  - first:
+      213: 2163842725058796913
+    second: Wall Affect_55
+  - first:
+      213: -6059623864405526305
+    second: Wall Affect_56
+  - first:
+      213: -258109252216210506
+    second: Wall Affect_57
+  - first:
+      213: 4760384434511228726
+    second: Wall Affect_58
+  - first:
+      213: -754838799315811763
+    second: Wall Affect_59
+  - first:
+      213: -4605927625382186366
+    second: Wall Affect_60
+  - first:
+      213: 2566469654536030781
+    second: Wall Affect_61
+  - first:
+      213: 5199880997641037578
+    second: Wall Affect_62
+  - first:
+      213: -5944894661372108917
+    second: Wall Affect_63
+  - first:
+      213: -2224928471885809721
+    second: Wall Affect_64
+  - first:
+      213: -972078727914236579
+    second: Wall Affect_65
+  - first:
+      213: 1184973302827758961
+    second: Wall Affect_66
+  - first:
+      213: -4599633658237932706
+    second: Wall Affect_67
+  - first:
+      213: 9073127809674274576
+    second: Wall Affect_68
+  - first:
+      213: 9170835395897610582
+    second: Wall Affect_69
+  - first:
+      213: -4257320218738135702
+    second: Wall Affect_70
+  - first:
+      213: -9081829363505525369
+    second: Wall Affect_71
+  - first:
+      213: -1709529935310646414
+    second: Wall Affect_72
+  - first:
+      213: -4374589850524783517
+    second: Wall Affect_73
+  - first:
+      213: 2848876229505550131
+    second: Wall Affect_74
+  - first:
+      213: -701659488144333887
+    second: Wall Affect_75
+  - first:
+      213: -9096723428113072056
+    second: Wall Affect_76
+  - first:
+      213: 8690638053814801309
+    second: Wall Affect_77
+  - first:
+      213: -1040832358056967707
+    second: Wall Affect_78
+  - first:
+      213: 7556290068166294780
+    second: Wall Affect_79
+  - first:
+      213: 8403209748295545486
+    second: Wall Affect_80
+  - first:
+      213: 6610833203824775240
+    second: Wall Affect_81
+  - first:
+      213: -1034345420871764484
+    second: Wall Affect_82
+  - first:
+      213: -7083739795714562756
+    second: Wall Affect_83
+  - first:
+      213: -6610607210390645476
+    second: Wall Affect_84
+  - first:
+      213: -8944541416290841531
+    second: Wall Affect_85
+  - first:
+      213: -1505736828754557166
+    second: Wall Affect_86
+  - first:
+      213: 6994068212166049033
+    second: Wall Affect_87
+  - first:
+      213: -3703876310656292707
+    second: Wall Affect_88
+  - first:
+      213: 7040221048789342754
+    second: Wall Affect_89
+  - first:
+      213: 5202079176065651117
+    second: Wall Affect_90
+  - first:
+      213: 2512483493315710311
+    second: Wall Affect_91
+  - first:
+      213: 3732410817202480301
+    second: Wall Affect_92
+  - first:
+      213: 9137257750411851559
+    second: Wall Affect_93
+  - first:
+      213: 7183571851438465663
+    second: Wall Affect_94
+  - first:
+      213: 550861542808324978
+    second: Wall Affect_95
+  - first:
+      213: 5457935022328537405
+    second: Wall Affect_96
+  - first:
+      213: -9094021737172122318
+    second: Wall Affect_97
+  - first:
+      213: -2442947139036595015
+    second: Wall Affect_98
+  - first:
+      213: 3011792642063256347
+    second: Wall Affect_99
+  - first:
+      213: -8968657607812943609
+    second: Wall Affect_100
+  - first:
+      213: 860048924694088726
+    second: Wall Affect_101
+  - first:
+      213: -3473093483340812923
+    second: Wall Affect_102
+  - first:
+      213: 674965722966546433
+    second: Wall Affect_103
+  - first:
+      213: 3510641501701596245
+    second: Wall Affect_104
+  - first:
+      213: 8356241843707851094
+    second: Wall Affect_105
+  - first:
+      213: 3210827383529666473
+    second: Wall Affect_106
+  - first:
+      213: -8434231442902468296
+    second: Wall Affect_107
+  - first:
+      213: -6277539816808526746
+    second: Wall Affect_108
+  - first:
+      213: -5593771319895265593
+    second: Wall Affect_109
+  - first:
+      213: -6557675609433656200
+    second: Wall Affect_110
+  - first:
+      213: -3086340720584035244
+    second: Wall Affect_111
+  - first:
+      213: -2722950047136622974
+    second: Wall Affect_112
+  - first:
+      213: -9003591449264698184
+    second: Wall Affect_113
+  - first:
+      213: -1645296374273459030
+    second: Wall Affect_114
+  - first:
+      213: 4126537631470354675
+    second: Wall Affect_115
+  - first:
+      213: 6908854848675346655
+    second: Wall Affect_116
+  - first:
+      213: -3826987006573228442
+    second: Wall Affect_117
+  - first:
+      213: 6332630218292404849
+    second: Wall Affect_118
+  - first:
+      213: 7865654114172525791
+    second: Wall Affect_119
+  - first:
+      213: -5597986173023585004
+    second: Wall Affect_120
+  - first:
+      213: 9216834283632162408
+    second: Wall Affect_121
+  - first:
+      213: -2090011038602760926
+    second: Wall Affect_122
+  - first:
+      213: -3758912120801576434
+    second: Wall Affect_123
+  - first:
+      213: -7462864856730820947
+    second: Wall Affect_124
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Wall Affect_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 2240
+        height: 1630
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c833ccc39ddb4590800000000000000
+      internalID: -7688808311939712824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: e12724d560af2af478cf82adc8ba8072
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":2240.0,"y":1630.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Wall Affect_0: -7688808311939712824
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

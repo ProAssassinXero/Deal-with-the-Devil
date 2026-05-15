@@ -5,13 +5,12 @@ public class SpawnNPC : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public GameObject Prefab1;
-    public bool spam;
+    public bool spam = true;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.T) && spam == true)
         {
-            GameObject go = Instantiate(Prefab1, new Vector3(0, 0, 0), Quaternion.identity);
-            go.transform.Translate(0.95f, -0.49f, 0f);
+            Instantiate(Prefab1, new Vector2(-10, 0.95f), Quaternion.identity);
             spam = false;
             StartCoroutine(SpamStop());
         }

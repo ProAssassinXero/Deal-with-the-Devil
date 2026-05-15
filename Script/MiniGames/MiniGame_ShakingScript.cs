@@ -8,6 +8,8 @@ public class MiniGame_ShakingScript : PhaseManager
     public Shaker shaker;
     public Mixing mixing;
 
+    public AIMovement servedNPC;
+
 
     public void RestartDrink()
     {
@@ -194,9 +196,10 @@ public class MiniGame_ShakingScript : PhaseManager
         Debug.Log(CurrentMix[NamePart]);
     }
 
+    
     void Update()
     {
-        AIMovement servedNPC = dialogueManager.activeNPC;
+        servedNPC = dialogueManager.activeNPC;
         if (servedNPC == null || dialogueManager.orderStore == "")
         {
             return;

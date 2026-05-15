@@ -20,6 +20,7 @@ public class NPC_OrderScript : MonoBehaviour
 
     public GameObject miniGame;    
     public PlayerInteraction playerInteraction;
+    public MiniGame_ShakingScript MiniGame_ShakingScript;
     public BoxCollider2D top;
     public BoxCollider2D bottom;
     public BoxCollider2D left;
@@ -71,7 +72,7 @@ public class NPC_OrderScript : MonoBehaviour
             
         }
   
-        else if (aIMovement.doneOrder == true)
+        else if (MiniGame_ShakingScript.servedNPC.doneOrder == true)
         {
             debounce = false;
             miniGame.SetActive(false);

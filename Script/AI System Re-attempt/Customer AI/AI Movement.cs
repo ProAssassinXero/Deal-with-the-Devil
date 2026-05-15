@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +19,7 @@ public class AIMovement : MonoBehaviour
 
     public bool orderReceived;
     public bool doneOrder;
+    public bool doneDrinking;
 
     public bool centerDecidedArea;
     public bool rightDecidedArea;
@@ -182,7 +184,19 @@ public class AIMovement : MonoBehaviour
             firstRandomIndex = 0;
 
             movementDirection = Vector2.zero;
+            StartCoroutine(DrinkingTime());
         }
+        if (AISeatStorage.seated && doneDrinking) 
+        {
+            
+        }
+    }
+
+    IEnumerator DrinkingTime()
+    {
+        int Timer = Random.Range(5,10);
+        yield return new WaitForSeconds(Timer);
+        doneDrinking = true;
     }
 
     private void CalculateDirection(Vector2 posBefore)

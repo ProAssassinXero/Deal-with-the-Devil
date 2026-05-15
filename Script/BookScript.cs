@@ -21,12 +21,15 @@ public class BookScript : MonoBehaviour
         {1, Flip_1},
         {2, Flip_2},
         {3, Flip_3},
-        {4, Flip_4},
     };
     }
     public void CheckFlip(int Anmount)
     {
-        if (CurrentInt - Anmount <= 0)
+        if (CurrentInt + Anmount <= 0)
+        {
+            return;
+        }
+        if (CurrentInt + Anmount >= 3)
         {
             return;
         }

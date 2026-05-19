@@ -58,5 +58,11 @@ public class AISeatStorage : MonoBehaviour
                 currentSeatGroup.Remove(currentSeat);
             }
         }
+
+        if (collision.gameObject.CompareTag("LowerLeftSeatTransition") || collision.gameObject.CompareTag("LowerRightSeatTransition") || collision.gameObject.CompareTag("LowerCenterSeatTransition"))
+        {
+            currentSeat = null;
+            AIMovement.lower = true;
+        }
     }
 }

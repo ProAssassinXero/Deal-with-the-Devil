@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -21,7 +22,7 @@ public class AISeatStorage : MonoBehaviour
     }
     void Update()
     {
-        if (currentSeat != null)
+        if (currentSeat != null && !AIMovement.isLeaving)
         {
             transform.position = currentSeat.position;
         }
@@ -41,25 +42,21 @@ public class AISeatStorage : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("UpChair") /*|| collision.gameObject.CompareTag("DownChair")*/ || collision.gameObject.CompareTag("LeftChair") || collision.gameObject.CompareTag("RightChair"))
+        if (collision.gameObject.CompareTag("UpChair") || collision.gameObject.CompareTag("LeftChair") || collision.gameObject.CompareTag("RightChair"))
         {
+            if (collision.transform != AIMovement.targetSeat)
+                return;
+
+            seated = true;
             currentSeat = collision.transform;
 
             currentSeatGroup = allLists.FirstOrDefault(list => list.Contains(currentSeat));
 
-            if (currentSeatGroup != null && gameObject.transform.position == currentSeat.transform.position)
+            if (currentSeatGroup != null)
             {
                 Debug.Log("Found seat in group!");
-                StartCoroutine(WaitToBeSeated());
+                currentSeatGroup.Remove(currentSeat);
             }
         }
-    }
-
-    IEnumerator WaitToBeSeated()
-    {
-        yield return new WaitForSeconds(2f);
-        seated = true;
-        currentSeatGroup.Remove(currentSeat);
-        Debug.Log(" the AIMovement component is " + GetComponent<AIMovement>().enabled);
     }
 }

@@ -19,6 +19,14 @@ public class AI_Animation : MonoBehaviour
     {
         Walk();
         Seating();
+        if (aiMovement.movementDirection == Vector2.zero && !aiMovement.sitUp && !aiMovement.sitDown && !aiMovement.sitLeft && !aiMovement.sitRight)
+        {
+            aiAnimator.SetBool("IsAtCounter", true);
+        }
+        else
+        {
+            aiAnimator.SetBool("IsAtCounter", false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

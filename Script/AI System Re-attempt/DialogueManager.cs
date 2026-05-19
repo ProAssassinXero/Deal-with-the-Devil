@@ -14,6 +14,7 @@ public class DialogueManager : MonoBehaviour
 
     public string orderStore;
     public MiniGame_ShakingScript miniGameScript;
+    public NPC_OrderScript nPC_OrderScript;
     public GameObject miniGame;
 
     public AIMovement activeNPC;
@@ -21,6 +22,15 @@ public class DialogueManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+    }
+
+    public void Update()
+    {
+        if (nPC_OrderScript.ClearUI)
+        {
+            orderDisplay.text = "Order: ";
+            line = "";
+        }
     }
 
     public void StartDialogue(string newline, AIMovement npc)
@@ -52,5 +62,6 @@ public class DialogueManager : MonoBehaviour
         miniGame.SetActive(false);
         miniGameScript.RestartDrink();
         miniGameScript.ResetDrink();
+        orderStore = "";
     }
 }

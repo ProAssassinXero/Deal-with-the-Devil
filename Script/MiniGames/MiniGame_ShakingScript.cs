@@ -9,6 +9,7 @@ public class MiniGame_ShakingScript : PhaseManager
     public Mixing mixing;
 
     public AIMovement servedNPC;
+    public NPC_OrderScript nPC_OrderScript;
 
 
     public void RestartDrink()
@@ -118,6 +119,7 @@ public class MiniGame_ShakingScript : PhaseManager
 
     bool CheckAddPart()
     {
+        if (CurrentType == "") return false;
         int Part_Counter = 0;
         int Limit = TypePartLimit[CurrentType];
         foreach (int value in CurrentMix.Values)
@@ -133,6 +135,7 @@ public class MiniGame_ShakingScript : PhaseManager
 
     string IsDrink()
     {
+        if (CurrentType == "") return "None";
         Dictionary<string, Dictionary<string, int>> FilerType = DrinksType[CurrentType];
         string Name = "None";
         Debug.Log(CurrentMix.Keys);
@@ -166,6 +169,7 @@ public class MiniGame_ShakingScript : PhaseManager
 
     public void AddPart(string NamePart)
     {
+        if (CurrentType == "") return;
         if (!CheckAddPart())
         {
             return;
@@ -196,36 +200,63 @@ public class MiniGame_ShakingScript : PhaseManager
         Debug.Log(CurrentMix[NamePart]);
     }
 
-    
+
     void Update()
     {
-        servedNPC = dialogueManager.activeNPC;
-        if (servedNPC == null || dialogueManager.orderStore == "")
+        if (nPC_OrderScript.Order.Count == 0)
+        {
+            GameObject[] allObjects = GameObject.FindObjectsByType<GameObject>(FindObjectsInactive.Include);
+
+            foreach (GameObject obj in allObjects)
+            {
+                if (obj.name.ToLower().Contains("npc"))
+                {
+                    Destroy(obj);
+                }
+            }
+        }
+        if (servedNPC == null && dialogueManager.activeNPC != null && dialogueManager.orderStore != "")
+        {
+            servedNPC = dialogueManager.activeNPC;
+        }
+
+        if (servedNPC == null || dialogueManager.orderStore == "" || CurrentType == "")
         {
             return;
         }
-        Debug.Log(shaker.DoneShake || mixing.DoneMix);
-        if (shaker.DoneShake || mixing.DoneMix)
+
+        if ((shaker.DoneShake || mixing.DoneMix) && (CurrentType == "Shake" || CurrentType == "Mixing"))
         {
             servedNPC.doneOrder = true;
             dialogueManager.activeNPC = null;
-            Debug.Log("YO");
+            dialogueManager.orderStore = "";
+            CurrentDrink = "";
+            nPC_OrderScript.debounce = false;
+            shaker.DoneShake = false;
+            mixing.DoneMix = false;
+            dialogueManager.Resetminigame();
+            servedNPC = null;
+            return;
         }
+
         if (CurrentType == "Shots" && CurrentDrink == dialogueManager.orderStore)
         {
             servedNPC.doneOrder = true;
+            dialogueManager.activeNPC = null;
+            dialogueManager.orderStore = "";
+            CurrentDrink = "";
+            nPC_OrderScript.debounce = false;
+            dialogueManager.Resetminigame();
+            servedNPC = null;
+            return;
         }
 
-        if (CurrentDrink == dialogueManager.orderStore && !servedNPC.doneOrder && dialogueManager.orderStore != "")
-        {
-            Debug.Log("Drink completed and matched order: " + CurrentDrink);
-            dialogueManager.miniGame.SetActive(false);
-            
-
-        }
-        else if (CurrentDrink != dialogueManager.orderStore && CurrentDrink != "")
+        if (CurrentDrink == "None" || (CurrentDrink != "" && CurrentDrink != dialogueManager.orderStore))
         {
             Debug.Log("Wrong drink made: " + CurrentDrink + " | Expected: " + dialogueManager.orderStore);
+            CurrentDrink = "";
+            shaker.DoneShake = false;
+            mixing.DoneMix = false;
             ResetToSelection.ResetToSelectionMenu();
         }
     }

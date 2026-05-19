@@ -7,18 +7,19 @@ public class NPC_OrderScript : MonoBehaviour
     public int pickedOrder;
     public int randomiser;
     public int IndexToRemove;
-    public List<string> Order;         
+    public List<string> Order;
     public List<int> orderToNum;
     public DialogueManager dialogueManager;
     public AIMovement aIMovement;
-    public GameObject nPC;
+    public AIMovement npcAtCounter;
+    public bool ClearUI = true;
     public bool orderIsReceiced;
-    public GameObject Counter;  
-    public bool debounce = false;     
+    public GameObject Counter;
+    public bool debounce = false;
 
-    public BoxCollider2D takeOrder;   
+    public BoxCollider2D takeOrder;
 
-    public GameObject miniGame;    
+    public GameObject miniGame;
     public PlayerInteraction playerInteraction;
     public MiniGame_ShakingScript MiniGame_ShakingScript;
     public BoxCollider2D top;
@@ -37,44 +38,72 @@ public class NPC_OrderScript : MonoBehaviour
 
     public void GabiSend()
     {
+        if (debounce) return;  // guard at the top
+        debounce = true;       // set immediately
+
         int length = Order.Count;
-        randomiser = Random.Range(0, length);
 
         if (length == 0)
         {
-            Order = new List<string>();
             dialogueManager.EndDialogue();
             return;
         }
 
+        randomiser = Random.Range(0, length);
         IndexToRemove = Order.IndexOf(Order[randomiser]);
         pickedOrder = randomiser;
         orderToNum = new List<int>(new int[length - 1]);
 
         DialogueManager.instance.dialogueBox.SetActive(true);
         DialogueManager.instance.StartDialogue(Order[randomiser], aIMovement);
-
         FindAnyObjectByType<DialogueManager>().gameObject.SetActive(true);
+
         Order.RemoveAt(IndexToRemove);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         bool isTopTouching = playerInteraction.topCollider.IsTouching(takeOrder);
         bool isBottomTouching = playerInteraction.bottomCollider.IsTouching(takeOrder);
         bool isLeftTouching = playerInteraction.leftCollider.IsTouching(takeOrder);
         bool isRightTouching = playerInteraction.rightCollider.IsTouching(takeOrder);
 
-        if ((nPC.transform.position - Counter.transform.position).magnitude < 2 && !debounce && (isTopTouching || isBottomTouching || isLeftTouching || isRightTouching) && Input.GetKey(KeyCode.E))
+        if (npcAtCounter != null && Counter != null)
         {
-            GabiSend();
-            debounce = true;
+            if (npcAtCounter != null)
+            {
+                if (!debounce && (isTopTouching || isBottomTouching || isLeftTouching || isRightTouching) && Input.GetKeyDown(KeyCode.E))
+                {
+                    aIMovement = npcAtCounter;
+                    GabiSend();
+                }
+            }
         }
-  
-        else if (dialogueManager.activeNPC == true && MiniGame_ShakingScript.servedNPC == true)
+        if (dialogueManager.activeNPC == null && MiniGame_ShakingScript.servedNPC == null)
         {
             debounce = false;
             miniGame.SetActive(false);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("NPC"))
+        {
+            npcAtCounter = collision.GetComponent<AIMovement>();
+            ClearUI = false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("NPC"))
+        {
+            if (npcAtCounter == collision.GetComponent<AIMovement>())
+            {
+                npcAtCounter = null; 
+                ClearUI = true;
+            }
         }
     }
 }

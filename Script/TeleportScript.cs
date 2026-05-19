@@ -27,7 +27,6 @@ public class TeleportScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(Distance(Player.transform.position, transform.position));
         if (!Debounce)
         {
             if (Distance(Player.transform.position, transform.position) < Range)

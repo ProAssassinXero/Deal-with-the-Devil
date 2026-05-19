@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4390817486676714837}
   m_Layer: 0
   m_Name: NPC
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,7 +154,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -184,6 +184,7 @@ MonoBehaviour:
   sitRight: 0
   orderReceived: 0
   doneOrder: 0
+  doneDrinking: 0
   centerDecidedArea: 0
   rightDecidedArea: 0
   leftDecidedArea: 0
@@ -209,6 +210,10 @@ MonoBehaviour:
   lL_ChairToGoTo: []
   stools: []
   upperChairs: []
+  exitWaypoint: {fileID: 0}
+  isLeaving: 0
+  pathToSeat: []
+  exitPath: []
 --- !u!114 &6532525752339275379
 MonoBehaviour:
   m_ObjectHideFlags: 0

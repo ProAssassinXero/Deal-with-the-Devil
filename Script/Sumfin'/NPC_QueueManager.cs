@@ -15,6 +15,7 @@ public class NPC_QueueManager : MonoBehaviour
     public int queueMoveSpeed = 3;
 
     public List<AIMovement> _queue = new List<AIMovement>();
+    public int yspace = 3;
 
     private void Awake()
     {
@@ -54,8 +55,7 @@ public class NPC_QueueManager : MonoBehaviour
             return npc.transform.position;
         }
             
-        return new Vector2(queueStartPoint.position.x - index * queueSpacing, queueStartPoint.position.y
-        );
+        return new Vector2(queueStartPoint.position.x - index * queueSpacing, queueStartPoint.position.y - yspace);
     }
     public int QueueLength => _queue.Count;
 }

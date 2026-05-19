@@ -31,4 +31,10 @@ public class AIWaypointBar : MonoBehaviour
 
     [Header("Upper Right Seats")]
     public List<Transform> upperChairs;
+
+    [Header("Exit")]
+    public Transform exitWaypoint;
+
+    [Header("Patron Entry")]
+    public Transform patronEntryPoint;
 }

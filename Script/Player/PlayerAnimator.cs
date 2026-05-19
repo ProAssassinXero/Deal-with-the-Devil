@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 public class PlayerAnimator : PhaseManager
 {
     // References
@@ -37,6 +37,9 @@ public class PlayerAnimator : PhaseManager
     public readonly int IsDraggingUp = Animator.StringToHash("IsDraggingUp");
     public readonly int IsDraggingRight = Animator.StringToHash("IsDraggingRight");
     public readonly int IsDraggingLeft = Animator.StringToHash("IsDraggingLeft");
+
+    public bool IsAttacking = false;
+    public List<GameObject> HitArry = new List<GameObject>();
 
     // Runs once at start
     void Start()
@@ -91,6 +94,8 @@ public class PlayerAnimator : PhaseManager
 
         if (canSlash && mouseDown)
         {
+            IsAttacking = true;
+            HitArry.Clear();
             if (movement.vector2.y < 0 || lastDirection.y < 0) SetSlash("IsSlashingDown");
             else if (movement.vector2.y > 0 || lastDirection.y > 0) SetSlash("IsSlashingUp");
             else if (movement.vector2.x > 0 || lastDirection.x > 0) SetSlash("IsSlashingRight");
@@ -100,6 +105,7 @@ public class PlayerAnimator : PhaseManager
         // While slashing, stop movement animations
         if (IsSlashing)
         {
+            
             movement.CurrentSpeedX = 4.5f;
             movement.CurrentSpeedY = 4.5f;
             
@@ -128,6 +134,11 @@ public class PlayerAnimator : PhaseManager
         IsSlashing = false;
     }
 
+    public void AddToHit(GameObject HitObject)
+    {
+        HitArry.Add(HitObject);
+    }
+
     // Checks if slash animation finished
     void CheckSlashFinished()
     {
@@ -139,6 +150,7 @@ public class PlayerAnimator : PhaseManager
              stateInfo.IsName("The Client-Left Slash"))
              && stateInfo.normalizedTime >= 1)
         {
+            IsAttacking = false;
             StopSlash();
         }
     }

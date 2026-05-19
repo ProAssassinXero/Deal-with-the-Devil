@@ -42,10 +42,11 @@ public class AISeatStorage : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("UpChair") || collision.gameObject.CompareTag("LeftChair") || collision.gameObject.CompareTag("RightChair"))
+
+        if (collision.gameObject.CompareTag("UpChair") || collision.gameObject.CompareTag("LeftChair") || collision.gameObject.CompareTag("RightChair") && !(collision.gameObject.CompareTag("LowerLeftSeatTransition") || collision.gameObject.CompareTag("LowerRightSeatTransition") || collision.gameObject.CompareTag("LowerCenterSeatTransition")))
         {
-            if (collision.transform != AIMovement.targetSeat)
-                return;
+            //if (collision.transform != AIMovement.targetSeat)
+              //  return;
 
             seated = true;
             currentSeat = collision.transform;

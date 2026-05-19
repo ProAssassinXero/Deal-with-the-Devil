@@ -4402,9 +4402,9 @@ MonoBehaviour:
   Main: 0
   Brother: {fileID: 1811530945}
   Collider: {fileID: 554837201}
-  xStoredClamp: 5
-  yStoredClamp: 17
-  StoredCenter: {x: 0, y: 0}
+  xStoredClamp: 0
+  yStoredClamp: 0
+  StoredCenter: {x: 14.25, y: 15}
 --- !u!61 &554837201
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18512,9 +18512,9 @@ MonoBehaviour:
   Main: 1
   Brother: {fileID: 554837198}
   Collider: {fileID: 1811530947}
-  xStoredClamp: 2
-  yStoredClamp: 2
-  StoredCenter: {x: 14.25, y: 15}
+  xStoredClamp: 0
+  yStoredClamp: 0
+  StoredCenter: {x: 0, y: 17}
 --- !u!61 &1811530947
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class RunnerScript : Enemy
         lastPos = transform.position;
         int _Random = Random.Range(1, 7);
         CurrentTarget = targetGroup[_Random];
+        Health = 2;
     }
 
     public override Transform FindTarget()

@@ -13,6 +13,7 @@ public class Runner_Animations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         // RunRight: moving right AND horizontal > vertical
         if (runnerScript.movementDirection.x > 0 && runnerScript.movementDirection.x > runnerScript.movementDirection.y)
         {

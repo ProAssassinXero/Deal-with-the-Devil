@@ -43,7 +43,6 @@ public class Binbagging : PhaseManager
             {
                 collision.gameObject.tag = "BaggedBody";
                 BinbagCount--;
-                spriteRenderer.color = Color.lawnGreen;
                 
             }
         }

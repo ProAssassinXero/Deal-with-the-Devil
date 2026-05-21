@@ -138,9 +138,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 769
-        y: 939
+        y: 1072
         width: 1242
-        height: 330
+        height: 197
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -230,7 +230,7 @@ TextureImporter:
         width: 1242
         height: 381
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -239,6 +239,28 @@ TextureImporter:
       bones: []
       spriteID: 83b0dc9c18c844444a726bab938bb3e3
       internalID: 1918708116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: room(stuuff (copy)) _0001 1_6
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 939
+        width: 1242
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b4adef767f29f643b60a22989fb57b8
+      internalID: -401540117
       vertices: []
       indices: 
       edges: []
@@ -263,6 +285,7 @@ TextureImporter:
       room(stuuff (copy)) _0001 1_3: -8128447164769238100
       room(stuuff (copy)) _0001 1_4: -2948944521936066833
       room(stuuff (copy)) _0001 1_5: 1918708116
+      room(stuuff (copy)) _0001 1_6: -401540117
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

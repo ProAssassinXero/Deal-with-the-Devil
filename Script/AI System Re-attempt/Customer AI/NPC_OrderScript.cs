@@ -38,8 +38,8 @@ public class NPC_OrderScript : MonoBehaviour
 
     public void GabiSend()
     {
-        if (debounce) return;  // guard at the top
-        debounce = true;       // set immediately
+        if (debounce) return; 
+        debounce = true;       
 
         int length = Order.Count;
 

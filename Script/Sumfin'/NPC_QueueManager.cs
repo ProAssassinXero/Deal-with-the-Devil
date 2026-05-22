@@ -5,13 +5,10 @@ public class NPC_QueueManager : MonoBehaviour
 {
     public static NPC_QueueManager instance;
 
-    [Tooltip("The world-space position the first queuing NPC walks to while waiting.")]
     public Transform queueStartPoint;
 
-    [Tooltip("Distance between each NPC in the queue line.")]
     public float queueSpacing = 1.5f;
 
-    [Tooltip("Speed at which queuing NPCs shuffle forward after the front leaves.")]
     public int queueMoveSpeed = 3;
 
     public List<AIMovement> _queue = new List<AIMovement>();

@@ -10,11 +10,34 @@ public class Enemy : MonoBehaviour
     public List<Transform> targetGroup;
     public Transform CurrentTarget;
     public NavMeshAgent Agent;
-
+    public GameObject HitBoxesPlr;
     public MonsterHandler Mananger;
     public GameObject Player;
+    public GameObject DeadBody;
 
     public int Health = 3;
+    public int MaxHealth = 3;
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        Debug.Log(collision.transform.name);
+        if (collision.transform.parent == HitBoxesPlr)
+        {
+            PlayerAnimator PlayerScript = Player.transform.GetComponent<PlayerAnimator>();
+            if (PlayerScript.IsAttacking)
+            {
+                PlayerScript.AddToHit(gameObject);
+                Health--;
+            }
+        }
+        if (Health <= 0)
+        {
+            GameObject Clone = Instantiate(DeadBody);
+            Clone.transform.position = transform.position;
+            gameObject.transform.parent.gameObject.SetActive(false);
+        }
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

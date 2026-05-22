@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -45,18 +43,22 @@ public class AISeatStorage : MonoBehaviour
 
         if (collision.gameObject.CompareTag("UpChair") || collision.gameObject.CompareTag("LeftChair") || collision.gameObject.CompareTag("RightChair") && !(collision.gameObject.CompareTag("LowerLeftSeatTransition") || collision.gameObject.CompareTag("LowerRightSeatTransition") || collision.gameObject.CompareTag("LowerCenterSeatTransition")))
         {
+<<<<<<< Updated upstream
             //if (collision.transform != AIMovement.targetSeat)
               //  return;
+=======
+            if (Vector2.Distance(transform.position, collision.transform.position) > 1f)
+                return;
+>>>>>>> Stashed changes
 
             seated = true;
             currentSeat = collision.transform;
-
             currentSeatGroup = allLists.FirstOrDefault(list => list.Contains(currentSeat));
 
             if (currentSeatGroup != null)
             {
-                Debug.Log("Found seat in group!");
                 currentSeatGroup.Remove(currentSeat);
+                Debug.Log("Seat removed from group!");
             }
         }
 

@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    public SpriteRenderer topSprite;
-    public SpriteRenderer leftSprite;
-    public SpriteRenderer rightSprite;
-    public SpriteRenderer bottomSprite;
+    //public SpriteRenderer topSprite;
+    //public SpriteRenderer leftSprite;
+    //public SpriteRenderer rightSprite;
+    //public SpriteRenderer bottomSprite;
 
     public BoxCollider2D topCollider;
     public BoxCollider2D leftCollider;
@@ -23,13 +23,13 @@ public class PlayerInteraction : MonoBehaviour
         // Down
         if (PlayerAnimator.playerAnim.GetBool("IsWalkingDown") == true || PlayerAnimator.playerAnim.GetBool("IsIdleDown") == true || PlayerAnimator.playerAnim.GetBool("IsDraggingDown") || PlayerAnimator.playerAnim.GetBool("IsSlashingDown"))
         {
-            bottomSprite.enabled = true;
+            //bottomSprite.enabled = true;
             bottomCollider.enabled = true;
 
         }
         else
         {
-            bottomSprite.enabled = false;
+            //bottomSprite.enabled = false;
             bottomCollider.enabled = false;
 
         }
@@ -37,25 +37,25 @@ public class PlayerInteraction : MonoBehaviour
         // Up
         if (PlayerAnimator.playerAnim.GetBool("IsWalkingUp") == true || PlayerAnimator.playerAnim.GetBool("IsIdleUp") == true || PlayerAnimator.playerAnim.GetBool("IsDraggingUp") || PlayerAnimator.playerAnim.GetBool("IsSlashingUp"))
         {
-            topSprite.enabled = true;
+            //topSprite.enabled = true;
             topCollider.enabled = true;
         }
         else
         {
-            topSprite.enabled = false;
+            //topSprite.enabled = false;
             topCollider.enabled = false;
         }
 
         // Left
         if (PlayerAnimator.playerAnim.GetBool("IsWalkingLeft") == true || PlayerAnimator.playerAnim.GetBool("IsIdleLeft") == true ||  PlayerAnimator.playerAnim.GetBool("IsDraggingLeft") || PlayerAnimator.playerAnim.GetBool("IsSlashingLeft"))
         {
-            leftSprite.enabled = true;
+            //leftSprite.enabled = true;
             leftCollider.enabled = true;
 
         }
         else
         {
-            leftSprite.enabled = false;
+            //leftSprite.enabled = false;
             leftCollider.enabled = false;
 
         }
@@ -63,12 +63,12 @@ public class PlayerInteraction : MonoBehaviour
         //Right
         if (PlayerAnimator.playerAnim.GetBool("IsWalkingRight") == true || PlayerAnimator.playerAnim.GetBool("IsIdleRight") == true || PlayerAnimator.playerAnim.GetBool("IsDraggingRight") || PlayerAnimator.playerAnim.GetBool("IsSlashingRight"))
         {
-            rightSprite.enabled = true;
+            //rightSprite.enabled = true;
             rightCollider.enabled = true;
         }
         else
         {
-            rightSprite.enabled = false;
+            //rightSprite.enabled = false;
             rightCollider.enabled = false;
         }
     }
